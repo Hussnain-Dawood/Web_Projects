@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile List</title>
+  <style>
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin: 20px;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-body {
+      padding: 15px;
+    }
+    .card-body h3 {
+      margin: 0 0 5px;
+    }
+    .card-body p {
+      margin: 5px 0;
+      color: #555;
+    }
+/* Navbar */
+   :root {
+            --primary: #0077b6;
+            --secondary: #023e8a;
+            --light: #f8f9fa;
+            --dark: #1c1c1c;
+            --accent: #00b4d8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--primary);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: var(--accent);
+        }
+
+        .navbar img {
+            height: 50px;
+            filter: brightness(0) invert(1);
+        }
+
+        .role {
+            text-align: right;
+            color: white;
+        }
+
+        .role img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-bottom: 5px;
+        }
+
+/* footer */
+    footer {
+      background-color: #0f172a;
+      color: #cbd5e1;
+      padding: 50px 20px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .footer-section {
+      flex: 1 1 220px;
+      margin-bottom: 30px;
+    }
+
+    .footer-section img {
+      width: 160px;
+      margin-bottom: 15px;
+    }
+
+    .footer-section h4 {
+      color: #f8fafc;
+      margin-bottom: 15px;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li,
+    .footer-section p,
+    .footer-section a {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #cbd5e1;
+      text-decoration: none;
+    }
+
+    .footer-social a {
+      display: inline-block;
+      margin-right: 10px;
+      color: #cbd5e1;
+    }
+/* footer1 */
+    
+   .footer-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      max-width: 60%;
+      margin: auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-top: 2px solid #ccc;
+      font-family: Arial, sans-serif;
+    }
+
+    .newsletter-box,
+    .map-box {
+      width: 100%;
+      text-align: center;
+    }
+
+    .newsletter-box h4,
+    .map-box h4 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .newsletter-form input[type="email"] {
+      width: 90%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .newsletter-form button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .newsletter-form button:hover {
+      background-color: #0056b3;
+    }
+
+    .subscription-success {
+      color: green;
+      display: none;
+      margin-top: 10px;
+    }
+
+    .map-frame {
+      width: 100%;
+      height: 140px;
+      border: 0;
+      border-radius: 5px;
+    }
+    @media (max-width: 768px) {
+      .footer-section {
+        flex: 1 1 100%;
+      }
+    }
+
+  </style>
+</head>
+<body>
+    <!-- header -->
+<header>
+    <div class="navbar">
+        <a href="user_page.php"><img src="image/logo-removebg-preview.png" alt="Logo"></a>
+        <div>
+            <a href="user_page.php">Home</a>
+            <a href="browsejob.php">Browse Jobs</a>
+            <a href="profile.html">Profiles</a>
+            <a href="aboutus.php">About</a>
+            <a href="contact.php">Contact</a>
+            
+        </div>
+        <div class="role">
+        <img src="image/user.webp" alt="User" width="50" style="border-radius: 50%;" >
+        </div>
+    </div>
+</header>
+
+  <h1>User Profiles</h1>
+  <div class="container" id="profile-container">
+  </div>
+<footer>
+  <div class="footer-container">
+
+    <!-- Logo/About -->
+    <div class="footer-section">
+      <img src="image/logo-removebg-preview.png" alt="Logo" style="max-width: 150px;">
+      <p>FreelancerHub is Pakistan’s trusted freelancing platform helping talented individuals grow and succeed online.</p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="browsejob.php">Browse Jobs</a></li>
+        <li><a href="profile.html">Profiles</a></li>
+        <li><a href="contact.php">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Top Services -->
+    <div class="footer-section">
+      <h4>Top Services</h4>
+      <ul>
+        <li>Graphic Design</li>
+        <li>Web Development</li>
+        <li>Content Writing</li>
+        <li>Digital Marketing</li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="footer-section">
+      <h4>Contact Us</h4>
+      <p>Email: support@freelancerhub.com</p>
+      <p>Phone: +92-301-1234567</p>
+      <p>Address: Lahore, Pakistan</p>
+    </div>
+
+    <!-- Social Links -->
+    <div class="footer-section footer-social">
+      <h4>Follow Us</h4>
+      <a href="#">Facebook</a><br>
+      <a href="#">Instagram</a><br>
+      <a href="#">LinkedIn</a>
+    </div>
+  </div>
+
+  <!-- Subscribe & Map Section -->
+  <div class="footer-wrapper">
+
+    <div class="newsletter-box">
+      <h4>Subscribe to Our Newsletter</h4>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" name="email" id="emailInput" placeholder="Enter your email address" required>
+        <br>
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="subscription-success" id="successMessage">You have successfully subscribed!</p>
+    </div>
+
+    <div class="map-box">
+      <h4>Find Us on Map</h4>
+      <iframe class="map-frame"
+        src="https://maps.google.com/maps?q=lahore&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        allowfullscreen loading="lazy"></iframe>
+    </div>
+
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom" style="text-align:center; padding: 10px; ">
+    &copy; 2025 FreelancerHub.com | Built with in Pakistan
+  </div>
+</footer>
+  <script>
+    const profiles = [
+      {
+        name: "Ayesha Khan",
+        role: "Web Developer",
+        bio: "Passionate front-end developer with 3 years of experience.",
+        img: "https://randomuser.me/api/portraits/women/44.jpg"
+      },
+      {
+        name: "Ali Raza",
+        role: "Graphic Designer",
+        bio: "Specialist in modern branding and logo design.",
+        img: "https://randomuser.me/api/portraits/men/32.jpg"
+      },
+      {
+        name: "Hina Tariq",
+        role: "Digital Marketer",
+        bio: "Expert in SEO and paid marketing strategies.",
+        img: "https://randomuser.me/api/portraits/women/68.jpg"
+      },
+      {
+        name: "Usman Butt",
+        role: "Full Stack Developer",
+        bio: "Develops scalable web apps with modern tech stacks.",
+        img: "https://randomuser.me/api/portraits/men/45.jpg"
+      },
+      {
+        name: "Sana Malik",
+        role: "UI/UX Designer",
+        bio: "Focuses on user-centered design and mobile app UX.",
+        img: "https://randomuser.me/api/portraits/women/75.jpg"
+      },
+      {
+        name: "Hamza Qureshi",
+        role: "App Developer",
+        bio: "Creates Android and iOS apps with Flutter and React Native.",
+        img: "https://randomuser.me/api/portraits/men/78.jpg"
+      },
+      {
+        name: "Zainab Bukhari",
+        role: "Content Writer",
+        bio: "Crafts compelling content for websites and blogs.",
+        img: "https://randomuser.me/api/portraits/women/51.jpg"
+      },
+      {
+        name: "Hina Tariq",
+        role: "Digital Marketer",
+        bio: "Expert in SEO and paid marketing strategies.",
+        img: "https://randomuser.me/api/portraits/women/68.jpg"
+      }
+
+    ];
+
+    const container = document.getElementById('profile-container');
+
+    profiles.forEach(profile => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${profile.img}" alt="${profile.name}" />
+        <div class="card-body">
+          <h3>${profile.name}</h3>
+          <p><strong>${profile.role}</strong></p>
+          <p>${profile.bio}</p>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
