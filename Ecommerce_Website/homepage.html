@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vogue Vista - Home</title>
+
+  <!-- Global styles (header, footer, reset, etc.) -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Page-specific styles (Home page only) -->
+  <style>
+    /* ========== HERO SECTION (HOME) ========== */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1350&q=80')
+        center/cover no-repeat;
+      height: 550px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #ffffff;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 700px;
+      z-index: 1;
+    }
+
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-content p {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-buttons a {
+      background-color: #d4af37;
+      color: #fff;
+      padding: 0.75rem 2rem;
+      border-radius: 25px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin: 0 10px;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+
+    .hero-buttons a:hover {
+      background-color: #b9972e;
+    }
+
+    /* ========== FEATURED DEALS ========== */
+    .deals-section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .deals-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #000000;
+    }
+
+    .deals-container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .deal-card {
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 280px;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .deal-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .deal-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .deal-content {
+      padding: 15px;
+    }
+
+    .deal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+      color: #000000;
+    }
+
+    .deal-description {
+      font-size: 0.9rem;
+      color: #444444;
+    }
+
+    /* ========== NEWSLETTER SECTION (BOTTOM) ========== */
+    .newsletter {
+      background-color: #f9f9f9;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .newsletter h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .newsletter p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      color: #666666;
+    }
+
+    .newsletter-form {
+      max-width: 400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .newsletter-form input[type="email"] {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: 1px solid #cccccc;
+      border-radius: 25px 0 0 25px;
+      outline: none;
+    }
+
+    .newsletter-form button {
+      background-color: #d4af37;
+      border: none;
+      color: #fff;
+      padding: 0 1.5rem;
+      font-weight: 700;
+      font-family: 'Lato', sans-serif;
+      text-transform: uppercase;
+      font-size: 1rem;
+      border-radius: 0 25px 25px 0;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .newsletter-form button:hover {
+      background-color: #b9972e;
+    }
+
+    /* ========== MODAL (NEWSLETTER POPUP) ========== */
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal--open {
+      display: flex;
+    }
+
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.55);
+    }
+
+    .modal-content {
+      position: relative;
+      z-index: 1;
+      max-width: 420px;
+      width: 90%;
+      background-color: #ffffff;
+      border-radius: 16px;
+      padding: 24px 22px 20px 22px;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .modal-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      margin-bottom: 8px;
+    }
+
+    .modal-content p {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 14px;
+    }
+
+    .modal-content small {
+      display: block;
+      font-size: 0.8rem;
+      color: #777;
+      margin-bottom: 14px;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .modal-primary {
+      flex: 1 1 140px;
+      border: none;
+      border-radius: 999px;
+      padding: 9px 14px;
+      background-color: #000000;
+      color: #ffffff;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+    }
+
+    .modal-primary:hover,
+    .modal-primary:focus-visible {
+      background-color: #1a1a1a;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .modal-secondary {
+      flex: 1 1 120px;
+      border: none;
+      border-radius: 999px;
+      padding: 9px 14px;
+      background-color: #f4f4f4;
+      color: #555;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .modal-secondary:hover,
+    .modal-secondary:focus-visible {
+      background-color: #e0e0e0;
+      color: #222;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      border: none;
+      background: transparent;
+      font-size: 1.4rem;
+      line-height: 1;
+      cursor: pointer;
+      color: #999;
+      padding: 2px;
+    }
+
+    .modal-close:hover,
+    .modal-close:focus-visible {
+      color: #333;
+    }
+
+    /* ========== RESPONSIVE (HOME SECTIONS) ========== */
+    @media (max-width: 768px) {
+      .hero {
+        height: 400px;
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-content p {
+        font-size: 1rem;
+      }
+
+      .hero-buttons a {
+        padding: 0.6rem 1.25rem;
+        font-size: 0.85rem;
+        margin: 0 5px;
+      }
+
+      .deals-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .deal-card {
+        width: 90%;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&family=Playfair+Display&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body class="page-home">
+
+  <!-- Header placeholder (loaded via layout.js from header.html) -->
+  <div id="site-header"></div>
+
+  <!-- Main Content -->
+  <main>
+    <section class="hero" aria-label="Main promotion">
+      <div class="hero-content">
+        <h1>Step into Style with Vogue Vista</h1>
+        <p>Discover our latest collections for all styles and seasons.</p>
+        <div class="hero-buttons">
+          <a href="mens_collection.html">Shop Men</a>
+          <a href="women_collection.html">Shop Women</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="deals-section" aria-label="Featured Deals">
+      <h2>Featured Deals</h2>
+      <div class="deals-container">
+        <!-- Featured product 1 → product detail -->
+        <a class="deal-card" href="product.html">
+          <img
+            class="deal-image"
+            src="pics/black jacket.jpg"
+            alt="Stylish Jacket"
+          />
+          <div class="deal-content">
+            <div class="deal-title">Stylish Jacket</div>
+            <div class="deal-description">
+              Perfect layering piece for your wardrobe.
+            </div>
+          </div>
+        </a>
+
+        <!-- Featured product 2 → product detail -->
+        <a class="deal-card" href="product.html">
+          <img
+            class="deal-image"
+            src="pics/blue dress.jpg"
+            alt="Elegant Dress"
+          />
+          <div class="deal-content">
+            <div class="deal-title">Elegant Dress</div>
+            <div class="deal-description">
+              Timeless design for every occasion.
+            </div>
+          </div>
+        </a>
+
+        <!-- Featured product 3 → product detail -->
+        <a class="deal-card" href="product.html">
+          <img
+            class="deal-image"
+            src="pics/sneakers limited.jpg"
+            alt="Modern Sneakers"
+          />
+          <div class="deal-content">
+            <div class="deal-title">Modern Sneakers</div>
+            <div class="deal-description">
+              Comfort meets contemporary style.
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="newsletter" aria-label="Newsletter Subscription">
+      <h3>Join Our Style Circle</h3>
+      <p>Get exclusive offers and the latest trends straight to your inbox.</p>
+      <form class="newsletter-form" action="/subscribe" method="post">
+        <input
+          type="email"
+          name="email"
+          placeholder="Your email address"
+          aria-label="Enter your email"
+          required
+        />
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Newsletter Popup Modal -->
+  <div
+    class="modal"
+    id="newsletter-modal"
+    aria-hidden="true"
+    role="dialog"
+    aria-labelledby="newsletter-modal-title"
+    aria-describedby="newsletter-modal-desc"
+  >
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-content">
+      <button class="modal-close" type="button" data-close-modal>&times;</button>
+      <h2 id="newsletter-modal-title">Enjoy 10% Off Your First Order</h2>
+      <p id="newsletter-modal-desc">
+        Join the Vogue Vista style circle to receive exclusive offers, early access to new drops,
+        and personalised picks straight to your inbox.
+      </p>
+      <small>You can unsubscribe at any time. No spam, just good style.</small>
+
+      <div class="modal-actions">
+        <button type="button" class="modal-primary" id="newsletter-modal-cta">
+          Yes, sign me up
+        </button>
+        <button type="button" class="modal-secondary" data-close-modal>
+          No thanks
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer placeholder (loaded via layout.js from footer.html) -->
+  <div id="site-footer"></div>
+
+  <!-- Common layout loader + main JS -->
+  <script src="layout.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

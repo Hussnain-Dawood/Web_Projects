@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vogue Vista - About Us</title>
+
+  <!-- Global styles (reset, header, footer, utilities) -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Page-specific styles (About page only) -->
+  <style>
+    /* ========== HERO (ABOUT) ========== */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1350&q=80')
+        center/cover no-repeat;
+      height: 400px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.45);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      padding: 0 20px;
+    }
+
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-content p {
+      font-size: 1.25rem;
+    }
+
+    /* ========== OUR STORY ========== */
+    .our-story {
+      max-width: 1200px;
+      margin: 0 auto 60px auto;
+      padding: 0 20px;
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .our-story img {
+      max-width: 500px;
+      width: 100%;
+      border-radius: 12px;
+      flex: 1 1 400px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .our-story-text {
+      flex: 1 1 500px;
+    }
+
+    .our-story-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .our-story-text p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      color: #333333;
+    }
+
+    .btn-gold {
+      background-color: #d4af37;
+      color: #fff;
+      padding: 12px 30px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-gold:hover {
+      background-color: #b9972e;
+    }
+
+    /* ========== MISSION & VALUES ========== */
+    .mission-values {
+      background-color: #faf4e1;
+      padding: 50px 20px;
+      max-width: 1200px;
+      margin: 0 auto 60px auto;
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
+    }
+
+    .value-card {
+      background: #fff;
+      flex: 1 1 250px;
+      padding: 30px 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+      text-align: center;
+      color: #333333;
+    }
+
+    .value-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .value-card p {
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    .value-icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+      color: #d4af37;
+    }
+
+    /* ========== TEAM SECTION ========== */
+    .team-section {
+      max-width: 1200px;
+      margin: 0 auto 60px auto;
+      padding: 0 20px;
+    }
+
+    .team-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .team-cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .team-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      width: 280px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      border: 4px solid white;
+    }
+
+    .team-card:hover {
+      transform: scale(1.05);
+      border-color: #d4af37;
+    }
+
+    .team-image {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+    }
+
+    .team-content {
+      padding: 20px;
+    }
+
+    .team-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+    }
+
+    .team-role {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      color: #d4af37;
+      text-transform: uppercase;
+    }
+
+    .team-quote {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #666666;
+    }
+
+    /* ========== SUSTAINABILITY SECTION ========== */
+    .sustainability-section {
+      max-width: 1200px;
+      margin: 0 auto 60px auto;
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      padding: 0 20px;
+      flex-wrap: wrap;
+    }
+
+    .sustain-text {
+      flex: 1 1 500px;
+    }
+
+    .sustain-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .sustain-text p {
+      font-size: 1rem;
+      color: #333333;
+      margin-bottom: 20px;
+    }
+
+    .btn-sustain {
+      background-color: #d4af37;
+      color: #fff;
+      padding: 12px 30px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-sustain:hover {
+      background-color: #b9972e;
+    }
+
+    .sustain-img {
+      flex: 1 1 400px;
+      border-radius: 12px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      object-fit: cover;
+    }
+
+    /* ========== TESTIMONIAL STRIP ========== */
+    .testimonial-strip {
+      background-color: #faf4e1;
+      padding: 50px 20px;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.5rem;
+      color: #000000;
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      border-radius: 12px;
+      box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .testimonial-strip footer {
+      margin-top: 15px;
+      font-style: normal;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1rem;
+      color: #333333;
+    }
+
+    /* ========== NEWSLETTER (BOTTOM) ========== */
+    .newsletter {
+      background-color: #f9f9f9;
+      padding: 40px 20px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .newsletter h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .newsletter p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      color: #666666;
+    }
+
+    .newsletter-form {
+      max-width: 400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .newsletter-form input[type="email"] {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: 1px solid #cccccc;
+      border-radius: 25px 0 0 25px;
+      outline: none;
+    }
+
+    .newsletter-form button {
+      background-color: #d4af37;
+      border: none;
+      color: #fff;
+      padding: 0 1.5rem;
+      font-weight: 700;
+      font-family: 'Lato', sans-serif;
+      text-transform: uppercase;
+      font-size: 1rem;
+      border-radius: 0 25px 25px 0;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .newsletter-form button:hover {
+      background-color: #b9972e;
+    }
+
+    /* ========== RESPONSIVE (ABOUT PAGE ONLY) ========== */
+    @media (max-width: 992px) {
+      .our-story {
+        flex-direction: column;
+      }
+
+      .sustainability-section {
+        flex-direction: column;
+      }
+
+      .testimonial-strip {
+        font-size: 1.25rem;
+        padding: 30px 10px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-content p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&family=Playfair+Display&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body class="page-about">
+
+  <!-- Header placeholder (loaded via layout.js from header.html) -->
+  <div id="site-header"></div>
+
+  <!-- Hero Section -->
+  <section class="hero" role="banner">
+    <div class="hero-content">
+      <h1>About Vogue Vista</h1>
+      <p>Empowering fashion for everyone since 2019.</p>
+    </div>
+  </section>
+
+  <!-- Our Story Section -->
+  <section class="our-story" aria-label="Our story">
+    <img
+      src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80"
+      alt="Fashion Design Studio"
+    />
+    <div class="our-story-text">
+      <h2>Our Journey</h2>
+      <p>
+        Founded in 2019 in Sydney, Vogue Vista began with a simple mission — to redefine modern fashion with
+        inclusivity and confidence at its core. We believe that style should be accessible to all genders and body
+        types. From our humble beginnings to our nationwide presence, Vogue Vista continues to inspire customers
+        through timeless design, premium quality, and ethical practices.
+      </p>
+      <a href="#" class="btn-gold">Learn More About Our Collections</a>
+    </div>
+  </section>
+
+  <!-- Mission & Values -->
+  <section class="mission-values" aria-label="Mission and values">
+    <div class="value-card" aria-label="Inclusivity value">
+      <div class="value-icon">🌈</div>
+      <h3>Inclusivity</h3>
+      <p>Fashion designed for everyone, celebrating all identities.</p>
+    </div>
+    <div class="value-card" aria-label="Quality value">
+      <div class="value-icon">🧵</div>
+      <h3>Quality</h3>
+      <p>Each piece crafted with care, using sustainable materials.</p>
+    </div>
+    <div class="value-card" aria-label="Innovation value">
+      <div class="value-icon">⚙️</div>
+      <h3>Innovation</h3>
+      <p>Blending timeless style with modern technology.</p>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="team-section" aria-label="Meet the team">
+    <h2>Meet the People Behind the Brand</h2>
+    <div class="team-cards">
+      <article class="team-card">
+        <img
+          class="team-image"
+          src="https://randomuser.me/api/portraits/women/79.jpg"
+          alt="Creative Director Jane Doe"
+        />
+        <div class="team-content">
+          <h3 class="team-name">Member 1</h3>
+          <p class="team-role">Creative Director</p>
+          <p class="team-quote">“Fashion is confidence in motion.”</p>
+        </div>
+      </article>
+      <article class="team-card">
+        <img
+          class="team-image"
+          src="https://randomuser.me/api/portraits/men/65.jpg"
+          alt="Lead Designer John Smith"
+        />
+        <div class="team-content">
+          <h3 class="team-name">Member 2</h3>
+          <p class="team-role">Lead Designer</p>
+          <p class="team-quote">“Innovation inspires every stitch.”</p>
+        </div>
+      </article>
+      <article class="team-card">
+        <img
+          class="team-image"
+          src="https://randomuser.me/api/portraits/women/68.jpg"
+          alt="Senior Stylist Emily Wang"
+        />
+        <div class="team-content">
+          <h3 class="team-name">Member 3</h3>
+          <p class="team-role">Senior Stylist</p>
+          <p class="team-quote">“Style is the art of individuality.”</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Sustainability Section -->
+  <section class="sustainability-section" aria-label="Sustainability commitment">
+    <div class="sustain-text">
+      <h2>Our Commitment to Sustainability</h2>
+      <p>
+        Vogue Vista is proud to follow sustainable practices by using eco-friendly fabrics, minimizing waste, and
+        ensuring ethical sourcing. Our collections are created with mindfulness towards the planet and our
+        communities.
+      </p>
+      <a href="#" class="btn-sustain">Explore Our Sustainability Goals</a>
+    </div>
+    <img
+      class="sustain-img"
+      src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80"
+      alt="Sustainable fabric and packaging"
+    />
+  </section>
+
+  <!-- Testimonial Strip -->
+  <section class="testimonial-strip" aria-label="Customer testimonial">
+    <blockquote>
+      “Vogue Vista doesn’t just sell clothes — it inspires confidence and inclusivity.”
+      <footer>— Sophie M., Customer since 2020</footer>
+    </blockquote>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter" aria-label="Newsletter Sign-up">
+    <h3>Join Our Style Circle</h3>
+    <p>Get new arrivals and exclusive offers in your inbox.</p>
+    <form class="newsletter-form" action="#" method="post">
+      <input
+        type="email"
+        name="email"
+        placeholder="Your email address"
+        aria-label="Enter your email"
+        required
+      />
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <!-- Footer placeholder (loaded via layout.js from footer.html) -->
+  <div id="site-footer"></div>
+
+  <!-- Common layout loader -->
+  <script src="layout.js"></script>
+</body>
+</html>

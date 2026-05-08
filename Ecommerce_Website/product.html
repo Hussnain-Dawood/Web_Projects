@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vogue Vista - Product Detail</title>
+
+  <!-- Global styles (reset, header, footer, utilities) -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Page-specific styles (Product Detail only) -->
+  <style>
+    /* =========================================================
+       PRODUCT PAGE LAYOUT
+    ========================================================= */
+    .product-page {
+      max-width: 1200px;
+      margin: 0 auto 60px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .product-page {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Optional breadcrumb */
+    .breadcrumb {
+      max-width: 1200px;
+      margin: 20px auto 10px auto;
+      padding: 0 20px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .breadcrumb a {
+      text-decoration: none;
+      color: #444;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .breadcrumb a:hover,
+    .breadcrumb a:focus-visible {
+      color: #d4af37;
+      border-color: #d4af37;
+    }
+
+    .breadcrumb span {
+      color: #999;
+    }
+
+    /* =========================================================
+       IMAGE GALLERY (LEFT)
+    ========================================================= */
+    .product-gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .main-image-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+      cursor: zoom-in;
+    }
+
+    .main-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    /* Zoom on hover */
+    .main-image-wrapper:hover img {
+      transform: scale(1.07);
+    }
+
+    .thumbs-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
+
+    .thumbs-row button {
+      border: none;
+      padding: 0;
+      background: none;
+      cursor: pointer;
+      border-radius: 8px;
+      overflow: hidden;
+      flex: 0 0 70px;
+      height: 80px;
+      border: 2px solid transparent;
+      transition: border-color 0.25s ease, transform 0.2s ease;
+    }
+
+    .thumbs-row button img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .thumbs-row button:hover,
+    .thumbs-row button:focus-visible {
+      border-color: #d4af37;
+      transform: translateY(-1px);
+    }
+
+    /* =========================================================
+       PRODUCT INFO (RIGHT)
+    ========================================================= */
+    .product-info-panel {
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .product-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .product-subtitle {
+      font-size: 0.95rem;
+      color: #777;
+      margin-bottom: 18px;
+    }
+
+    .product-pricing {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .product-price-current {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #d9534f;
+    }
+
+    .product-price-old {
+      font-size: 1rem;
+      color: #999;
+      text-decoration: line-through;
+    }
+
+    .product-price-tagline {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 18px;
+    }
+
+    /* Size options */
+    .product-option-group {
+      margin-bottom: 16px;
+    }
+
+    .product-option-group label.group-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+      color: #333;
+      font-family: 'Lato', sans-serif;
+    }
+
+    .size-options {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .size-option {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid #e0e0e0;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+      font-family: 'Lato', sans-serif;
+    }
+
+    .size-option:hover,
+    .size-option:focus-visible {
+      border-color: #d4af37;
+      transform: translateY(-1px);
+    }
+
+    .size-option.selected {
+      background-color: #000000;
+      color: #ffffff;
+      border-color: #000000;
+    }
+
+    /* Color swatches */
+    .color-swatches {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .color-swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.25s ease, transform 0.2s ease;
+    }
+
+    .color-swatch::after {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .color-swatch:hover,
+    .color-swatch:focus-visible {
+      border-color: #d4af37;
+      transform: translateY(-1px);
+    }
+
+    .color-swatch.selected {
+      border-color: #000000;
+    }
+
+    /* Quantity selector */
+    .quantity-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .quantity-control {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid #e0e0e0;
+      overflow: hidden;
+    }
+
+    .quantity-control button {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: #f5f5f5;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.25s ease;
+    }
+
+    .quantity-control button:hover,
+    .quantity-control button:focus-visible {
+      background-color: #e0e0e0;
+    }
+
+    .quantity-control input {
+      width: 40px;
+      border: none;
+      text-align: center;
+      font-size: 0.95rem;
+      font-family: 'Open Sans', sans-serif;
+      outline: none;
+    }
+
+    /* CTA buttons */
+    .product-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 22px 0;
+    }
+
+    .btn-add-cart-main {
+      flex: 1 1 180px;
+      padding: 11px 20px;
+      border-radius: 24px;
+      border: none;
+      background-color: #000000;
+      color: #ffffff;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+    }
+
+    .btn-add-cart-main:hover,
+    .btn-add-cart-main:focus-visible {
+      background-color: #1a1a1a;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .btn-wishlist {
+      flex: 0 0 auto;
+      padding: 11px 18px;
+      border-radius: 24px;
+      border: 1px solid #e0e0e0;
+      background-color: #ffffff;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+    }
+
+    .btn-wishlist span.heart {
+      font-size: 1.1rem;
+    }
+
+    .btn-wishlist:hover,
+    .btn-wishlist:focus-visible {
+      border-color: #d4af37;
+      background-color: #fdf7e8;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      transform: translateY(-1px);
+    }
+
+    /* Share icons */
+    .share-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .share-label {
+      font-weight: 600;
+    }
+
+    .share-icons a {
+      font-size: 1.3rem;
+      text-decoration: none;
+      color: #000000;
+      margin-right: 6px;
+      transition: color 0.25s ease, transform 0.2s ease;
+    }
+
+    .share-icons a:hover,
+    .share-icons a:focus-visible {
+      color: #d4af37;
+      transform: translateY(-1px);
+    }
+
+    /* Promo strip under info */
+    .promo-strip {
+      margin-top: 18px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background-color: #fbe9e7;
+      font-size: 0.9rem;
+      color: #d84315;
+    }
+
+    .promo-strip strong {
+      font-weight: 700;
+    }
+
+    /* =========================================================
+       TABBED DETAILS SECTION
+    ========================================================= */
+    .product-tabs {
+      max-width: 1200px;
+      margin: 0 auto 50px auto;
+      padding: 0 20px;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .tab-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      border-bottom: 1px solid #e0e0e0;
+      margin-bottom: 20px;
+    }
+
+    .tab-controls label {
+      padding: 10px 16px;
+      border-radius: 10px 10px 0 0;
+      background-color: #f5f5f5;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      color: #555;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    input[name="product-tabs"] {
+      display: none;
+    }
+
+    /* Active tab style */
+    input#tab-description:checked ~ .tab-controls label[for="tab-description"],
+    input#tab-care:checked ~ .tab-controls label[for="tab-care"],
+    input#tab-reviews:checked ~ .tab-controls label[for="tab-reviews"],
+    input#tab-delivery:checked ~ .tab-controls label[for="tab-delivery"] {
+      background-color: #000000;
+      color: #ffffff;
+    }
+
+    .tab-panel {
+      display: none;
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    input#tab-description:checked ~ .tab-content #panel-description,
+    input#tab-care:checked ~ .tab-content #panel-care,
+    input#tab-reviews:checked ~ .tab-content #panel-reviews,
+    input#tab-delivery:checked ~ .tab-content #panel-delivery {
+      display: block;
+    }
+
+    .tab-panel h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+
+    .reviews-list {
+      margin-top: 10px;
+    }
+
+    .review-item {
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+
+    .review-item strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .review-rating {
+      font-size: 0.85rem;
+      color: #d4af37;
+      margin-bottom: 4px;
+    }
+
+    /* =========================================================
+       RELATED PRODUCTS / YOU MAY ALSO LIKE
+    ========================================================= */
+    .related-section {
+      max-width: 1200px;
+      margin: 0 auto 50px auto;
+      padding: 0 20px;
+    }
+
+    .related-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .related-carousel {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .related-card {
+      flex: 0 0 200px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: default;
+    }
+
+    .related-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
+    }
+
+    .related-link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .related-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .related-info {
+      padding: 10px 12px 12px 12px;
+    }
+
+    .related-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .related-price {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .related-quick-view {
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: none;
+      background-color: #000000;
+      color: #ffffff;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+    }
+
+    .related-quick-view:hover,
+    .related-quick-view:focus-visible {
+      background-color: #1a1a1a;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+      transform: translateY(-1px);
+    }
+
+    /* =========================================================
+       NEWSLETTER SIGNUP (BOTTOM)
+    ========================================================= */
+    .product-newsletter {
+      max-width: 1200px;
+      margin: 0 auto 60px auto;
+      padding: 30px 20px;
+      background-color: #f8f8f8;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .product-newsletter-text {
+      flex: 1 1 260px;
+    }
+
+    .product-newsletter-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+      color: #000;
+    }
+
+    .product-newsletter-text p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .product-newsletter-form {
+      flex: 1 1 260px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .product-newsletter-form input[type="email"] {
+      min-width: 220px;
+      padding: 10px 14px;
+      border-radius: 24px;
+      border: 1px solid #cccccc;
+      font-size: 0.95rem;
+      font-family: 'Open Sans', sans-serif;
+      outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .product-newsletter-form input[type="email"]:focus-visible {
+      border-color: #d4af37;
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.25);
+    }
+
+    .product-newsletter-form button {
+      padding: 10px 22px;
+      border-radius: 24px;
+      background-color: #000000;
+      color: #ffffff;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+    }
+
+    .product-newsletter-form button:hover,
+     .product-newsletter-form button:focus-visible {
+      background-color: #1a1a1a;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 700px) {
+      .product-newsletter {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .product-newsletter-form {
+        justify-content: flex-start;
+      }
+    }
+
+    /* =========================================================
+       SMALL RESPONSIVE TWEAKS
+    ========================================================= */
+    @media (max-width: 600px) {
+      .product-title {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&family=Playfair+Display&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body class="page-product">
+
+  <!-- Header placeholder (loaded via layout.js from header.html) -->
+  <div id="site-header"></div>
+
+  <main>
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a> /
+      <a href="mens_collection.html">Men</a> /
+      <span>Minimalist White Sneakers</span>
+    </nav>
+
+    <!-- Product Hero / Main Content -->
+    <section class="product-page" aria-label="Product details">
+      <!-- LEFT: Image Gallery -->
+      <div class="product-gallery">
+        <div class="main-image-wrapper">
+          <img
+            src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"
+            alt="Minimalist White Sneakers"
+          />
+        </div>
+        <div class="thumbs-row" aria-label="Product image thumbnails">
+          <button type="button" aria-label="View front angle">
+            <img
+              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=300&q=80"
+              alt="Front angle"
+            />
+          </button>
+          <button type="button" aria-label="View side angle">
+            <img
+              src="https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=300&q=80"
+              alt="Side angle"
+            />
+          </button>
+          <button type="button" aria-label="View top angle">
+            <img
+              src="https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=300&q=80"
+              alt="Top angle"
+            />
+          </button>
+          <button type="button" aria-label="View lifestyle view">
+            <img
+              src="https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=300&q=80"
+              alt="Lifestyle view"
+            />
+          </button>
+        </div>
+      </div>
+
+      <!-- RIGHT: Product Info -->
+      <div class="product-info-panel">
+        <h1 class="product-title">Minimalist White Sneakers</h1>
+        <p class="product-subtitle">Modern essential crafted for all-day comfort.</p>
+
+        <div class="product-pricing">
+          <span class="product-price-current">$90.00</span>
+          <span class="product-price-old">$120.00</span>
+        </div>
+        <p class="product-price-tagline">Save 25% on this best-selling staple.</p>
+
+        <div class="product-option-group">
+          <label class="group-label">Size</label>
+          <div class="size-options" aria-label="Size options">
+            <button type="button" class="size-option">S</button>
+            <button type="button" class="size-option selected">M</button>
+            <button type="button" class="size-option">L</button>
+            <button type="button" class="size-option">XL</button>
+          </div>
+        </div>
+
+        <div class="product-option-group">
+          <label class="group-label">Color</label>
+          <div class="color-swatches" aria-label="Color options">
+            <button
+              type="button"
+              class="color-swatch selected"
+              style="color: #ffffff;"
+              aria-label="White"
+            ></button>
+            <button
+              type="button"
+              class="color-swatch"
+              style="color: #000000;"
+              aria-label="Black"
+            ></button>
+            <button
+              type="button"
+              class="color-swatch"
+              style="color: #8888ff;"
+              aria-label="Slate Blue"
+            ></button>
+          </div>
+        </div>
+
+        <div class="product-option-group">
+          <label class="group-label">Quantity</label>
+          <div class="quantity-row">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button type="button" aria-label="Decrease quantity">-</button>
+              <input type="text" value="1" aria-label="Quantity" />
+              <button type="button" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-actions">
+          <!-- Navigate to cart -->
+          <button
+            class="btn-add-cart-main"
+            type="button"
+            onclick="window.location.href='cart.html'"
+          >
+            Add to Cart
+          </button>
+
+          <!-- Navigate to wishlist -->
+          <button
+            class="btn-wishlist"
+            type="button"
+            onclick="window.location.href='wishlist.html'"
+          >
+            <span class="heart">&#10084;</span>
+            Wishlist
+          </button>
+        </div>
+
+        <div class="share-row">
+          <span class="share-label">Share:</span>
+          <div class="share-icons">
+            <a href="#" aria-label="Instagram">📸</a>
+            <a href="#" aria-label="Facebook">👍</a>
+            <a href="#" aria-label="Pinterest">📌</a>
+            <a href="#" aria-label="TikTok">🎵</a>
+          </div>
+        </div>
+
+        <div class="promo-strip">
+          <strong>Offer:</strong> Buy 2 pairs and get an extra 10% off automatically at checkout.
+        </div>
+      </div>
+    </section>
+
+    <!-- TABBED DETAILS SECTION -->
+    <section class="product-tabs" aria-label="Product details and information">
+      <!-- Hidden radios for tabs -->
+      <input type="radio" name="product-tabs" id="tab-description" checked />
+      <input type="radio" name="product-tabs" id="tab-care" />
+      <input type="radio" name="product-tabs" id="tab-reviews" />
+      <input type="radio" name="product-tabs" id="tab-delivery" />
+
+      <!-- Tab controls -->
+      <div class="tab-controls">
+        <label for="tab-description">Description</label>
+        <label for="tab-care">Care Instructions</label>
+        <label for="tab-reviews">Reviews</label>
+        <label for="tab-delivery">Delivery & Returns</label>
+      </div>
+
+      <!-- Tab content -->
+      <div class="tab-content">
+        <div id="panel-description" class="tab-panel" aria-labelledby="tab-description">
+          <h3>Description</h3>
+          <p>
+            The Minimalist White Sneakers are designed for everyday wear, combining a clean silhouette
+            with soft cushioning for all-day comfort. Crafted with a premium synthetic upper and a
+            lightweight rubber sole, they pair effortlessly with denim, tailoring, or athleisure.
+          </p>
+          <p>
+            A subtle contrast heel tab and tonal stitching give a refined finish, making them a versatile
+            staple in any modern wardrobe.
+          </p>
+        </div>
+
+        <div id="panel-care" class="tab-panel" aria-labelledby="tab-care">
+          <h3>Care Instructions</h3>
+          <ul>
+            <li>Wipe with a soft, damp cloth after wear.</li>
+            <li>Use a mild soap solution for stubborn marks; avoid harsh chemicals.</li>
+            <li>Allow to air-dry away from direct sunlight or heat sources.</li>
+            <li>Store in a cool, dry place; use shoe trees to maintain shape.</li>
+          </ul>
+        </div>
+
+        <div id="panel-reviews" class="tab-panel" aria-labelledby="tab-reviews">
+          <h3>Customer Reviews</h3>
+          <p>Average Rating: <span class="review-rating">★★★★☆ (4.2/5)</span></p>
+          <div class="reviews-list">
+            <div class="review-item">
+              <strong>Alex M.</strong>
+              <div class="review-rating">★★★★★</div>
+              <p>Super comfortable and go with everything. I’ve been wearing them almost daily.</p>
+            </div>
+            <div class="review-item">
+              <strong>Sophia K.</strong>
+              <div class="review-rating">★★★★☆</div>
+              <p>Love the minimalist look. Slightly snug at first but broke in nicely after a few wears.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="panel-delivery" class="tab-panel" aria-labelledby="tab-delivery">
+          <h3>Delivery & Returns</h3>
+          <p>
+            Standard delivery within Australia typically takes 3–5 business days. Express options are
+            available at checkout.
+          </p>
+          <p>
+            We accept returns within 30 days of delivery for unworn items in original condition and
+            packaging. For more details, please refer to our full Returns & Shipping policy.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RELATED PRODUCTS -->
+    <section class="related-section" aria-label="You may also like">
+      <h2>You May Also Like</h2>
+      <div class="related-carousel">
+        <!-- Related 1 -->
+        <article class="related-card">
+          <a href="product.html" class="related-link">
+            <img
+              src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=400&q=80"
+              alt="Black Leather Sneakers"
+            />
+            <div class="related-info">
+              <h3 class="related-name">Black Leather Sneakers</h3>
+              <p class="related-price">$110.00</p>
+            </div>
+          </a>
+          <div class="related-info">
+            <button type="button" class="related-quick-view">Quick View</button>
+          </div>
+        </article>
+
+        <!-- Related 2 -->
+        <article class="related-card">
+          <a href="product.html" class="related-link">
+            <img
+              src="https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=400&q=80"
+              alt="Canvas Low-Top Sneakers"
+            />
+            <div class="related-info">
+              <h3 class="related-name">Canvas Low-Top Sneakers</h3>
+              <p class="related-price">$75.00</p>
+            </div>
+          </a>
+          <div class="related-info">
+            <button type="button" class="related-quick-view">Quick View</button>
+          </div>
+        </article>
+
+        <!-- Related 3 -->
+        <article class="related-card">
+          <a href="product.html" class="related-link">
+            <img
+              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80"
+              alt="Chunky Sole Trainers"
+            />
+            <div class="related-info">
+              <h3 class="related-name">Chunky Sole Trainers</h3>
+              <p class="related-price">$135.00</p>
+            </div>
+          </a>
+          <div class="related-info">
+            <button type="button" class="related-quick-view">Quick View</button>
+          </div>
+        </article>
+
+        <!-- Related 4 -->
+        <article class="related-card">
+          <a href="product.html" class="related-link">
+            <img
+              src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=400&q=80"
+              alt="Textured Slip-On Shoes"
+            />
+            <div class="related-info">
+              <h3 class="related-name">Textured Slip-On Shoes</h3>
+              <p class="related-price">$95.00</p>
+            </div>
+          </a>
+          <div class="related-info">
+            <button type="button" class="related-quick-view">Quick View</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="product-newsletter" aria-label="Newsletter Sign-up">
+      <div class="product-newsletter-text">
+        <h3>Stay Ahead in Style</h3>
+        <p>Get the latest arrivals and exclusive offers directly in your inbox.</p>
+      </div>
+      <form class="product-newsletter-form" action="#" method="post">
+        <input
+          type="email"
+          name="email"
+          placeholder="Your email address"
+          aria-label="Enter your email"
+          required
+        />
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer placeholder (loaded via layout.js from footer.html) -->
+  <div id="site-footer"></div>
+
+  <!-- Common layout loader -->
+  <script src="layout.js"></script>
+</body>
+</html>

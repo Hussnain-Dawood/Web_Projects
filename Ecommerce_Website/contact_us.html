@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vogue Vista - Contact Us</title>
+
+  <!-- Global styles (reset, header, footer, utilities) -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Page-specific styles (Contact page only) -->
+  <style>
+    /* ========== HERO (CONTACT) ========== */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1496180727794-817822f65950?auto=format&fit=crop&w=1350&q=80')
+        center/cover no-repeat;
+      height: 350px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.45);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      padding: 0 20px;
+    }
+
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-content p {
+      font-size: 1.25rem;
+    }
+
+    /* ========== MAIN CONTACT SECTION ========== */
+    .main-contact {
+      max-width: 1200px;
+      margin: 0 auto 60px auto;
+      padding: 0 20px;
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .contact-details,
+    .contact-form {
+      flex: 1 1 400px;
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+    }
+
+    .contact-details h2,
+    .contact-form h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .contact-details p,
+    .contact-details a {
+      font-size: 1rem;
+      margin-bottom: 15px;
+      color: #000;
+      display: block;
+    }
+
+    .contact-details a:hover {
+      color: #d4af37;
+    }
+
+    .social-icons {
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      font-size: 1.5rem;
+      margin-right: 20px;
+      color: #000;
+      transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: #d4af37;
+    }
+
+    /* ========== FORM ========== */
+    .contact-form form label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .contact-form form input,
+    .contact-form form textarea {
+      width: 100%;
+      padding: 8px 10px;
+      margin-bottom: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-family: 'Open Sans', sans-serif;
+      resize: vertical;
+    }
+
+    .contact-form form .newsletter-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .contact-form form .newsletter-checkbox input[type="checkbox"] {
+      width: auto;
+      margin: 0;
+    }
+
+    .contact-form form button {
+      background-color: #d4af37;
+      border: none;
+      color: #fff;
+      padding: 12px 25px;
+      font-weight: 700;
+      font-family: 'Lato', sans-serif;
+      text-transform: uppercase;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .contact-form form button:hover {
+      background-color: #b9972e;
+    }
+
+    /* ========== FORM VALIDATION STATES ========== */
+    .input-error {
+      border-color: #d32f2f !important;
+    }
+
+    .input-success {
+      border-color: #2e7d32 !important;
+    }
+
+    .error-message {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 0.8rem;
+      color: #d32f2f;
+      min-height: 1em;
+    }
+
+    /* ========== STORE LOCATOR ========== */
+    .store-locator {
+      max-width: 1200px;
+      margin: 0 auto 60px auto;
+      padding: 0 20px;
+    }
+
+    .store-locator h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .map-placeholder {
+      background-color: #e0e0e0;
+      height: 400px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #666;
+      font-size: 1.2rem;
+    }
+
+    .store-list {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .store-item {
+      text-align: center;
+      max-width: 250px;
+      font-size: 1rem;
+      color: #000;
+    }
+
+    /* ========== FAQ SECTION ========== */
+    .faq-section {
+      max-width: 1200px;
+      margin: 0 auto 60px auto;
+      padding: 0 20px;
+    }
+
+    .faq-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .faq-section details {
+      background: #f9f9f9;
+      border-radius: 10px;
+      padding: 15px 20px;
+      margin-bottom: 12px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .faq-section summary {
+      font-weight: 700;
+    }
+
+    /* ========== LIVE CHAT SECTION ========== */
+    .live-chat {
+      max-width: 1200px;
+      margin: 0 auto 60px auto;
+      padding: 20px;
+      background-color: #faf4e1;
+      border-radius: 12px;
+      text-align: center;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+
+    .live-chat button {
+      margin-top: 15px;
+      background-color: #d4af37;
+      color: #fff;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 25px;
+      font-weight: 700;
+      font-family: 'Lato', sans-serif;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .live-chat button:hover {
+      background-color: #b9972e;
+    }
+
+    .live-chat small {
+      display: block;
+      margin-top: 8px;
+      font-size: 0.85rem;
+      font-weight: 400;
+    }
+
+    /* ========== NEWSLETTER SECTION (BOTTOM) ========== */
+    .newsletter {
+      background-color: #f9f9f9;
+      padding: 40px 20px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .newsletter h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .newsletter p {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      color: #666666;
+    }
+
+    .newsletter-form {
+      max-width: 400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .newsletter-form input[type="email"] {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: 1px solid #cccccc;
+      border-radius: 25px 0 0 25px;
+      outline: none;
+    }
+
+    .newsletter-form button {
+      background-color: #d4af37;
+      border: none;
+      color: #fff;
+      padding: 0 1.5rem;
+      font-weight: 700;
+      font-family: 'Lato', sans-serif;
+      text-transform: uppercase;
+      font-size: 1rem;
+      border-radius: 0 25px 25px 0;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .newsletter-form button:hover {
+      background-color: #b9972e;
+    }
+
+    /* ========== RESPONSIVE (CONTACT PAGE ONLY) ========== */
+    @media (max-width: 992px) {
+      .main-contact {
+        flex-direction: column;
+      }
+
+      .store-list {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-content p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&family=Playfair+Display&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body class="page-contact">
+
+  <!-- Header placeholder (loaded via layout.js from header.html) -->
+  <div id="site-header"></div>
+
+  <!-- Hero Section -->
+  <section class="hero" role="banner">
+    <div class="hero-content">
+      <h1>Contact Vogue Vista</h1>
+      <p>We’re here to help with your fashion journey.</p>
+    </div>
+  </section>
+
+  <!-- Main Contact Section -->
+  <section class="main-contact">
+    <div class="contact-details">
+      <h2>Contact Details</h2>
+      <p><strong>Head Office:</strong> 123 Fashion Ave, Sydney, Australia</p>
+      <p>
+        <strong>Email:</strong>
+        <a href="mailto:support@voguevista.com.au">support@voguevista.com.au</a>
+      </p>
+      <p><strong>Phone:</strong> +61 2 9000 1234</p>
+      <p><strong>Business Hours:</strong> Mon - Fri, 9:00 AM - 6:00 PM</p>
+      <div class="social-icons" aria-label="Social Media Links">
+        <a href="#" aria-label="Instagram">&#x1F47E;</a>
+        <a href="#" aria-label="Facebook">&#x1F465;</a>
+        <a href="#" aria-label="Pinterest">&#x1F4CC;</a>
+        <a href="#" aria-label="TikTok">&#x1F3A4;</a>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h2>Get in Touch</h2>
+      <!-- JS validation ke liye id + novalidate -->
+      <form
+        id="contact-form"
+        action="#"
+        method="post"
+        novalidate
+        aria-label="Contact Vogue Vista form"
+      >
+        <label for="contact-name">Full Name</label>
+        <input
+          type="text"
+          id="contact-name"
+          name="full-name"
+          placeholder="Your full name"
+          autocomplete="name"
+          required
+          aria-describedby="contact-name-error"
+        />
+        <span class="error-message" id="contact-name-error"></span>
+
+        <label for="contact-email">Email Address</label>
+        <input
+          type="email"
+          id="contact-email"
+          name="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+          required
+          aria-describedby="contact-email-error"
+        />
+        <span class="error-message" id="contact-email-error"></span>
+
+        <label for="contact-subject">Subject</label>
+        <input
+          type="text"
+          id="contact-subject"
+          name="subject"
+          placeholder="How can we help?"
+          required
+          aria-describedby="contact-subject-error"
+        />
+        <span class="error-message" id="contact-subject-error"></span>
+
+        <label for="contact-message">Message</label>
+        <textarea
+          id="contact-message"
+          name="message"
+          rows="5"
+          placeholder="Share the details of your enquiry"
+          required
+          aria-describedby="contact-message-error"
+        ></textarea>
+        <span class="error-message" id="contact-message-error"></span>
+
+        <label class="newsletter-checkbox" for="contact-newsletter">
+          <input type="checkbox" id="contact-newsletter" name="newsletter" />
+          <span>Subscribe to newsletter</span>
+        </label>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Store Locator -->
+  <section class="store-locator">
+    <h2>Find a Store Near You</h2>
+    <div class="map-placeholder">[Interactive Map Placeholder]</div>
+    <div class="store-list">
+      <div class="store-item">
+        <strong>Sydney</strong><br />
+        123 Fashion Ave<br />
+        +61 2 9000 1234
+      </div>
+      <div class="store-item">
+        <strong>Melbourne</strong><br />
+        45 Style Street<br />
+        +61 3 9000 5678
+      </div>
+      <div class="store-item">
+        <strong>Brisbane</strong><br />
+        78 Trend Blvd<br />
+        +61 7 9000 9012
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" aria-label="Frequently Asked Questions">
+    <h2>FAQs</h2>
+    <details>
+      <summary>How can I return or exchange an item?</summary>
+      <p>Returns are accepted within 30 days of purchase with the original receipt.</p>
+    </details>
+    <details>
+      <summary>What payment methods do you accept?</summary>
+      <p>We accept Visa, MasterCard, American Express, and PayPal.</p>
+    </details>
+    <details>
+      <summary>How long does delivery take?</summary>
+      <p>Standard delivery takes 3–7 business days depending on location.</p>
+    </details>
+    <details>
+      <summary>How can I track my order?</summary>
+      <p>You will receive a tracking link via email once your order ships.</p>
+    </details>
+  </section>
+
+  <!-- Live Chat -->
+  <section class="live-chat" aria-label="Live customer chat">
+    <p>Need instant help? Chat with our customer service team.</p>
+    <button type="button">Start Chat</button>
+    <small>Available Mon–Fri, 9:00 AM – 6:00 PM</small>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter" aria-label="Newsletter Sign-up">
+    <h3>Join Our Vogue Circle</h3>
+    <p>Get early access to new arrivals and exclusive offers.</p>
+    <form class="newsletter-form" action="#" method="post">
+      <input
+        type="email"
+        name="email"
+        placeholder="Your email address"
+        aria-label="Enter your email"
+        required
+      />
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <!-- Footer placeholder (loaded via layout.js from footer.html) -->
+  <div id="site-footer"></div>
+
+  <!-- Common layout loader + validation -->
+  <script src="validation.js"></script>
+  <script src="layout.js"></script>
+</body>
+</html>
