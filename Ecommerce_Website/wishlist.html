@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vogue Vista - Wishlist</title>
+
+  <!-- Global styles (reset, header, footer, utilities) -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Page-specific styles (Wishlist page only) -->
+  <style>
+    /* =========================================================
+       WISHLIST PAGE LAYOUT
+    ========================================================= */
+    .wishlist-page {
+      max-width: 1200px;
+      margin: 30px auto 60px auto;
+      padding: 0 20px;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .wishlist-header {
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 10px;
+    }
+
+    .wishlist-header-left h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      margin-bottom: 6px;
+    }
+
+    .wishlist-header-left p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .wishlist-header-right {
+      font-size: 0.85rem;
+      color: #777;
+      text-align: right;
+    }
+
+    .wishlist-count {
+      font-weight: 600;
+    }
+
+    @media (max-width: 600px) {
+      .wishlist-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .wishlist-header-right {
+        text-align: left;
+      }
+      .wishlist-header-left h1 {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* =========================================================
+       WISHLIST GRID
+    ========================================================= */
+    .wishlist-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .wishlist-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .wishlist-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .wishlist-card {
+      position: relative;
+      background-color: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: default;
+    }
+
+    .wishlist-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .wishlist-image-wrapper {
+      position: relative;
+    }
+
+    /* Link wrapping the image */
+    .wishlist-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .wishlist-image-wrapper img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .wishlist-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: #d4af37;
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-family: 'Lato', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .wishlist-remove-btn {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.9);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #999999;
+      border: none;
+      cursor: pointer;
+      transition: color 0.25s ease, background-color 0.25s ease, transform 0.2s ease;
+    }
+
+    .wishlist-remove-btn:hover,
+    .wishlist-remove-btn:focus-visible {
+      color: #d9534f;
+      background-color: #ffffff;
+      transform: scale(1.05);
+    }
+
+    .wishlist-card-body {
+      padding: 12px 14px 14px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .wishlist-product-name {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .wishlist-meta {
+      font-size: 0.85rem;
+      color: #777;
+    }
+
+    .wishlist-meta span + span::before {
+      content: "•";
+      margin: 0 4px;
+    }
+
+    .wishlist-prices {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      font-size: 0.95rem;
+      margin-top: 2px;
+    }
+
+    .wishlist-price-old {
+      text-decoration: line-through;
+      color: #999;
+      font-size: 0.85rem;
+    }
+
+    .wishlist-price-new {
+      font-weight: 700;
+      color: #d9534f;
+    }
+
+    .wishlist-note {
+      font-size: 0.8rem;
+      color: #d84315;
+    }
+
+    .wishlist-actions {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .btn-move-cart,
+    .btn-view-details {
+      flex: 1 1 auto;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: none;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+      white-space: nowrap;
+      text-align: center;
+      text-decoration: none; /* so <a> version looks like button */
+    }
+
+    .btn-move-cart {
+      background-color: #000000;
+      color: #ffffff;
+    }
+
+    .btn-move-cart:hover,
+    .btn-move-cart:focus-visible {
+      background-color: #1a1a1a;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .btn-view-details {
+      background-color: #ffffff;
+      color: #000000;
+      border: 1px solid #e0e0e0;
+    }
+
+    .btn-view-details:hover,
+    .btn-view-details:focus-visible {
+      border-color: #d4af37;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transform: translateY(-1px);
+    }
+
+    /* =========================================================
+       EMPTY STATE (just in case)
+    ========================================================= */
+    .wishlist-empty {
+      margin-top: 40px;
+      padding: 40px 20px;
+      text-align: center;
+      border-radius: 12px;
+      background-color: #fafafa;
+      border: 1px dashed #e0e0e0;
+      display: none; /* show via JS if wishlist is empty */
+    }
+
+    .wishlist-empty h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      margin-bottom: 6px;
+    }
+
+    .wishlist-empty p {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 16px;
+    }
+
+    .wishlist-empty .btn-browse {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      background-color: #000000;
+      color: #ffffff;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+    }
+
+    .wishlist-empty .btn-browse:hover,
+    .wishlist-empty .btn-browse:focus-visible {
+      background-color: #1a1a1a;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+      transform: translateY(-1px);
+    }
+
+    /* =========================================================
+       BOTTOM CALL-TO-ACTION STRIP
+    ========================================================= */
+    .wishlist-cta-strip {
+      margin-top: 32px;
+      padding: 16px 18px;
+      border-radius: 999px;
+      background-color: #fdf7e8;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .wishlist-cta-strip strong {
+      font-weight: 600;
+    }
+
+    .wishlist-cta-strip a {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      color: #000;
+      border-bottom: 1px solid transparent;
+      transition: color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .wishlist-cta-strip a:hover,
+    .wishlist-cta-strip a:focus-visible {
+      color: #d4af37;
+      border-color: #d4af37;
+    }
+
+    @media (max-width: 600px) {
+      .wishlist-cta-strip {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&family=Playfair+Display&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body class="page-wishlist">
+
+  <!-- Header placeholder (loaded via layout.js from header.html) -->
+  <div id="site-header"></div>
+
+  <main>
+    <section class="wishlist-page" aria-label="Wishlist">
+      <!-- Header -->
+      <header class="wishlist-header">
+        <div class="wishlist-header-left">
+          <h1>Your Wishlist</h1>
+          <p>Keep track of pieces you love and move them to your bag when you’re ready.</p>
+        </div>
+        <div class="wishlist-header-right">
+          <span class="wishlist-count">3 items saved</span><br />
+          <span>Sign in on any device to access your wishlist.</span>
+        </div>
+      </header>
+
+      <!-- Wishlist Items Grid -->
+      <section class="wishlist-grid" aria-label="Wishlist items">
+        <!-- Item 1 -->
+        <article class="wishlist-card">
+          <div class="wishlist-image-wrapper">
+            <a href="product.html" class="wishlist-link">
+              <img
+                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80"
+                alt="Minimalist White Sneakers"
+              />
+            </a>
+            <span class="wishlist-badge">On Sale</span>
+            <button
+              type="button"
+              class="wishlist-remove-btn"
+              aria-label="Remove Minimalist White Sneakers from wishlist"
+            >
+              &times;
+            </button>
+          </div>
+          <div class="wishlist-card-body">
+            <h2 class="wishlist-product-name">Minimalist White Sneakers</h2>
+            <div class="wishlist-meta">
+              <span>Size: 42</span>
+              <span>Color: White</span>
+            </div>
+            <div class="wishlist-prices">
+              <span class="wishlist-price-new">$90.00</span>
+              <span class="wishlist-price-old">$120.00</span>
+            </div>
+            <p class="wishlist-note">Low stock: only 2 left.</p>
+            <div class="wishlist-actions">
+              <button type="button" class="btn-move-cart">Move to Cart</button>
+              <a href="product.html" class="btn-view-details">View Details</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 2 -->
+        <article class="wishlist-card">
+          <div class="wishlist-image-wrapper">
+            <a href="product.html" class="wishlist-link">
+              <img
+                src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=600&q=80"
+                alt="Satin Slip Dress"
+              />
+            </a>
+            <span class="wishlist-badge">New In</span>
+            <button
+              type="button"
+              class="wishlist-remove-btn"
+              aria-label="Remove Satin Slip Dress from wishlist"
+            >
+              &times;
+            </button>
+          </div>
+          <div class="wishlist-card-body">
+            <h2 class="wishlist-product-name">Satin Slip Dress</h2>
+            <div class="wishlist-meta">
+              <span>Size: M</span>
+              <span>Color: Champagne</span>
+            </div>
+            <div class="wishlist-prices">
+              <span class="wishlist-price-new">$180.00</span>
+            </div>
+            <div class="wishlist-actions">
+              <button type="button" class="btn-move-cart">Move to Cart</button>
+              <a href="product.html" class="btn-view-details">View Details</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 3 -->
+        <article class="wishlist-card">
+          <div class="wishlist-image-wrapper">
+            <a href="product.html" class="wishlist-link">
+              <img
+                src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80"
+                alt="Tailored Wool Coat"
+              />
+            </a>
+            <span class="wishlist-badge">Limited</span>
+            <button
+              type="button"
+              class="wishlist-remove-btn"
+              aria-label="Remove Tailored Wool Coat from wishlist"
+            >
+              &times;
+            </button>
+          </div>
+          <div class="wishlist-card-body">
+            <h2 class="wishlist-product-name">Tailored Wool Coat</h2>
+            <div class="wishlist-meta">
+              <span>Size: L</span>
+              <span>Color: Camel</span>
+            </div>
+            <div class="wishlist-prices">
+              <span class="wishlist-price-new">$260.00</span>
+            </div>
+            <div class="wishlist-actions">
+              <button type="button" class="btn-move-cart">Move to Cart</button>
+              <a href="product.html" class="btn-view-details">View Details</a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Empty state (optional, JS se toggle karo) -->
+      <section class="wishlist-empty" aria-label="Empty wishlist">
+        <h2>Your wishlist is empty</h2>
+        <p>Start exploring our collections and tap the heart icon to save pieces you love.</p>
+        <button
+          type="button"
+          class="btn-browse"
+          onclick="window.location.href='new_arrivals.html'"
+        >
+          Browse New Arrivals
+        </button>
+      </section>
+
+      <!-- Bottom CTA strip -->
+      <section class="wishlist-cta-strip">
+        <span>
+          <strong>Tip:</strong> Items in your wishlist are not reserved. Move your favorites to the bag
+          before they sell out.
+        </span>
+        <a href="cart.html">Go to Shopping Bag</a>
+      </section>
+    </section>
+  </main>
+
+  <!-- Footer placeholder (loaded via layout.js from footer.html) -->
+  <div id="site-footer"></div>
+
+  <!-- Common layout loader -->
+  <script src="layout.js"></script>
+</body>
+</html>

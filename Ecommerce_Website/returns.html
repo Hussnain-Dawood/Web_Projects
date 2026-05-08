@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vogue Vista - Returns & Exchanges</title>
+
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <style>
+    .help-hero {
+      background-color: #f9f9f9;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .help-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .help-hero p {
+      max-width: 650px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      color: #555;
+    }
+
+    .help-container {
+      max-width: 1000px;
+      margin: 40px auto 60px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+    }
+
+    @media (max-width: 900px) {
+      .help-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .policy-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .policy-section p {
+      color: #444;
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .policy-section ul {
+      margin: 10px 0 15px 20px;
+      color: #444;
+    }
+
+    .policy-section li {
+      margin-bottom: 6px;
+    }
+
+    .highlight-box {
+      padding: 16px 18px;
+      border-radius: 10px;
+      background-color: #fdf7e8;
+      border: 1px solid #f0e0b8;
+      margin: 15px 0 20px;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .side-panel {
+      border-radius: 12px;
+      padding: 20px 18px;
+      background-color: #000000;
+      color: #ffffff;
+    }
+
+    .side-panel h3 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 10px;
+    }
+
+    .side-panel ul {
+      margin-left: 18px;
+      margin-bottom: 15px;
+    }
+
+    .side-panel li {
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    .side-panel a {
+      color: #d4af37;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: border-color 0.25s ease;
+    }
+
+    .side-panel a:hover,
+    .side-panel a:focus-visible {
+      border-color: #d4af37;
+    }
+  </style>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&family=Playfair+Display&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body class="page-help page-returns">
+
+  <div id="site-header"></div>
+
+  <main>
+    <section class="help-hero" aria-label="Returns and exchanges policy">
+      <h1>Returns &amp; Exchanges</h1>
+      <p>
+        We want you to love every Vogue Vista piece. If something isn’t quite right, our returns policy makes it easy
+        to send items back.
+      </p>
+    </section>
+
+    <section class="help-container">
+      <!-- Main policy -->
+      <div>
+        <section class="policy-section" aria-label="Eligibility">
+          <h2>Return Eligibility</h2>
+          <p>
+            You can return most full-priced items within <strong>30 days</strong> of delivery for a refund or exchange,
+            provided they meet the conditions below.
+          </p>
+          <ul>
+            <li>Items must be unworn, unwashed, and in original condition.</li>
+            <li>All original tags and labels must be attached.</li>
+            <li>Items must be free from makeup, perfume, or other marks.</li>
+            <li>Proof of purchase (order confirmation or receipt) is required.</li>
+          </ul>
+
+          <div class="highlight-box">
+            <strong>Note:</strong> For hygiene reasons, earrings, undergarments, and final sale items are not eligible
+            for change-of-mind returns unless they are faulty under Australian Consumer Law.
+          </div>
+        </section>
+
+        <section class="policy-section" aria-label="How to return">
+          <h2>How to Start a Return</h2>
+          <p>To initiate a return, please follow these steps:</p>
+          <ul>
+            <li>Visit the <a href="contact_us.html">Contact Us</a> page and select “Returns &amp; Exchanges”.</li>
+            <li>Provide your order number, item name, and the reason for return.</li>
+            <li>Our team will review your request and email you return instructions.</li>
+            <li>Pack your item securely and attach the provided return label (if applicable).</li>
+          </ul>
+          <p>
+            Once your parcel reaches our warehouse, we’ll inspect the items and notify you via email when your refund or
+            exchange has been processed.
+          </p>
+        </section>
+
+        <section class="policy-section" aria-label="Refunds">
+          <h2>Refunds</h2>
+          <p>
+            Approved returns will be refunded to your original payment method, excluding any shipping charges paid at
+            checkout (unless the item is confirmed faulty).
+          </p>
+          <ul>
+            <li>Refunds are usually processed within 3–5 business days after inspection.</li>
+            <li>Your bank or payment provider may require additional processing time.</li>
+            <li>Gift card purchases will be refunded as store credit.</li>
+          </ul>
+        </section>
+
+        <section class="policy-section" aria-label="Exchanges">
+          <h2>Exchanges</h2>
+          <p>
+            If you’d like to exchange an item for a different size or colour, please specify this in your return
+            request. Exchanges are subject to stock availability at the time we process your parcel.
+          </p>
+          <p>
+            If your preferred item is no longer available, we’ll process a refund instead so you can choose an
+            alternative style.
+          </p>
+        </section>
+
+        <section class="policy-section" aria-label="Faulty items">
+          <h2>Faulty or Incorrect Items</h2>
+          <p>
+            We take quality seriously. If you receive a faulty, damaged, or incorrect item, please contact us as soon as
+            possible with photos and your order number.
+          </p>
+          <p>
+            Where a product is deemed faulty, we will provide a replacement, repair, or refund in line with Australian
+            Consumer Law.
+          </p>
+        </section>
+      </div>
+
+      <!-- Side panel -->
+      <aside class="side-panel" aria-label="Returns summary and links">
+        <h3>At a Glance</h3>
+        <ul>
+          <li>30-day change-of-mind returns on full-priced items.</li>
+          <li>Items must be unworn, unwashed, and with tags.</li>
+          <li>No returns on earrings, intimates, or final sale (unless faulty).</li>
+          <li>Refunds processed to original payment method.</li>
+        </ul>
+
+        <h3>Useful Links</h3>
+        <ul>
+          <li><a href="faqs.html">Returns FAQs</a></li>
+          <li><a href="shipping.html">Shipping Information</a></li>
+          <li><a href="contact_us.html">Contact Customer Care</a></li>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        </ul>
+      </aside>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="layout.js"></script>
+</body>
+</html>
