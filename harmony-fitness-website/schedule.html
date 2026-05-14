@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="View the complete class schedule at Harmony Fitness – gym, yoga, pilates, HIIT, meditation and more. Book your spot in advance." />
+  <title>Class Schedule | Harmony Fitness &amp; Wellness Studio</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .filter-bar { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:28px; }
+    .filter-btn { padding:9px 20px; border-radius:50px; border:1px solid var(--dark-border); background:none; color:var(--text-muted); font-family:var(--font-heading); font-size:0.8rem; font-weight:600; cursor:pointer; transition:var(--transition); }
+    .filter-btn:hover,.filter-btn.active { background:var(--primary); border-color:var(--primary); color:var(--white); }
+    .table-wrap { overflow-x:auto; border-radius:var(--radius); border:1px solid var(--dark-border); }
+    .book-btn { padding:6px 16px; border-radius:50px; background:var(--primary); border:none; color:var(--white); font-size:0.78rem; font-weight:700; cursor:pointer; transition:var(--transition); }
+    .book-btn:hover { background:var(--primary-dark); }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<header id="site-header">
+  <div class="nav-wrapper">
+    <a href="index.html" class="logo"><div class="logo-icon"><i class="fa-solid fa-dumbbell"></i></div>Harmony<span>Fitness</span></a>
+    <nav><ul id="nav-menu"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="trainers.html">Trainers</a></li><li><a href="schedule.html" class="active">Schedule</a></li><li><a href="membership.html">Membership</a></li><li><a href="virtual.html">Virtual</a></li><li><a href="blog.html">Blog</a></li><li><a href="gallery.html">Gallery</a></li>
+        <li class="nav-extra-menu">
+          <button class="extra-hamburger" aria-label="Menu Actions"><i class="fa-solid fa-bars"></i></button>
+          <ul class="extra-dropdown">
+            <li><a href="contact.html">Contact Us</a></li>
+            <li class="auth-out"><a href="signin.html">Sign In</a></li>
+            <li class="auth-out"><a href="signup.html">Sign Up</a></li>
+            <li class="auth-in" style="display:none;"><a href="#" class="logout-btn">Logout</a></li>
+          </ul>
+        </li>
+</ul></nav>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<div class="page-hero" style="--hero-bg: url('https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1600&q=80');">
+  <div class="container">
+    <span class="section-label">Timetable</span>
+    <h1>Class Schedule</h1>
+    <p>Find the perfect class for your goals and lifestyle. All classes are available to book online or in-studio.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" data-filter="all">All Classes</button>
+      <button class="filter-btn" data-filter="cardio">Cardio</button>
+      <button class="filter-btn" data-filter="strength">Strength</button>
+      <button class="filter-btn" data-filter="yoga">Yoga</button>
+      <button class="filter-btn" data-filter="pilates">Pilates</button>
+      <button class="filter-btn" data-filter="meditation">Meditation</button>
+      <button class="filter-btn" data-filter="virtual">Virtual</button>
+    </div>
+
+    <div class="table-wrap reveal">
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Duration</th>
+            <th>Trainer</th>
+            <th>Level</th>
+            <th>Spots</th>
+            <th>Book</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="schedule-row" data-category="cardio"><td><strong>Morning HIIT Blast</strong></td><td>Mon, Wed, Fri</td><td>6:00am</td><td>45 min</td><td>Tyler Kim</td><td><span class="badge badge-yellow">Intermediate</span></td><td>4 left</td><td><button class="book-btn plan-btn" data-plan="HIIT Class">Book</button></td></tr>
+          <tr class="schedule-row" data-category="yoga"><td><strong>Sunrise Yoga Flow</strong></td><td>Tue, Thu, Sat</td><td>6:30am</td><td>60 min</td><td>Sofia Patel</td><td><span class="badge badge-green">All Levels</span></td><td>8 left</td><td><button class="book-btn plan-btn" data-plan="Sunrise Yoga">Book</button></td></tr>
+          <tr class="schedule-row" data-category="strength"><td><strong>Strength &amp; Conditioning</strong></td><td>Mon, Wed, Fri</td><td>7:00am</td><td>60 min</td><td>Marcus Lee</td><td><span class="badge badge-yellow">Intermediate</span></td><td>6 left</td><td><button class="book-btn plan-btn" data-plan="Strength Class">Book</button></td></tr>
+          <tr class="schedule-row" data-category="pilates"><td><strong>Classical Pilates</strong></td><td>Mon, Wed, Fri</td><td>9:00am</td><td>55 min</td><td>James Okafor</td><td><span class="badge badge-green">All Levels</span></td><td>10 left</td><td><button class="book-btn plan-btn" data-plan="Pilates">Book</button></td></tr>
+          <tr class="schedule-row" data-category="meditation"><td><strong>Mindfulness Meditation</strong></td><td>Tue, Thu</td><td>9:30am</td><td>45 min</td><td>Sofia Patel</td><td><span class="badge badge-green">All Levels</span></td><td>12 left</td><td><button class="book-btn plan-btn" data-plan="Meditation">Book</button></td></tr>
+          <tr class="schedule-row" data-category="cardio"><td><strong>Spin &amp; Cycle</strong></td><td>Mon–Sat</td><td>12:00pm</td><td>45 min</td><td>Tyler Kim</td><td><span class="badge badge-green">All Levels</span></td><td>2 left</td><td><button class="book-btn plan-btn" data-plan="Spin Class">Book</button></td></tr>
+          <tr class="schedule-row" data-category="yoga"><td><strong>Hatha Yoga</strong></td><td>Mon, Wed, Sat</td><td>12:30pm</td><td>60 min</td><td>Sofia Patel</td><td><span class="badge badge-green">Beginner</span></td><td>7 left</td><td><button class="book-btn plan-btn" data-plan="Hatha Yoga">Book</button></td></tr>
+          <tr class="schedule-row" data-category="strength"><td><strong>Powerlifting</strong></td><td>Tue, Thu, Sat</td><td>4:00pm</td><td>75 min</td><td>Marcus Lee</td><td><span class="badge badge-blue">Advanced</span></td><td>5 left</td><td><button class="book-btn plan-btn" data-plan="Powerlifting">Book</button></td></tr>
+          <tr class="schedule-row" data-category="cardio"><td><strong>Bootcamp</strong></td><td>Tue, Thu, Sat</td><td>5:30pm</td><td>60 min</td><td>Tyler Kim</td><td><span class="badge badge-yellow">Intermediate</span></td><td>3 left</td><td><button class="book-btn plan-btn" data-plan="Bootcamp">Book</button></td></tr>
+          <tr class="schedule-row" data-category="pilates"><td><strong>Reformer Pilates</strong></td><td>Mon, Wed, Fri</td><td>6:00pm</td><td>55 min</td><td>James Okafor</td><td><span class="badge badge-yellow">Intermediate</span></td><td>8 left</td><td><button class="book-btn plan-btn" data-plan="Reformer Pilates">Book</button></td></tr>
+          <tr class="schedule-row" data-category="yoga"><td><strong>Yin Yoga &amp; Restore</strong></td><td>Fri, Sun</td><td>6:30pm</td><td>75 min</td><td>Sofia Patel</td><td><span class="badge badge-green">All Levels</span></td><td>9 left</td><td><button class="book-btn plan-btn" data-plan="Yin Yoga">Book</button></td></tr>
+          <tr class="schedule-row" data-category="virtual"><td><strong>Live Virtual HIIT</strong></td><td>Mon–Fri</td><td>7:00am online</td><td>40 min</td><td>Tyler Kim</td><td><span class="badge badge-green">All Levels</span></td><td>Unlimited</td><td><button class="book-btn plan-btn" data-plan="Virtual HIIT">Book</button></td></tr>
+          <tr class="schedule-row" data-category="virtual"><td><strong>Live Virtual Yoga</strong></td><td>Mon, Wed, Fri</td><td>8:00am online</td><td>60 min</td><td>Sofia Patel</td><td><span class="badge badge-green">All Levels</span></td><td>Unlimited</td><td><button class="book-btn plan-btn" data-plan="Virtual Yoga">Book</button></td></tr>
+          <tr class="schedule-row" data-category="meditation"><td><strong>Evening Mindfulness</strong></td><td>Daily</td><td>8:00pm</td><td>30 min</td><td>Anya Novak</td><td><span class="badge badge-green">All Levels</span></td><td>15 left</td><td><button class="book-btn plan-btn" data-plan="Evening Mindfulness">Book</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:28px;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius);padding:24px;" class="reveal">
+      <h4 style="margin-bottom:12px;color:var(--text-main);"><i class="fa-solid fa-clipboard-list" style="color:var(--primary); margin-right:8px;"></i> Booking Information</h4>
+      <ul style="list-style:none;">
+        <li style="color:var(--text-muted);font-size:0.9rem;padding:6px 0;">• Classes can be booked up to 7 days in advance via the website, app, or reception.</li>
+        <li style="color:var(--text-muted);font-size:0.9rem;padding:6px 0;">• Cancellations must be made at least 2 hours before class start time.</li>
+        <li style="color:var(--text-muted);font-size:0.9rem;padding:6px 0;">• Late cancellations or no-shows may result in a session credit deduction.</li>
+        <li style="color:var(--text-muted);font-size:0.9rem;padding:6px 0;">• Virtual classes are accessible via Member Portal after booking.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a href="index.html" class="logo"><div class="logo-icon"><i class="fa-solid fa-dumbbell"></i></div>Harmony<span>Fitness</span></a><p>Sydney's premier fitness &amp; wellness destination since 2012.</p><div class="social-links"><a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook">Fb</a><a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">In</a><a href="https://plus.google.com" target="_blank" rel="noopener" aria-label="Google Plus">G+</a><a href="https://www.pinterest.com" target="_blank" rel="noopener" aria-label="Pinterest">Pt</a><a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram">Ig</a><a href="https://www.twitter.com" target="_blank" rel="noopener" aria-label="Twitter">Tw</a></div></div>
+      <div><div class="footer-heading">Quick Links</div><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="trainers.html">Trainers</a></li><li><a href="schedule.html">Schedule</a></li><li><a href="references.html">References</a></li></ul></div>
+      <div><div class="footer-heading">Programs</div><ul class="footer-links"><li><a href="services.html">Gym &amp; Weights</a></li><li><a href="services.html">Yoga &amp; Pilates</a></li><li><a href="virtual.html">Virtual Sessions</a></li><li><a href="membership.html">Memberships</a></li><li><a href="blog.html">Wellness Blog</a></li></ul></div>
+      <div><div class="footer-heading">Contact</div><ul class="footer-links"><li><a href="#"><i class="fa-solid fa-location-dot"></i> 42 Wellness Ave, Sydney NSW 2000</a></li><li><a href="tel:+61292001234"><i class="fa-solid fa-phone"></i> (02) 9200 1234</a></li><li><a href="mailto:info@harmonyfitness.com.au"><i class="fa-solid fa-envelope"></i> info@harmonyfitness.com.au</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 Harmony Fitness &amp; Wellness Studio. All rights reserved.</p><div class="w3c-badge"><a href="https://www.w3.org/standards/" target="_blank" rel="noopener"><img src="https://www.w3.org/Icons/valid-html401" alt="Valid HTML" /></a></div></div>
+  </div>
+</footer>
+<div class="cookie-banner" id="cookie-banner"><p style="margin-bottom:14px;font-size:0.9rem;color:var(--text-main);"><i class="fa-solid fa-cookie-bite"></i> We use cookies to enhance your experience.</p><div style="display:flex;gap:12px;justify-content:center;"><button class="btn btn-primary" id="cookie-accept" style="padding:10px 24px;font-size:0.82rem;">Accept All</button><button class="btn btn-outline" id="cookie-decline" style="padding:10px 24px;font-size:0.82rem;color:var(--text-main);border-color:var(--dark-border);">Decline</button></div></div>
+<div class="modal-overlay" id="newsletter-modal"><div class="modal-box"><button class="modal-close" id="modal-close">✕</button><div style="text-align:center;margin-bottom:24px;"><div style="font-size:2.5rem;margin-bottom:10px;"><i class="fa-solid fa-hand-fist"></i></div><h3 style="margin-bottom:8px;">Get Free Fitness Tips!</h3><p>Subscribe for weekly wellness advice.</p></div><form id="newsletter-form"><div class="form-group"><label for="nl-email">Email Address</label><input type="email" id="nl-email" name="nl-email" placeholder="your@email.com" required /></div><button type="submit" class="btn btn-primary" style="width:100%;">Subscribe!</button></form></div></div>
+<button id="back-to-top" aria-label="Back to Top">↑</button>
+<script src="js/main.js"></script>
+</body>
+</html>

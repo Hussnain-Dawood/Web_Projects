@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="View the Harmony Fitness studio facilities, classes, and merchandise through our interactive photo gallery." />
+  <title>Gallery &amp; Store | Harmony Fitness &amp; Wellness Studio</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<header id="site-header">
+  <div class="nav-wrapper">
+    <a href="index.html" class="logo"><div class="logo-icon"><i class="fa-solid fa-dumbbell"></i></div>Harmony<span>Fitness</span></a>
+    <nav><ul id="nav-menu"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="trainers.html">Trainers</a></li><li><a href="schedule.html">Schedule</a></li><li><a href="membership.html">Membership</a></li><li><a href="virtual.html">Virtual</a></li><li><a href="blog.html">Blog</a></li><li><a href="gallery.html" class="active">Gallery</a></li>
+        <li class="nav-extra-menu">
+          <button class="extra-hamburger" aria-label="Menu Actions"><i class="fa-solid fa-bars"></i></button>
+          <ul class="extra-dropdown">
+            <li><a href="contact.html">Contact Us</a></li>
+            <li class="auth-out"><a href="signin.html">Sign In</a></li>
+            <li class="auth-out"><a href="signup.html">Sign Up</a></li>
+            <li class="auth-in" style="display:none;"><a href="#" class="logout-btn">Logout</a></li>
+          </ul>
+        </li>
+</ul></nav>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<div class="page-hero" style="--hero-bg: url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=1600&q=80');">
+  <div class="container">
+    <span class="section-label">Inside Harmony</span>
+    <h1>Photo Gallery</h1>
+    <p>Take a look inside our premium facilities, energetic classes, and the amazing community that makes Harmony Fitness special.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="gallery-grid reveal">
+      
+      <!-- Facility Images -->
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=500&q=80" alt="Cardio area with treadmills and bikes" /></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=500&q=80" alt="Free weights room" /></div>
+      <div class="gallery-item"><img src="images/yoga_class_1775650425141.png" alt="Yoga studio with natural lighting" /></div>
+      <div class="gallery-item"><img src="images/pilates_class_1775650979772.png" alt="Pilates reformer studio" /></div>
+      
+      <!-- Classes Images -->
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&q=80" alt="Personal training session" /></div>
+      <div class="gallery-item"><img src="images/trainer_male_1775650452930.png" alt="Group fitness class" /></div>
+      <div class="gallery-item"><img src="images/trainer_female_1775650570258.png" alt="Spin class" /></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=500&q=80" alt="Members working out together" /></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STORE TEASER -->
+<section class="section-alt">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Pro Shop</span>
+      <h2 class="section-title">Fitness Merchandise</h2>
+      <p class="section-subtitle">Premium apparel, supplements, and fitness accessories available at our front desk.</p>
+    </div>
+    <div class="grid-3 reveal">
+      <div class="card" style="text-align:center;"><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&q=80" alt="Fitness Apparel" class="card-img" style="height:280px;"/><div class="card-body"><h3>Harmony Apparel</h3><p>Breathable, high-performance training wear.</p></div></div>
+      <div class="card" style="text-align:center;"><img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=400&q=80" alt="Supplements" class="card-img" style="height:280px;"/><div class="card-body"><h3>Supplements &amp; Nutrition</h3><p>Premium whey, pre-workout, and vitamins.</p></div></div>
+      <div class="card" style="text-align:center;"><img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=400&q=80" alt="Fitness Accessories" class="card-img" style="height:280px;"/><div class="card-body"><h3>Accessories</h3><p>Yoga mats, resistance bands, and shakers.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX MODAL -->
+<div class="lightbox-overlay" id="lightbox-overlay">
+  <div class="lightbox-content">
+    <button class="lightbox-close" id="lightbox-close">✕</button>
+    <img id="lightbox-img" src="" alt="Gallery Image Enlarge" />
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a href="index.html" class="logo"><div class="logo-icon"><i class="fa-solid fa-dumbbell"></i></div>Harmony<span>Fitness</span></a><p>Sydney's premier fitness &amp; wellness destination.</p></div>
+      <div><div class="footer-heading">Quick Links</div><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="references.html">References</a></li></ul></div>
+      <div><div class="footer-heading">Programs</div><ul class="footer-links"><li><a href="services.html">Gym &amp; Weights</a></li><li><a href="virtual.html">Virtual Sessions</a></li><li><a href="membership.html">Memberships</a></li></ul></div>
+      <div><div class="footer-heading">Contact</div><ul class="footer-links"><li><a href="#"><i class="fa-solid fa-location-dot"></i> 42 Wellness Ave, Sydney NSW 2000</a></li><li><a href="tel:+61292001234"><i class="fa-solid fa-phone"></i> (02) 9200 1234</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Harmony Fitness &amp; Wellness Studio. All rights reserved.</p>
+      <div class="w3c-badge"><a href="https://www.w3.org/standards/" target="_blank" rel="noopener"><img src="https://www.w3.org/Icons/valid-html401" alt="Valid HTML" /></a></div>
+    </div>
+  </div>
+</footer>
+<div class="cookie-banner" id="cookie-banner"><p style="margin-bottom:14px;font-size:0.9rem;color:var(--text-main);"><i class="fa-solid fa-cookie-bite"></i> We use cookies to enhance your experience.</p><div style="display:flex;gap:12px;justify-content:center;"><button class="btn btn-primary" id="cookie-accept" style="padding:10px 24px;font-size:0.82rem;">Accept All</button><button class="btn btn-outline" id="cookie-decline" style="padding:10px 24px;font-size:0.82rem;color:var(--text-main);border-color:var(--dark-border);">Decline</button></div></div>
+<button id="back-to-top" aria-label="Back to Top">↑</button>
+<script src="js/main.js"></script>
+</body>
+</html>

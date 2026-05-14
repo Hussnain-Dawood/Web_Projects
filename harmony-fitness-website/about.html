@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About Harmony Fitness &amp; Wellness Studio – Learn our story, mission, values, and the passionate team behind Sydney's leading fitness centre." />
+  <title>About Us | Harmony Fitness &amp; Wellness Studio</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .timeline { position: relative; padding: 20px 0; }
+    .timeline::before { content:''; position:absolute; left:50%; top:0; bottom:0; width:2px; background:var(--dark-border); transform:translateX(-50%); }
+    .timeline-item { display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-bottom:40px; align-items:center; }
+    .timeline-item:nth-child(even) .tl-content { order:2; }
+    .timeline-item:nth-child(even) .tl-year   { order:1; text-align:right; }
+    .tl-year { font-family:var(--font-heading); font-size:2.5rem; font-weight:900; color:var(--primary); opacity:0.5; }
+    .tl-content { background:var(--dark-card); border:1px solid var(--dark-border); border-radius:var(--radius); padding:24px; }
+    .tl-content h4 { color:var(--text-main); margin-bottom:8px; }
+    .value-card { background:var(--dark-card); border:1px solid var(--dark-border); border-radius:var(--radius); padding:28px; text-align:center; transition:var(--transition); }
+    .value-card:hover { border-color:var(--primary); transform:translateY(-4px); }
+    .value-icon { font-size:2.2rem; margin-bottom:14px; }
+    .value-card h3 { color:var(--text-main); margin-bottom:10px; }
+    @media(max-width:768px) {
+      .timeline::before { left:0; }
+      .timeline-item { grid-template-columns:1fr; gap:16px; }
+      .timeline-item:nth-child(even) .tl-content { order:0; }
+      .timeline-item:nth-child(even) .tl-year { order:0; text-align:left; }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header id="site-header">
+  <div class="nav-wrapper">
+    <a href="index.html" class="logo"><div class="logo-icon"><i class="fa-solid fa-dumbbell"></i></div>Harmony<span>Fitness</span></a>
+    <nav>
+      <ul id="nav-menu"><li><a href="index.html">Home</a></li><li><a href="about.html" class="active">About</a></li><li><a href="services.html">Services</a></li><li><a href="trainers.html">Trainers</a></li><li><a href="schedule.html">Schedule</a></li><li><a href="membership.html">Membership</a></li><li><a href="virtual.html">Virtual</a></li><li><a href="blog.html">Blog</a></li><li><a href="gallery.html">Gallery</a></li>
+        <li class="nav-extra-menu">
+          <button class="extra-hamburger" aria-label="Menu Actions"><i class="fa-solid fa-bars"></i></button>
+          <ul class="extra-dropdown">
+            <li><a href="contact.html">Contact Us</a></li>
+            <li class="auth-out"><a href="signin.html">Sign In</a></li>
+            <li class="auth-out"><a href="signup.html">Sign Up</a></li>
+            <li class="auth-in" style="display:none;"><a href="#" class="logout-btn">Logout</a></li>
+          </ul>
+        </li>
+</ul>
+    </nav>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="page-hero" style="--hero-bg: url('https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=1600&q=80');">
+  <div class="container">
+    <span class="section-label">Our Story</span>
+    <h1>About Harmony Fitness</h1>
+    <p>A Sydney success story built on passion, community, and an unwavering commitment to changing lives through health and wellness.</p>
+  </div>
+</div>
+
+<!-- MISSION -->
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+      <div class="reveal">
+        <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=800&q=80" alt="Harmony Fitness Studio interior showing modern equipment" style="border-radius:var(--radius);width:100%;height:440px;object-fit:cover;" />
+      </div>
+      <div class="reveal">
+        <span class="section-label">Our Mission</span>
+        <h2 class="section-title" style="margin-bottom:18px;">We Exist to Transform Lives</h2>
+        <p style="margin-bottom:18px;">Founded in Sydney in 2012, Harmony Fitness &amp; Wellness Studio was born from a simple belief: that everyone deserves access to world-class fitness, expert guidance, and a supportive community that genuinely cares about their wellbeing.</p>
+        <p style="margin-bottom:28px;">Over a decade later, we've grown into one of Sydney's most respected fitness destinations – but our mission remains unchanged: to empower every member to live a healthier, happier, more energised life.</p>
+        <ul class="feature-list">
+          <li><span class="icon"><i class="fa-solid fa-bullseye" style="color:var(--primary); margin-right:8px;"></i></span><div class="feat-text"><h4>Member-First Approach</h4><p>Every decision we make is guided by what's best for our members.</p></div></li>
+          <li><span class="icon"></span><div class="feat-text"><h4>Holistic Wellness</h4><p>We address physical fitness, mental wellbeing, and healthy nutrition together.</p></div></li>
+          <li><span class="icon"></span><div class="feat-text"><h4>Science-Backed Methods</h4><p>Our programs are grounded in evidence-based exercise and nutrition science.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="section-alt">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Core Values</span>
+      <h2 class="section-title">What We Stand For</h2>
+    </div>
+    <div class="grid-4">
+      <div class="value-card reveal"><div class="value-icon"><i class="fa-solid fa-hand-fist"></i></div><h3>Strength</h3><p>We help members build physical and mental strength that extends beyond the gym floor.</p></div>
+      <div class="value-card reveal"><div class="value-icon"><i class="fa-solid fa-handshake"></i></div><h3>Community</h3><p>We foster an inclusive, encouraging environment where everyone belongs and thrives.</p></div>
+      <div class="value-card reveal"><div class="value-icon"></div><h3>Integrity</h3><p>We deliver honest, evidence-based advice without gimmicks or empty promises.</p></div>
+      <div class="value-card reveal"><div class="value-icon"></div><h3>Innovation</h3><p>We continuously evolve our programs and facilities to deliver the best experience.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Our Journey</span>
+      <h2 class="section-title">A Decade of Excellence</h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="tl-year">2012</div>
+        <div class="tl-content"><h4> The Beginning</h4><p>Harmony Fitness opens its doors in Sydney CBD with 500 sqm of gym space and 3 founding trainers.</p></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="tl-year">2015</div>
+        <div class="tl-content"><h4><i class="fa-solid fa-person-praying"></i> Wellness Expansion</h4><p>Added dedicated yoga and meditation studios. Launched nutrition consultation services. Reached 1,000 members.</p></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="tl-year">2018</div>
+        <div class="tl-content"><h4><i class="fa-solid fa-trophy"></i> Award-Winner</h4><p>Named Sydney's Best Fitness Studio by AusFitness Awards. Expanded to 1,500 sqm with state-of-the-art equipment.</p></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="tl-year">2021</div>
+        <div class="tl-content"><h4><i class="fa-solid fa-laptop"></i> Going Digital</h4><p>Launched online virtual fitness sessions during the pandemic. Reached 3,000 members across physical and virtual.</p></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="tl-year">2024</div>
+        <div class="tl-content"><h4><i class="fa-solid fa-star" style="color:var(--primary); margin-right:8px;"></i> Today &amp; Beyond</h4><p>5,200+ active members, 20+ trainers, 45+ weekly classes. Launching member app and AI-powered progress tracking.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div><span class="stat-number counter" data-target="5200">0</span><span class="stat-label">Members</span></div>
+      <div><span class="stat-number counter" data-target="20">0</span><span class="stat-label">Expert Trainers</span></div>
+      <div><span class="stat-number counter" data-target="45">0</span><span class="stat-label">Weekly Classes</span></div>
+      <div><span class="stat-number counter" data-target="12">0</span><span class="stat-label">Years of Experience</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="section-alt">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">Common Questions</h2>
+    </div>
+    <div style="max-width:760px;margin:0 auto;">
+      <div class="accordion-item reveal" style="background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius);margin-bottom:12px;overflow:hidden;">
+        <button class="accordion-btn" style="width:100%;text-align:left;padding:20px 24px;background:none;border:none;color:var(--text-main);font-family:var(--font-heading);font-size:1rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;">
+          Do I need to be fit to join? <span>+</span>
+        </button>
+        <div class="accordion-panel" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease;">
+          <p style="padding:0 24px 20px;">Absolutely not! We welcome members of all fitness levels. Our trainers will design a program perfectly suited to your current level and goals.</p>
+        </div>
+      </div>
+      <div class="accordion-item reveal" style="background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius);margin-bottom:12px;overflow:hidden;">
+        <button class="accordion-btn" style="width:100%;text-align:left;padding:20px 24px;background:none;border:none;color:var(--text-main);font-family:var(--font-heading);font-size:1rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;">
+          Can I cancel my membership? <span>+</span>
+        </button>
+        <div class="accordion-panel" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease;">
+          <p style="padding:0 24px 20px;">Yes, all our plans offer flexible cancellation policies. Month-to-month plans can be cancelled anytime with 7 days' notice.</p>
+        </div>
+      </div>
+      <div class="accordion-item reveal" style="background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius);margin-bottom:12px;overflow:hidden;">
+        <button class="accordion-btn" style="width:100%;text-align:left;padding:20px 24px;background:none;border:none;color:var(--text-main);font-family:var(--font-heading);font-size:1rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;">
+          Is parking available? <span>+</span>
+        </button>
+        <div class="accordion-panel" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease;">
+          <p style="padding:0 24px 20px;">Yes, we have dedicated member parking available. The first 2 hours are complimentary for all members.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><div class="logo-icon"><i class="fa-solid fa-dumbbell"></i></div>Harmony<span>Fitness</span></a>
+        <p>Sydney's premier fitness &amp; wellness destination since 2012. Transforming lives through expert coaching, community, and cutting-edge facilities.</p>
+        <div class="social-links"><a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook">Fb</a><a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">In</a><a href="https://plus.google.com" target="_blank" rel="noopener" aria-label="Google Plus">G+</a><a href="https://www.pinterest.com" target="_blank" rel="noopener" aria-label="Pinterest">Pt</a><a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram">Ig</a><a href="https://www.twitter.com" target="_blank" rel="noopener" aria-label="Twitter">Tw</a></div>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li><li><a href="trainers.html">Trainers</a></li>
+          <li><a href="schedule.html">Schedule</a></li><li><a href="references.html">References</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Programs</div>
+        <ul class="footer-links">
+          <li><a href="services.html">Gym &amp; Weights</a></li><li><a href="services.html">Yoga &amp; Pilates</a></li>
+          <li><a href="virtual.html">Virtual Sessions</a></li><li><a href="membership.html">Memberships</a></li>
+          <li><a href="blog.html">Wellness Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <ul class="footer-links">
+          <li><a href="#"><i class="fa-solid fa-location-dot"></i> 42 Wellness Ave, Sydney NSW 2000</a></li>
+          <li><a href="tel:+61292001234"><i class="fa-solid fa-phone"></i> (02) 9200 1234</a></li>
+          <li><a href="mailto:info@harmonyfitness.com.au"><i class="fa-solid fa-envelope"></i> info@harmonyfitness.com.au</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Harmony Fitness &amp; Wellness Studio. All rights reserved.</p>
+      <div class="w3c-badge"><a href="https://www.w3.org/standards/" target="_blank" rel="noopener"><img src="https://www.w3.org/Icons/valid-html401" alt="Valid HTML" /></a></div>
+    </div>
+  </div>
+</footer>
+
+<div class="cookie-banner" id="cookie-banner">
+  <p style="margin-bottom:14px;font-size:0.9rem;color:var(--text-main);"><i class="fa-solid fa-cookie-bite"></i> We use cookies to enhance your experience. By clicking Accept, you agree to our cookie policy.</p>
+  <div style="display:flex;gap:12px;justify-content:center;">
+    <button class="btn btn-primary" id="cookie-accept" style="padding:10px 24px;font-size:0.82rem;">Accept All</button>
+    <button class="btn btn-outline" id="cookie-decline" style="padding:10px 24px;font-size:0.82rem;color:var(--text-main);border-color:var(--dark-border);">Decline</button>
+  </div>
+</div>
+<div class="modal-overlay" id="newsletter-modal">
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close">✕</button>
+    <div style="text-align:center;margin-bottom:24px;"><div style="font-size:2.5rem;margin-bottom:10px;"><i class="fa-solid fa-hand-fist"></i></div><h3 style="margin-bottom:8px;">Get Free Fitness Tips!</h3><p>Subscribe for weekly wellness advice and exclusive offers.</p></div>
+    <form id="newsletter-form"><div class="form-group"><label for="nl-email">Email Address</label><input type="email" id="nl-email" name="nl-email" placeholder="your@email.com" required /></div><button type="submit" class="btn btn-primary" style="width:100%;">Subscribe – It's Free!</button></form>
+  </div>
+</div>
+<button id="back-to-top" aria-label="Back to Top">↑</button>
+<script src="js/main.js"></script>
+</body>
+</html>
