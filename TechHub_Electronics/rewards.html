@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TechHub Rewards – Earn Points on Every Purchase</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ---- REWARDS HERO ---- */
+    .rewards-hero {
+      background: linear-gradient(135deg, #0a0a14 0%, #111128 60%, #0d1033 100%);
+      padding: 90px 0 70px;
+      position: relative;
+      overflow: hidden;
+    }
+    .rewards-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 70% at 70% 50%, rgba(255,200,0,0.07) 0%, transparent 60%),
+                  radial-gradient(ellipse 40% 50% at 20% 80%, rgba(11,94,215,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .rewards-star-bg {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,215,0,0.15) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+    .rewards-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #ffd700, #f5a623);
+      color: #111;
+      border-radius: 30px;
+      padding: 8px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: 'Rajdhani', sans-serif;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    /* ---- TIER CARDS ---- */
+    .tiers-section { padding: 90px 0; background: var(--th-navy); }
+    .tier-card {
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid transparent;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .tier-card:hover { transform: translateY(-6px); }
+    .tier-card.bronze {
+      background: linear-gradient(135deg, #1a1210, #2a1f1a);
+      border-color: #cd7f32;
+      box-shadow: 0 4px 30px rgba(205,127,50,0.1);
+    }
+    .tier-card.silver {
+      background: linear-gradient(135deg, #12141a, #1e222e);
+      border-color: #a8a9ad;
+      box-shadow: 0 4px 30px rgba(168,169,173,0.1);
+    }
+    .tier-card.gold {
+      background: linear-gradient(135deg, #14110a, #211c0e);
+      border-color: #ffd700;
+      box-shadow: 0 4px 30px rgba(255,215,0,0.15);
+    }
+    .tier-card.platinum {
+      background: linear-gradient(135deg, #0a1018, #0e1a26);
+      border-color: var(--th-accent);
+      box-shadow: 0 4px 30px rgba(11,94,215,0.2);
+    }
+    .tier-card.gold .tier-badge, .tier-card.platinum .tier-badge { font-size: 48px; margin-bottom: 16px; line-height: 1; display: block; }
+    .tier-badge { font-size: 48px; margin-bottom: 16px; line-height: 1; display: block; }
+    .tier-name { font-family: 'Rajdhani', sans-serif; font-size: 26px; font-weight: 700; margin-bottom: 4px; }
+    .tier-card.bronze .tier-name { color: #cd7f32; }
+    .tier-card.silver .tier-name { color: #c0c0c0; }
+    .tier-card.gold .tier-name { color: #ffd700; }
+    .tier-card.platinum .tier-name { color: var(--th-accent); }
+    .tier-threshold { font-size: 13px; color: var(--th-muted); margin-bottom: 20px; }
+    .tier-perks { list-style: none; padding: 0; margin: 0; }
+    .tier-perks li { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: var(--th-muted); margin-bottom: 10px; line-height: 1.4; }
+    .tier-perks li i { color: #00c864; flex-shrink: 0; margin-top: 2px; }
+    .tier-multiplier {
+      position: absolute;
+      top: 20px; right: 20px;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .tier-card.bronze .tier-multiplier { background: rgba(205,127,50,0.15); color: #cd7f32; }
+    .tier-card.silver .tier-multiplier { background: rgba(192,192,192,0.15); color: #c0c0c0; }
+    .tier-card.gold .tier-multiplier { background: rgba(255,215,0,0.15); color: #ffd700; }
+    .tier-card.platinum .tier-multiplier { background: rgba(11,94,215,0.2); color: var(--th-accent); }
+    .tier-recommended {
+      position: absolute;
+      top: -1px; left: 50%; transform: translateX(-50%);
+      background: var(--th-accent);
+      color: #fff;
+      font-size: 11px; font-weight: 700;
+      padding: 3px 14px;
+      border-radius: 0 0 8px 8px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ---- HOW IT WORKS ---- */
+    .how-section { padding: 90px 0; background: var(--th-navy-alt, #07111f); }
+    .step-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+    .how-step {
+      text-align: center;
+      flex: 1;
+      padding: 0 16px;
+      position: relative;
+    }
+    .how-step-num {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: var(--th-accent-dim);
+      border: 2px solid var(--th-accent);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--th-accent);
+      margin: 0 auto 16px;
+    }
+    .how-step h6 { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 8px; }
+    .how-step p { font-size: 14px; color: var(--th-muted); line-height: 1.55; }
+    .how-connector { flex: 0 0 40px; height: 2px; background: linear-gradient(90deg, var(--th-accent), var(--th-border)); margin-top: -32px; }
+
+    /* ---- REDEEM / EARN ---- */
+    .earn-section { padding: 90px 0; background: var(--th-navy); }
+    .earn-card {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: border-color 0.2s;
+    }
+    .earn-card:hover { border-color: var(--th-accent); }
+    .earn-icon { font-size: 30px; color: var(--th-accent); margin-bottom: 14px; display: block; }
+    .earn-card h6 { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 8px; }
+    .earn-card p { font-size: 14px; color: var(--th-muted); line-height: 1.6; margin: 0; }
+    .earn-bonus { display: inline-block; background: rgba(0,200,100,0.12); color: #00c864; border-radius: 20px; padding: 3px 10px; font-size: 12px; font-weight: 600; margin-top: 10px; }
+
+    /* ---- POINTS CALCULATOR ---- */
+    .calculator-section { padding: 80px 0; background: var(--th-navy-alt, #07111f); }
+    .calc-card {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+    .calc-card .form-range { accent-color: var(--th-accent); }
+    .points-result {
+      background: var(--th-accent-dim);
+      border: 1px solid var(--th-accent);
+      border-radius: 12px;
+      padding: 20px 24px;
+      text-align: center;
+    }
+    .points-result .pts-num {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--th-accent);
+      line-height: 1;
+    }
+    .points-result .pts-label { font-size: 14px; color: var(--th-muted); margin-top: 4px; }
+
+    /* ---- TESTIMONIALS ---- */
+    .testimonials-section { padding: 80px 0; background: var(--th-navy); }
+    .testimonial-card {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      height: 100%;
+    }
+    .testimonial-stars { color: #ffd700; font-size: 14px; letter-spacing: 2px; margin-bottom: 14px; }
+    .testimonial-card p { font-size: 14px; color: var(--th-muted); line-height: 1.7; font-style: italic; margin-bottom: 20px; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .t-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--th-accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: #fff; }
+    .t-name { font-weight: 600; font-size: 14px; }
+    .t-tier { font-size: 12px; color: #ffd700; }
+
+    /* ---- CTA SECTION ---- */
+    .rewards-cta {
+      background: linear-gradient(135deg, #111128, #14110a);
+      border-top: 1px solid rgba(255,215,0,0.2);
+      border-bottom: 1px solid rgba(255,215,0,0.2);
+      padding: 90px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .rewards-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 50% 80% at 50% 50%, rgba(255,215,0,0.05) 0%, transparent 70%);
+    }
+    .rewards-cta h2 { font-family: 'Rajdhani', sans-serif; font-size: 44px; font-weight: 700; margin-bottom: 12px; }
+    .rewards-cta p { font-size: 16px; color: var(--th-muted); max-width: 500px; margin: 0 auto 30px; }
+  </style>
+</head>
+<body>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-banner-inner">
+    <div class="cookie-text">
+      <i class="bi bi-shield-lock-fill text-accent me-2"></i>
+      <span>We use cookies to improve your shopping experience and for analytics. By continuing you agree to our <a href="#">Cookie Policy</a>.</span>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn btn-sm btn-outline-custom" onclick="cookieDecline()">Manage Preferences</button>
+      <button class="btn btn-sm btn-primary-custom" onclick="cookieAccept()">Accept All</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container-fluid px-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <span><i class="bi bi-truck me-1"></i> Free shipping on orders over $99 Australia-wide</span>
+      <span class="d-none d-md-inline"><i class="bi bi-telephone me-1"></i> 1800-TECHHUB &nbsp;|&nbsp; <i class="bi bi-clock me-1"></i> Mon–Sat 9am–6pm AEST</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="mainNav">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="home.html">
+      <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+      <span class="brand-name">Tech<span class="brand-accent">Hub</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="products.html" data-bs-toggle="dropdown">Products</a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="products.html#smartphones"><i class="bi bi-phone me-2 text-accent"></i>Smartphones & Tablets</a></li>
+            <li><a class="dropdown-item" href="products.html#laptops"><i class="bi bi-laptop me-2 text-accent"></i>Laptops & Accessories</a></li>
+            <li><a class="dropdown-item" href="products.html#gaming"><i class="bi bi-controller me-2 text-accent"></i>Gaming</a></li>
+            <li><a class="dropdown-item" href="products.html#smarthome"><i class="bi bi-house-gear me-2 text-accent"></i>Smart Home & IoT</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="click-collect.html">Click & Collect</a></li>
+        <li class="nav-item"><a class="nav-link" href="try-before-buy.html">Try Before You Buy</a></li>
+        <li class="nav-item"><a class="nav-link" href="trade_in.html">Trade-In</a></li>
+        <li class="nav-item"><a class="nav-link" href="tech_blog.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="tech_advisor.html">Tech Advisor</a></li>
+        <li class="nav-item"><a class="nav-link" href="about_us.html">About Us</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+        <div class="search-wrap d-none d-lg-flex">
+          <input class="form-control search-input" type="search" placeholder="Search products…"/>
+          <button class="btn-search"><i class="bi bi-search"></i></button>
+        </div>
+        <a href="profile.html" class="nav-icon-btn" id="navProfileBtn" title="Account"><i class="bi bi-person-circle text-accent"></i></a>></i></a>
+        <a href="checkout.html" class="nav-icon-btn position-relative" title="Cart">
+          <i class="bi bi-bag-fill"></i>
+          <span class="cart-badge">3</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="rewards-hero">
+  <div class="rewards-star-bg"></div>
+  <div class="container text-center position-relative">
+    <div class="rewards-hero-badge"><i class="bi bi-trophy-fill"></i> TechHub Rewards Program</div>
+    <h1 class="hero-title mb-4">Every Dollar Earns.<br/><span style="color: #ffd700;">Every Purchase Rewarded.</span></h1>
+    <p class="hero-sub mb-5 mx-auto" style="max-width: 560px;">Join over 50,000 Australians earning points on every purchase. Redeem for discounts, free shipping, exclusive products and more. It's free to join.</p>
+    <div class="d-flex flex-wrap gap-3 justify-content-center">
+      <a href="signup.html" class="btn btn-lg" style="background: linear-gradient(135deg, #ffd700, #f5a623); color: #111; font-weight: 700; border-radius: 12px; padding: 14px 32px;">Join Free Today <i class="bi bi-arrow-right ms-1"></i></a>
+      <a href="signin.html" class="btn btn-outline-custom btn-lg">Sign In to My Rewards</a>
+    </div>
+    <div class="row justify-content-center mt-5 g-4">
+      <div class="col-auto">
+        <div style="text-align:center;">
+          <div style="font-family: Rajdhani; font-size: 36px; font-weight: 700; color: #ffd700;">50K+</div>
+          <div style="font-size: 13px; color: var(--th-muted);">Rewards Members</div>
+        </div>
+      </div>
+      <div class="col-auto"><div style="width:1px; background: var(--th-border); height:50px;"></div></div>
+      <div class="col-auto">
+        <div style="text-align:center;">
+          <div style="font-family: Rajdhani; font-size: 36px; font-weight: 700; color: #ffd700;">$2M+</div>
+          <div style="font-size: 13px; color: var(--th-muted);">Points Redeemed</div>
+        </div>
+      </div>
+      <div class="col-auto"><div style="width:1px; background: var(--th-border); height:50px;"></div></div>
+      <div class="col-auto">
+        <div style="text-align:center;">
+          <div style="font-family: Rajdhani; font-size: 36px; font-weight: 700; color: #ffd700;">4.9★</div>
+          <div style="font-size: 13px; color: var(--th-muted);">Program Rating</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title">How It <span class="text-gradient">Works</span></h2>
+      <p class="text-muted-light mt-2">Three simple steps to start earning.</p>
+    </div>
+    <div class="d-flex align-items-start justify-content-center flex-wrap gap-0">
+      <div class="how-step" style="max-width: 220px;">
+        <div class="how-step-num">1</div>
+        <h6>Join for Free</h6>
+        <p>Create your TechHub account in under 60 seconds. No credit card required.</p>
+      </div>
+      <div class="how-connector d-none d-md-block" style="flex-shrink:0;"></div>
+      <div class="how-step" style="max-width: 220px;">
+        <div class="how-step-num">2</div>
+        <h6>Shop & Earn</h6>
+        <p>Earn 1 point per $1 on every purchase — online and in-store. Bonus point events run regularly.</p>
+      </div>
+      <div class="how-connector d-none d-md-block" style="flex-shrink:0;"></div>
+      <div class="how-step" style="max-width: 220px;">
+        <div class="how-step-num">3</div>
+        <h6>Redeem Rewards</h6>
+        <p>Use your points at checkout for instant discounts, free shipping, or exclusive products.</p>
+      </div>
+      <div class="how-connector d-none d-md-block" style="flex-shrink:0;"></div>
+      <div class="how-step" style="max-width: 220px;">
+        <div class="how-step-num">4</div>
+        <h6>Level Up</h6>
+        <p>Reach Gold or Platinum to unlock multiplied earning rates and premium perks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP TIERS -->
+<section class="tiers-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title">Membership <span class="text-gradient">Tiers</span></h2>
+      <p class="text-muted-light mt-2 mx-auto" style="max-width:480px;">The more you shop, the more you unlock. Lifetime spend determines your tier — and your tier never resets.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="tier-card bronze">
+          <span class="tier-multiplier">1× Points</span>
+          <span class="tier-badge">🥉</span>
+          <div class="tier-name">Bronze</div>
+          <div class="tier-threshold">Starting tier · $0 lifetime spend</div>
+          <ul class="tier-perks">
+            <li><i class="bi bi-check-circle-fill"></i> 1 point per $1 spent</li>
+            <li><i class="bi bi-check-circle-fill"></i> Birthday bonus points (500 pts)</li>
+            <li><i class="bi bi-check-circle-fill"></i> Early access to sale events</li>
+            <li><i class="bi bi-check-circle-fill"></i> Free standard shipping on $99+</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="tier-card silver">
+          <span class="tier-multiplier">1.25× Points</span>
+          <span class="tier-badge">🥈</span>
+          <div class="tier-name">Silver</div>
+          <div class="tier-threshold">$1,000+ lifetime spend</div>
+          <ul class="tier-perks">
+            <li><i class="bi bi-check-circle-fill"></i> 1.25 points per $1 spent</li>
+            <li><i class="bi bi-check-circle-fill"></i> All Bronze perks included</li>
+            <li><i class="bi bi-check-circle-fill"></i> Priority customer service line</li>
+            <li><i class="bi bi-check-circle-fill"></i> 2× points on monthly bonus days</li>
+            <li><i class="bi bi-check-circle-fill"></i> Exclusive Silver member offers</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="tier-card gold position-relative">
+          <span class="tier-recommended">Most Popular</span>
+          <span class="tier-multiplier">1.5× Points</span>
+          <span class="tier-badge" style="margin-top: 16px;">🥇</span>
+          <div class="tier-name">Gold</div>
+          <div class="tier-threshold">$5,000+ lifetime spend</div>
+          <ul class="tier-perks">
+            <li><i class="bi bi-check-circle-fill"></i> 1.5 points per $1 spent</li>
+            <li><i class="bi bi-check-circle-fill"></i> All Silver perks included</li>
+            <li><i class="bi bi-check-circle-fill"></i> Free express shipping on all orders</li>
+            <li><i class="bi bi-check-circle-fill"></i> Gold member exclusive previews</li>
+            <li><i class="bi bi-check-circle-fill"></i> Dedicated account manager</li>
+            <li><i class="bi bi-check-circle-fill"></i> Annual bonus: 1,000 pts on anniversary</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="tier-card platinum">
+          <span class="tier-multiplier">2× Points</span>
+          <span class="tier-badge">💎</span>
+          <div class="tier-name">Platinum</div>
+          <div class="tier-threshold">$20,000+ lifetime spend</div>
+          <ul class="tier-perks">
+            <li><i class="bi bi-check-circle-fill"></i> 2 points per $1 spent</li>
+            <li><i class="bi bi-check-circle-fill"></i> All Gold perks included</li>
+            <li><i class="bi bi-check-circle-fill"></i> Free same-day delivery on all orders</li>
+            <li><i class="bi bi-check-circle-fill"></i> Platinum concierge support (24/7)</li>
+            <li><i class="bi bi-check-circle-fill"></i> First access to new product launches</li>
+            <li><i class="bi bi-check-circle-fill"></i> Invite-only member events</li>
+            <li><i class="bi bi-check-circle-fill"></i> Annual gift: $100 bonus credit</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAYS TO EARN -->
+<section class="earn-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title">Ways to <span class="text-gradient">Earn</span></h2>
+      <p class="text-muted-light mt-2">Points aren't just for purchases — earn in more ways than you think.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3">
+        <div class="earn-card">
+          <i class="earn-icon bi bi-bag-fill"></i>
+          <h6>Every Purchase</h6>
+          <p>Earn 1 point per $1 spent online and in-store on all eligible products.</p>
+          <span class="earn-bonus">1 pt / $1</span>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="earn-card">
+          <i class="earn-icon bi bi-person-plus-fill"></i>
+          <h6>Refer a Friend</h6>
+          <p>Earn 500 bonus points for every friend who signs up and makes their first purchase.</p>
+          <span class="earn-bonus">+500 pts per referral</span>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="earn-card">
+          <i class="earn-icon bi bi-star-fill"></i>
+          <h6>Write a Review</h6>
+          <p>Leave a verified product review and earn 50 bonus points per approved review.</p>
+          <span class="earn-bonus">+50 pts per review</span>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="earn-card">
+          <i class="earn-icon bi bi-birthday2"></i>
+          <h6>Birthday Bonus</h6>
+          <p>We'll surprise you with 500 bonus points in your account on your birthday.</p>
+          <span class="earn-bonus">+500 pts annually</span>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="earn-card">
+          <i class="earn-icon bi bi-lightning-fill"></i>
+          <h6>Flash Point Events</h6>
+          <p>Earn 2×, 3× or even 5× points during our regular bonus point events. Check the deals page.</p>
+          <span class="earn-bonus">Up to 5× points</span>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="earn-card">
+          <i class="earn-icon bi bi-phone-vibrate-fill"></i>
+          <h6>App Downloads</h6>
+          <p>Download the TechHub app and link your account to earn 200 welcome points instantly.</p>
+          <span class="earn-bonus">+200 pts one-time</span>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="earn-card">
+          <i class="earn-icon bi bi-recycle"></i>
+          <h6>Trade-In & Recycle</h6>
+          <p>Trade in your old device at any TechHub store and earn bonus points on top of trade-in value.</p>
+          <span class="earn-bonus">+100–500 pts</span>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="earn-card">
+          <i class="earn-icon bi bi-envelope-check-fill"></i>
+          <h6>Newsletter Signup</h6>
+          <p>Subscribe to TechHub newsletters and earn 100 bonus points on your first subscription.</p>
+          <span class="earn-bonus">+100 pts one-time</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POINTS CALCULATOR -->
+<section class="calculator-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="calc-card">
+          <div class="text-center mb-4">
+            <h2 class="section-title mb-1">Points <span class="text-gradient">Calculator</span></h2>
+            <p class="text-muted-light small">See how many points you'd earn on your next purchase.</p>
+          </div>
+          <div class="row g-4 align-items-center">
+            <div class="col-md-6">
+              <label class="form-label fw-medium small">Purchase Amount</label>
+              <div class="d-flex align-items-center gap-3 mb-1">
+                <span class="text-accent fw-bold fs-4">$<span id="calcAmount">500</span></span>
+              </div>
+              <input type="range" class="form-range" id="calcSlider" min="50" max="5000" step="50" value="500" oninput="updateCalc()">
+              <div class="d-flex justify-content-between small text-muted mt-1"><span>$50</span><span>$5,000</span></div>
+
+              <label class="form-label fw-medium small mt-4">Membership Tier</label>
+              <select class="form-select" id="calcTier" onchange="updateCalc()">
+                <option value="1">Bronze (1×)</option>
+                <option value="1.25">Silver (1.25×)</option>
+                <option value="1.5" selected>Gold (1.5×)</option>
+                <option value="2">Platinum (2×)</option>
+              </select>
+
+              <label class="form-label fw-medium small mt-4">Bonus Event Active?</label>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="calcBonus" onchange="updateCalc()">
+                <label class="form-check-label small text-muted" for="calcBonus">2× Flash Point Event</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="points-result mb-3">
+                <div class="pts-label mb-1">You'd earn</div>
+                <div class="pts-num" id="calcPoints">750</div>
+                <div class="pts-label">TechHub Rewards Points</div>
+              </div>
+              <div class="points-result" style="background: rgba(0,200,100,0.06); border-color: #00c864;">
+                <div class="pts-label mb-1">Worth approximately</div>
+                <div class="pts-num" style="color: #00c864; font-size: 36px;" id="calcValue">$7.50</div>
+                <div class="pts-label">in store credit</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title">Members <span class="text-gradient">Love It</span></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"I've been a Gold member for 2 years and I've saved over $600 in points. The free express shipping alone is worth it — I order every week."</p>
+          <div class="testimonial-author">
+            <div class="t-avatar">SL</div>
+            <div>
+              <div class="t-name">Sarah L.</div>
+              <div class="t-tier">🥇 Gold Member</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"Hit Platinum last year after buying a few laptops for my business. The 2× points and same-day delivery are genuinely life-changing for work orders."</p>
+          <div class="testimonial-author">
+            <div class="t-avatar" style="background: #7c3aed;">DK</div>
+            <div>
+              <div class="t-name">Daniel K.</div>
+              <div class="t-tier">💎 Platinum Member</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"The refer-a-friend bonus is amazing — I referred 4 friends and got 2,000 extra points which I used straight away on a new pair of earbuds."</p>
+          <div class="testimonial-author">
+            <div class="t-avatar" style="background: #059669;">MT</div>
+            <div>
+              <div class="t-name">Mia T.</div>
+              <div class="t-tier">🥈 Silver Member</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="rewards-cta">
+  <div class="container position-relative">
+    <h2>Start Earning <span style="color: #ffd700;">Today</span></h2>
+    <p>Join TechHub Rewards for free and earn points on your very first purchase. No hidden fees, no expiry for active accounts.</p>
+    <div class="d-flex flex-wrap gap-3 justify-content-center">
+      <a href="signup.html" class="btn btn-lg" style="background: linear-gradient(135deg, #ffd700, #f5a623); color: #111; font-weight: 700; border-radius: 12px; padding: 14px 36px;">
+        Create Free Account <i class="bi bi-arrow-right ms-1"></i>
+      </a>
+      <a href="profile.html" class="btn btn-outline-custom btn-lg">View My Points</a>
+    </div>
+    <p class="mt-4 mb-0 small text-muted">Already a member? <a href="signin.html" class="text-accent text-decoration-none fw-semibold">Sign in</a> to check your balance.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer pt-5 pb-3">
+  <div class="container">
+    <div class="row g-4 mb-5">
+      <div class="col-lg-4">
+        <a class="navbar-brand d-flex align-items-center gap-2 mb-3" href="home.html">
+          <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+          <span class="brand-name">Tech<span class="brand-accent">Hub</span></span>
+        </a>
+        <p class="text-muted-light">Australia's trusted electronics retailer since 1998. Competitive prices, expert staff, and exceptional service — online and in-store.</p>
+        <div class="social-links mt-3">
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-twitter-x"></i></a>
+          <a href="#"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Products</h6>
+        <ul class="footer-links">
+          <li><a href="products.html#smartphones">Smartphones</a></li>
+          <li><a href="products.html#laptops">Laptops</a></li>
+          <li><a href="products.html#gaming">Gaming</a></li>
+          <li><a href="products.html#smarthome">Smart Home</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Services</h6>
+        <ul class="footer-links">
+          <li><a href="click-collect.html">Click & Collect</a></li>
+          <li><a href="try-before-buy.html">Try Before You Buy</a></li>
+          <li><a href="#">Same-Day Delivery</a></li>
+          <li><a href="trade_in.html">Trade-In &amp; Upgrade</a></li>
+          <li><a href="rewards.html">TechHub Rewards</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Company</h6>
+        <ul class="footer-links">
+          <li><a href="about_us.html">About Us</a></li>
+          <li><a href="support.html">Help Centre</a></li>
+          <li><a href="tech_blog.html">Tech Blog</a></li>
+          <li><a href="support.html#contact">Contact Us</a></li>
+          <li><a href="about_us.html#press">Press & Media</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Legal</h6>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Consumer Rights</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider"/>
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mt-4">
+      <p class="text-muted-light mb-0 small">© 2026 TechHub Electronics Pty Ltd. ABN 12 345 678 901. All rights reserved.</p>
+      <div class="payment-icons d-flex gap-2">
+        <span class="payment-icon"><i class="bi bi-credit-card-2-front"></i> Visa</span>
+        <span class="payment-icon"><i class="bi bi-credit-card-fill"></i> Mastercard</span>
+        <span class="payment-icon"><i class="bi bi-paypal"></i> PayPal</span>
+        <span class="payment-icon">Afterpay</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="main.js"></script>
+<script>
+  function updateCalc() {
+    const amount = parseInt(document.getElementById('calcSlider').value);
+    const multiplier = parseFloat(document.getElementById('calcTier').value);
+    const bonus = document.getElementById('calcBonus').checked ? 2 : 1;
+    const points = Math.round(amount * multiplier * bonus);
+    const value = (points * 0.01).toFixed(2);
+    document.getElementById('calcAmount').textContent = amount.toLocaleString();
+    document.getElementById('calcPoints').textContent = points.toLocaleString();
+    document.getElementById('calcValue').textContent = '$' + value;
+  }
+  updateCalc();
+</script>
+</body>
+</html>

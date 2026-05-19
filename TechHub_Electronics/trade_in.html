@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trade-In & Upgrade – TechHub Electronics</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ---- HERO ---- */
+    .tradein-hero {
+      background: linear-gradient(135deg, #060c18 0%, #0a1428 50%, #06111e 100%);
+      padding: 90px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .tradein-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 60% at 80% 40%, rgba(0,200,100,0.08) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 50% at 10% 70%, rgba(11,94,215,0.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .tradein-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,200,100,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,200,100,0.04) 1px, transparent 1px);
+      background-size: 44px 44px;
+      pointer-events: none;
+    }
+    .tradein-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,200,100,0.12);
+      color: #00c864;
+      border: 1px solid rgba(0,200,100,0.3);
+      border-radius: 30px;
+      padding: 7px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'Rajdhani', sans-serif;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .tradein-hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .device-swap {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .device-box {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      border-radius: 20px;
+      padding: 28px 24px;
+      text-align: center;
+      width: 150px;
+    }
+    .device-box i { font-size: 40px; margin-bottom: 10px; display: block; }
+    .device-box.old i { color: var(--th-muted); }
+    .device-box.new i { color: #00c864; }
+    .device-box .d-label { font-size: 12px; color: var(--th-muted); }
+    .device-box .d-val { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 18px; }
+    .device-box.old { opacity: 0.7; }
+    .swap-arrow {
+      background: linear-gradient(135deg, var(--th-accent), #00c864);
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 0 20px rgba(0,200,100,0.3);
+    }
+    .value-highlight {
+      background: linear-gradient(135deg, rgba(0,200,100,0.08), rgba(11,94,215,0.08));
+      border: 1px solid rgba(0,200,100,0.2);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .value-highlight .vh-num {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 44px;
+      font-weight: 700;
+      color: #00c864;
+      line-height: 1;
+    }
+    .value-highlight .vh-text { font-size: 14px; color: var(--th-muted); line-height: 1.5; }
+
+    /* ---- HOW IT WORKS ---- */
+    .how-tradein { padding: 80px 0; background: var(--th-navy); }
+    .step-card {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      text-align: center;
+      height: 100%;
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .step-card:hover { border-color: #00c864; transform: translateY(-4px); }
+    .step-num {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(0,200,100,0.12);
+      border: 2px solid #00c864;
+      color: #00c864;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .step-card h6 { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 8px; }
+    .step-card p { font-size: 14px; color: var(--th-muted); line-height: 1.6; margin: 0; }
+
+    /* ---- INSTANT QUOTE TOOL ---- */
+    .quote-section { padding: 80px 0; background: var(--th-navy-alt, #07111f); }
+    .quote-card {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      border-radius: var(--radius-lg);
+      padding: 44px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .quote-card .form-control,
+    .quote-card .form-select {
+      background: var(--th-navy-light);
+      border: 1px solid var(--th-border);
+      color: var(--th-text);
+      border-radius: 10px;
+    }
+    .quote-card .form-control:focus,
+    .quote-card .form-select:focus {
+      border-color: #00c864;
+      box-shadow: 0 0 0 0.2rem rgba(0,200,100,0.15);
+    }
+    .condition-btn {
+      background: var(--th-navy-light);
+      border: 1.5px solid var(--th-border);
+      color: var(--th-muted);
+      border-radius: 10px;
+      padding: 14px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .condition-btn i { font-size: 22px; display: block; margin-bottom: 6px; }
+    .condition-btn:hover { border-color: #00c864; color: #00c864; }
+    .condition-btn.active { background: rgba(0,200,100,0.1); border-color: #00c864; color: #00c864; }
+    .quote-result {
+      display: none;
+      background: linear-gradient(135deg, rgba(0,200,100,0.06), rgba(11,94,215,0.06));
+      border: 1.5px solid #00c864;
+      border-radius: 16px;
+      padding: 28px;
+      text-align: center;
+      animation: fadeUp 0.4s ease;
+    }
+    .quote-result .qr-amount {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 64px;
+      font-weight: 700;
+      color: #00c864;
+      line-height: 1;
+    }
+    .quote-result .qr-label { font-size: 16px; color: var(--th-muted); margin-top: 6px; }
+    .quote-result .qr-bonus {
+      background: rgba(255,215,0,0.1);
+      color: #ffd700;
+      border: 1px solid rgba(255,215,0,0.3);
+      border-radius: 20px;
+      padding: 5px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 12px;
+    }
+
+    /* ---- ACCEPTED BRANDS ---- */
+    .brands-section { padding: 70px 0; background: var(--th-navy); }
+    .brand-pill {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      text-align: center;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--th-muted);
+      transition: all 0.2s;
+    }
+    .brand-pill:hover { border-color: #00c864; color: var(--th-text); }
+
+    /* ---- UPGRADE DEALS ---- */
+    .upgrade-section { padding: 80px 0; background: var(--th-navy-alt, #07111f); }
+    .upgrade-card {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      height: 100%;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      position: relative;
+    }
+    .upgrade-card:hover {
+      transform: translateY(-5px);
+      border-color: #00c864;
+      box-shadow: 0 12px 30px rgba(0,200,100,0.1);
+    }
+    .upgrade-card .device-img {
+      height: 80px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 48px;
+      color: var(--th-accent);
+      margin-bottom: 16px;
+    }
+    .upgrade-card h6 { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 4px; }
+    .upgrade-price-row { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+    .upgrade-price { font-family: 'Rajdhani', sans-serif; font-size: 24px; font-weight: 700; color: var(--th-text); }
+    .upgrade-save {
+      background: rgba(0,200,100,0.12);
+      color: #00c864;
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .trade-credit-banner {
+      background: rgba(0,200,100,0.08);
+      border: 1px solid rgba(0,200,100,0.2);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 13px;
+      color: #00c864;
+      margin-top: 14px;
+    }
+    .upgrade-badge {
+      position: absolute;
+      top: 14px; right: 14px;
+      background: var(--th-accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    /* ---- ECO SECTION ---- */
+    .eco-section {
+      padding: 70px 0;
+      background: linear-gradient(135deg, #040e0a, #061410);
+      border-top: 1px solid rgba(0,200,100,0.15);
+      border-bottom: 1px solid rgba(0,200,100,0.15);
+    }
+    .eco-stat { text-align: center; }
+    .eco-stat .num {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      color: #00c864;
+      line-height: 1;
+    }
+    .eco-stat .label { font-size: 14px; color: var(--th-muted); margin-top: 6px; }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+  </style>
+</head>
+<body>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-banner-inner">
+    <div class="cookie-text">
+      <i class="bi bi-shield-lock-fill text-accent me-2"></i>
+      <span>We use cookies to improve your shopping experience and for analytics. By continuing you agree to our <a href="#">Cookie Policy</a>.</span>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn btn-sm btn-outline-custom" onclick="cookieDecline()">Manage Preferences</button>
+      <button class="btn btn-sm btn-primary-custom" onclick="cookieAccept()">Accept All</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container-fluid px-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <span><i class="bi bi-truck me-1"></i> Free shipping on orders over $99 Australia-wide</span>
+      <span class="d-none d-md-inline"><i class="bi bi-telephone me-1"></i> 1800-TECHHUB &nbsp;|&nbsp; <i class="bi bi-clock me-1"></i> Mon–Sat 9am–6pm AEST</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="mainNav">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="home.html">
+      <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+      <span class="brand-name">Tech<span class="brand-accent">Hub</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="products.html" data-bs-toggle="dropdown">Products</a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="products.html#smartphones"><i class="bi bi-phone me-2 text-accent"></i>Smartphones & Tablets</a></li>
+            <li><a class="dropdown-item" href="products.html#laptops"><i class="bi bi-laptop me-2 text-accent"></i>Laptops & Accessories</a></li>
+            <li><a class="dropdown-item" href="products.html#gaming"><i class="bi bi-controller me-2 text-accent"></i>Gaming</a></li>
+            <li><a class="dropdown-item" href="products.html#smarthome"><i class="bi bi-house-gear me-2 text-accent"></i>Smart Home & IoT</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="click-collect.html">Click & Collect</a></li>
+        <li class="nav-item"><a class="nav-link" href="try-before-buy.html">Try Before You Buy</a></li>
+        <li class="nav-item"><a class="nav-link active" href="trade_in.html">Trade-In</a></li>
+        
+        <li class="nav-item"><a class="nav-link" href="about_us.html">About Us</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+        <div class="search-wrap d-none d-lg-flex">
+          <input class="form-control search-input" type="search" placeholder="Search products…"/>
+          <button class="btn-search"><i class="bi bi-search"></i></button>
+        </div>
+        <a href="profile.html" class="nav-icon-btn" id="navProfileBtn" title="Account"><i class="bi bi-person-circle text-accent"></i></a>></i></a>
+        <a href="checkout.html" class="nav-icon-btn position-relative" title="Cart">
+          <i class="bi bi-bag-fill"></i>
+          <span class="cart-badge">3</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="tradein-hero">
+  <div class="tradein-grid"></div>
+  <div class="container position-relative">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="tradein-badge"><i class="bi bi-recycle"></i> Trade-In & Upgrade</div>
+        <h1 class="hero-title mb-4">Trade Old.<br/><span style="color:#00c864;">Upgrade Smart.</span></h1>
+        <p class="hero-sub mb-4">Get an instant online quote for your old smartphone, laptop or tablet. Apply the trade-in value directly to your next TechHub purchase — and help keep e-waste out of landfill.</p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#quoteSection" class="btn btn-lg" style="background:#00c864; color:#fff; font-weight:700; border-radius:12px; padding:14px 28px;" onclick="document.getElementById('quoteSection').scrollIntoView({behavior:'smooth'}); return false;">Get Instant Quote <i class="bi bi-arrow-right ms-1"></i></a>
+          <a href="#howItWorks" class="btn btn-outline-custom btn-lg" onclick="document.getElementById('howItWorks').scrollIntoView({behavior:'smooth'}); return false;">How It Works</a>
+        </div>
+        <div class="value-highlight">
+          <div class="vh-num">$2M+</div>
+          <div class="vh-text">in trade-in credit issued to Australians in the last 12 months.<br/><span style="color:#00c864;">+ Earn bonus Rewards Points on every trade-in.</span></div>
+        </div>
+      </div>
+      <div class="col-lg-5 offset-lg-1 d-none d-lg-flex justify-content-center">
+        <div>
+          <div class="device-swap mb-4">
+            <div class="device-box old">
+              <i class="bi bi-phone"></i>
+              <div class="d-label">Your Device</div>
+              <div class="d-val">Old Phone</div>
+            </div>
+            <div class="swap-arrow"><i class="bi bi-arrow-right"></i></div>
+            <div class="device-box new">
+              <i class="bi bi-phone-fill"></i>
+              <div class="d-label">You Get</div>
+              <div class="d-val" style="color:#00c864;">Up to $800</div>
+            </div>
+          </div>
+          <div class="device-swap">
+            <div class="device-box old">
+              <i class="bi bi-laptop"></i>
+              <div class="d-label">Your Device</div>
+              <div class="d-val">Old Laptop</div>
+            </div>
+            <div class="swap-arrow"><i class="bi bi-arrow-right"></i></div>
+            <div class="device-box new">
+              <i class="bi bi-laptop-fill"></i>
+              <div class="d-label">You Get</div>
+              <div class="d-val" style="color:#00c864;">Up to $1,200</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-tradein" id="howItWorks">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title">How It <span class="text-gradient">Works</span></h2>
+      <p class="text-muted-light mt-2">From quote to credit in 4 simple steps.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h6>Get an Instant Quote</h6>
+          <p>Select your device, brand, model and condition using our quick quote tool. Takes under 60 seconds.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h6>Accept & Lock In</h6>
+          <p>Happy with your quote? Accept it and we'll lock in the value for 14 days — no pressure.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h6>Send or Drop Off</h6>
+          <p>Mail your device to us with our free prepaid label, or drop it off at any of our 48 stores.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <h6>Get Your Credit</h6>
+          <p>Once verified, your trade-in credit is applied instantly to your account. Use it on any purchase.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTANT QUOTE TOOL -->
+<section class="quote-section" id="quoteSection">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title">Get Your <span class="text-gradient">Instant Quote</span></h2>
+      <p class="text-muted-light mt-2">No obligation. Lock in your quote for 14 days.</p>
+    </div>
+    <div class="quote-card">
+      <div class="row g-4">
+        <div class="col-sm-6">
+          <label class="form-label fw-medium small">Device Type</label>
+          <select class="form-select" id="qDeviceType" onchange="resetQuote()">
+            <option value="">Select device type…</option>
+            <option value="phone">Smartphone</option>
+            <option value="tablet">Tablet</option>
+            <option value="laptop">Laptop / MacBook</option>
+            <option value="watch">Smartwatch</option>
+            <option value="earbuds">Earbuds / Headphones</option>
+          </select>
+        </div>
+        <div class="col-sm-6">
+          <label class="form-label fw-medium small">Brand</label>
+          <select class="form-select" id="qBrand" onchange="resetQuote()">
+            <option value="">Select brand…</option>
+            <option value="apple">Apple</option>
+            <option value="samsung">Samsung</option>
+            <option value="google">Google</option>
+            <option value="sony">Sony</option>
+            <option value="lg">LG</option>
+            <option value="microsoft">Microsoft</option>
+            <option value="lenovo">Lenovo</option>
+            <option value="dell">Dell</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="col-sm-6">
+          <label class="form-label fw-medium small">Model</label>
+          <input type="text" class="form-control" id="qModel" placeholder="e.g. iPhone 14 Pro, Galaxy S23…" oninput="resetQuote()">
+        </div>
+        <div class="col-sm-6">
+          <label class="form-label fw-medium small">Storage / Spec</label>
+          <select class="form-select" id="qStorage" onchange="resetQuote()">
+            <option value="">Select storage…</option>
+            <option value="64">64GB / Base</option>
+            <option value="128">128GB / Mid</option>
+            <option value="256">256GB / High</option>
+            <option value="512">512GB / Pro</option>
+            <option value="1t">1TB / Max</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label class="form-label fw-medium small mb-3">Device Condition</label>
+          <div class="row g-2">
+            <div class="col-6 col-md-3">
+              <div class="condition-btn" onclick="selectCondition(this, 'mint')">
+                <i class="bi bi-stars"></i>
+                Mint
+                <div style="font-size:11px; color:var(--th-muted); margin-top:4px;">Like new</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="condition-btn" onclick="selectCondition(this, 'good')">
+                <i class="bi bi-check-circle"></i>
+                Good
+                <div style="font-size:11px; color:var(--th-muted); margin-top:4px;">Minor scratches</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="condition-btn" onclick="selectCondition(this, 'fair')">
+                <i class="bi bi-exclamation-circle"></i>
+                Fair
+                <div style="font-size:11px; color:var(--th-muted); margin-top:4px;">Visible wear</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="condition-btn" onclick="selectCondition(this, 'poor')">
+                <i class="bi bi-x-circle"></i>
+                Poor
+                <div style="font-size:11px; color:var(--th-muted); margin-top:4px;">Cracked/damaged</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <button class="btn w-100 py-3 fw-bold" id="getQuoteBtn"
+            style="background:#00c864; color:#fff; border-radius:12px; font-size:16px;"
+            onclick="generateQuote()">
+            Get My Instant Quote <i class="bi bi-arrow-right ms-1"></i>
+          </button>
+        </div>
+        <div class="col-12">
+          <div class="quote-result" id="quoteResult">
+            <div class="small text-muted mb-1">Estimated trade-in value</div>
+            <div class="qr-amount" id="quoteAmount">$320</div>
+            <div class="qr-label">Store credit — valid for 14 days</div>
+            <div class="qr-bonus"><i class="bi bi-trophy-fill me-1"></i> + 500 Bonus Rewards Points with this trade-in!</div>
+            <div class="row g-3 mt-3">
+              <div class="col-sm-6">
+                <button class="btn w-100 py-2 fw-semibold" style="background:#00c864; color:#fff; border-radius:10px;" onclick="showToast('Quote locked in for 14 days! Check your email.', 'success')">
+                  Accept & Lock In Quote
+                </button>
+              </div>
+              <div class="col-sm-6">
+                <a href="products.html" class="btn btn-outline-custom w-100 py-2 fw-semibold">Browse Upgrades</a>
+              </div>
+            </div>
+            <p class="small text-muted mt-3 mb-0">Final value subject to physical inspection. Quote locked for 14 days from today.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCEPTED BRANDS -->
+<section class="brands-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title">We Accept All <span class="text-gradient">Major Brands</span></h2>
+      <p class="text-muted-light mt-2">Smartphones, tablets, laptops, smartwatches and more.</p>
+    </div>
+    <div class="row g-3 justify-content-center">
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2"><div class="brand-pill"><i class="bi bi-apple d-block mb-1"></i>Apple</div></div>
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2"><div class="brand-pill"><i class="bi bi-phone d-block mb-1"></i>Samsung</div></div>
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2"><div class="brand-pill"><i class="bi bi-google d-block mb-1"></i>Google</div></div>
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2"><div class="brand-pill"><i class="bi bi-laptop d-block mb-1"></i>Microsoft</div></div>
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2"><div class="brand-pill"><i class="bi bi-laptop d-block mb-1"></i>Dell</div></div>
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2"><div class="brand-pill"><i class="bi bi-laptop d-block mb-1"></i>Lenovo</div></div>
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2"><div class="brand-pill"><i class="bi bi-headphones d-block mb-1"></i>Sony</div></div>
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2"><div class="brand-pill"><i class="bi bi-headphones d-block mb-1"></i>Bose</div></div>
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2"><div class="brand-pill"><i class="bi bi-watch d-block mb-1"></i>Garmin</div></div>
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2"><div class="brand-pill"><i class="bi bi-phone d-block mb-1"></i>OnePlus</div></div>
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2"><div class="brand-pill"><i class="bi bi-phone d-block mb-1"></i>Oppo</div></div>
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2"><div class="brand-pill"><i class="bi bi-plus-circle d-block mb-1"></i>+ Many More</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED UPGRADE DEALS -->
+<section class="upgrade-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title">Popular <span class="text-gradient">Upgrade Deals</span></h2>
+      <p class="text-muted-light mt-2">Trade in your old device and upgrade to one of these bestsellers.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3">
+        <div class="upgrade-card">
+          <span class="upgrade-badge">Hot Deal</span>
+          <div class="device-img"><i class="bi bi-phone-fill"></i></div>
+          <h6>Samsung Galaxy S25 Ultra</h6>
+          <p class="small text-muted mb-0">256GB · Titanium Black</p>
+          <div class="upgrade-price-row">
+            <span class="upgrade-price">$1,899</span>
+            <span class="upgrade-save">Save $200</span>
+          </div>
+          <div class="trade-credit-banner"><i class="bi bi-recycle me-1"></i> Trade-in credit: up to <strong>$800</strong> off</div>
+          <a href="product-detail.html" class="btn btn-primary-custom w-100 mt-3">View Deal</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="upgrade-card">
+          <div class="device-img"><i class="bi bi-phone-fill" style="color:#c0c0c0;"></i></div>
+          <h6>Apple iPhone 16 Pro</h6>
+          <p class="small text-muted mb-0">256GB · Natural Titanium</p>
+          <div class="upgrade-price-row">
+            <span class="upgrade-price">$1,999</span>
+          </div>
+          <div class="trade-credit-banner"><i class="bi bi-recycle me-1"></i> Trade-in credit: up to <strong>$900</strong> off</div>
+          <a href="product-detail.html" class="btn btn-primary-custom w-100 mt-3">View Deal</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="upgrade-card">
+          <span class="upgrade-badge">Best Value</span>
+          <div class="device-img"><i class="bi bi-laptop-fill"></i></div>
+          <h6>MacBook Air M3</h6>
+          <p class="small text-muted mb-0">13" · 8GB · 256GB SSD</p>
+          <div class="upgrade-price-row">
+            <span class="upgrade-price">$1,599</span>
+            <span class="upgrade-save">Save $150</span>
+          </div>
+          <div class="trade-credit-banner"><i class="bi bi-recycle me-1"></i> Trade-in credit: up to <strong>$1,200</strong> off</div>
+          <a href="product-detail.html" class="btn btn-primary-custom w-100 mt-3">View Deal</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="upgrade-card">
+          <div class="device-img"><i class="bi bi-tablet-fill"></i></div>
+          <h6>iPad Pro M4</h6>
+          <p class="small text-muted mb-0">11" · WiFi · 256GB</p>
+          <div class="upgrade-price-row">
+            <span class="upgrade-price">$1,449</span>
+          </div>
+          <div class="trade-credit-banner"><i class="bi bi-recycle me-1"></i> Trade-in credit: up to <strong>$600</strong> off</div>
+          <a href="product-detail.html" class="btn btn-primary-custom w-100 mt-3">View Deal</a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5">
+      <a href="products.html" class="btn btn-outline-custom btn-lg">See All Products <i class="bi bi-arrow-right ms-1"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ECO IMPACT -->
+<section class="eco-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title" style="color:#fff;">Trade-In Is <span style="color:#00c864;">Good for the Planet</span></h2>
+      <p class="text-muted-light mt-2 mx-auto" style="max-width:520px;">Every device you trade in is either refurbished and resold, or responsibly recycled through our certified e-waste partners — keeping toxic materials out of landfill.</p>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-6 col-md-3"><div class="eco-stat"><div class="num">180K</div><div class="label">Devices Recycled in 2025</div></div></div>
+      <div class="col-6 col-md-3"><div class="eco-stat"><div class="num">94%</div><div class="label">Refurbishment Rate</div></div></div>
+      <div class="col-6 col-md-3"><div class="eco-stat"><div class="num">620T</div><div class="label">E-Waste Diverted from Landfill</div></div></div>
+      <div class="col-6 col-md-3"><div class="eco-stat"><div class="num">100%</div><div class="label">Certified Recycling Partners</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer pt-5 pb-3">
+  <div class="container">
+    <div class="row g-4 mb-5">
+      <div class="col-lg-4">
+        <a class="navbar-brand d-flex align-items-center gap-2 mb-3" href="home.html">
+          <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+          <span class="brand-name">Tech<span class="brand-accent">Hub</span></span>
+        </a>
+        <p class="text-muted-light">Australia's trusted electronics retailer since 1998. Competitive prices, expert staff, and exceptional service — online and in-store.</p>
+        <div class="social-links mt-3">
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-twitter-x"></i></a>
+          <a href="#"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Products</h6>
+        <ul class="footer-links">
+          <li><a href="products.html#smartphones">Smartphones</a></li>
+          <li><a href="products.html#laptops">Laptops</a></li>
+          <li><a href="products.html#gaming">Gaming</a></li>
+          <li><a href="products.html#smarthome">Smart Home</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Services</h6>
+        <ul class="footer-links">
+          <li><a href="click-collect.html">Click & Collect</a></li>
+          <li><a href="try-before-buy.html">Try Before You Buy</a></li>
+          <li><a href="trade_in.html">Trade-In & Upgrade</a></li>
+          <li><a href="rewards.html">TechHub Rewards</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Company</h6>
+        <ul class="footer-links">
+          <li><a href="about_us.html">About Us</a></li>
+          <li><a href="support.html">Help Centre</a></li>
+          <li><a href="tech_blog.html">Tech Blog</a></li>
+          <li><a href="support.html#contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Legal</h6>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Consumer Rights</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider"/>
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mt-4">
+      <p class="text-muted-light mb-0 small">© 2026 TechHub Electronics Pty Ltd. ABN 12 345 678 901. All rights reserved.</p>
+      <div class="payment-icons d-flex gap-2">
+        <span class="payment-icon"><i class="bi bi-credit-card-2-front"></i> Visa</span>
+        <span class="payment-icon"><i class="bi bi-credit-card-fill"></i> Mastercard</span>
+        <span class="payment-icon"><i class="bi bi-paypal"></i> PayPal</span>
+        <span class="payment-icon">Afterpay</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="main.js"></script>
+<script>
+  let selectedCondition = null;
+
+  function selectCondition(el, val) {
+    document.querySelectorAll('.condition-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    selectedCondition = val;
+    resetQuote();
+  }
+
+  function resetQuote() {
+    document.getElementById('quoteResult').style.display = 'none';
+  }
+
+  function generateQuote() {
+    const type = document.getElementById('qDeviceType').value;
+    const brand = document.getElementById('qBrand').value;
+    const model = document.getElementById('qModel').value.trim();
+    const storage = document.getElementById('qStorage').value;
+
+    if (!type || !brand || !model || !storage || !selectedCondition) {
+      if (window.showToast) showToast('Please fill in all fields and select a condition.', 'error');
+      return;
+    }
+
+    const btn = document.getElementById('getQuoteBtn');
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Calculating…';
+    btn.disabled = true;
+
+    // Simulate quote calculation
+    const baseValues = { phone: 400, tablet: 300, laptop: 600, watch: 150, earbuds: 80 };
+    const brandMult = { apple: 1.4, samsung: 1.2, google: 1.1, microsoft: 1.1, sony: 1.0, other: 0.8, lenovo: 0.9, dell: 0.95, lg: 0.85 };
+    const condMult = { mint: 1.0, good: 0.8, fair: 0.6, poor: 0.35 };
+    const storageMult = { '64': 0.8, '128': 1.0, '256': 1.2, '512': 1.35, '1t': 1.5 };
+
+    const base = (baseValues[type] || 300) * (brandMult[brand] || 1.0) * (condMult[selectedCondition] || 0.8) * (storageMult[storage] || 1.0);
+    const quote = Math.round(base / 10) * 10;
+
+    setTimeout(() => {
+      btn.innerHTML = 'Get My Instant Quote <i class="bi bi-arrow-right ms-1"></i>';
+      btn.disabled = false;
+      document.getElementById('quoteAmount').textContent = '$' + quote;
+      const result = document.getElementById('quoteResult');
+      result.style.display = 'block';
+      result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 1500);
+  }
+</script>
+</body>
+</html>

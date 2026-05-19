@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Profile – TechHub Electronics</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .profile-sidebar { background: var(--th-navy-card); border-radius: var(--radius-lg); padding: 20px; border: 1px solid var(--th-border); box-shadow: var(--shadow-card); }
+    .profile-nav { list-style: none; padding: 0; margin: 0; }
+    .profile-nav li { margin-bottom: 5px; }
+    .profile-nav a { display: flex; align-items: center; gap: 10px; color: var(--th-text); text-decoration: none; padding: 12px 15px; border-radius: 8px; font-weight: 500; transition: all 0.2s; }
+    .profile-nav a:hover, .profile-nav a.active { background: var(--th-accent-dim); color: var(--th-accent); }
+    .profile-nav a i { font-size: 1.1rem; }
+    
+    .profile-card { background: var(--th-navy-card); border-radius: var(--radius-lg); padding: 30px; border: 1px solid var(--th-border); box-shadow: var(--shadow-card); height: 100%; }
+    .loyalty-banner { background: linear-gradient(135deg, #111, #333); color: #fff; border-radius: var(--radius-md); padding: 25px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #ffd700; box-shadow: 0 4px 20px rgba(255,215,0,0.15); }
+    .loyalty-info h4 { font-family: 'Rajdhani', sans-serif; font-weight: 700; margin: 0; color: #ffd700; font-size: 24px;}
+    .loyalty-info p { margin: 0; font-size: 14px; opacity: 0.9; }
+    .loyalty-icon { font-size: 48px; color: #ffd700; line-height: 1; }
+    
+    /* ── ORDERS ── */
+    .orders-list { display: flex; flex-direction: column; gap: 12px; }
+    .order-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--th-navy-light, rgba(255,255,255,0.04));
+      border: 1px solid var(--th-border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      transition: border-color 0.2s, background 0.2s;
+      flex-wrap: wrap;
+    }
+    .order-row:hover { border-color: var(--th-accent); background: rgba(11,94,215,0.06); }
+    .order-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: rgba(11,94,215,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: var(--th-accent); flex-shrink: 0;
+    }
+    .order-meta { flex: 1; min-width: 0; }
+    .order-id { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 15px; color: var(--th-text); margin-bottom: 2px; }
+    .order-date { font-size: 12px; color: var(--th-muted); }
+    .order-amount { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 18px; color: var(--th-text); }
+    .order-status { padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; display: inline-block; flex-shrink: 0; }
+    .status-processing { background: rgba(11,94,215,0.15); color: #60a5fa; border: 1px solid rgba(96,165,250,0.25); }
+    .status-delivered { background: rgba(0,200,100,0.12); color: #34d399; border: 1px solid rgba(52,211,153,0.25); }
+    .status-cancelled { background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(248,113,113,0.25); }
+  </style>
+</head>
+<body class="bg-section-alt">
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-banner-inner">
+    <div class="cookie-text">
+      <i class="bi bi-shield-lock-fill text-accent me-2"></i>
+      <span>We use cookies to improve your shopping experience and for analytics. By continuing you agree to our <a href="#">Cookie Policy</a>.</span>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn btn-sm btn-outline-custom" onclick="cookieDecline()">Manage Preferences</button>
+      <button class="btn btn-sm btn-primary-custom" onclick="cookieAccept()">Accept All</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container-fluid px-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <span><i class="bi bi-truck me-1"></i> Free shipping on orders over $99 Australia-wide</span>
+      <span class="d-none d-md-inline"><i class="bi bi-telephone me-1"></i> 1800-TECHHUB &nbsp;|&nbsp; <i class="bi bi-clock me-1"></i> Mon–Sat 9am–6pm AEST</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="mainNav">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="home.html">
+      <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+      <span class="brand-name">Tech<span class="brand-accent">Hub</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="products.html" data-bs-toggle="dropdown">Products</a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="products.html#smartphones"><img src="assets/images/smartphone.png" style="width:18px; object-fit:contain;" class="me-2">Smartphones & Tablets</a></li>
+            <li><a class="dropdown-item" href="products.html#laptops"><img src="assets/images/laptop.png" style="width:18px; object-fit:contain;" class="me-2">Laptops & Accessories</a></li>
+            <li><a class="dropdown-item" href="products.html#gaming"><img src="assets/images/gaming.png" style="width:18px; object-fit:contain;" class="me-2">Gaming</a></li>
+            <li><a class="dropdown-item" href="products.html#smarthome"><img src="assets/images/smarthome.png" style="width:18px; object-fit:contain;" class="me-2">Smart Home & IoT</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="click-collect.html">Click & Collect</a></li>
+        <li class="nav-item"><a class="nav-link" href="try-before-buy.html">Try Before You Buy</a></li>
+        <li class="nav-item"><a class="nav-link" href="trade_in.html">Trade-In</a></li>
+        <li class="nav-item"><a class="nav-link" href="tech_blog.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="tech_advisor.html">Tech Advisor</a></li>
+        <li class="nav-item"><a class="nav-link" href="tech_advisor.html"><i class="bi bi-stars me-1 text-accent"></i>Tech Advisor</a></li>
+        <li class="nav-item"><a class="nav-link" href="about_us.html">About Us</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+        <div class="search-wrap d-none d-lg-flex">
+          <input class="form-control search-input" type="search" placeholder="Search products…"/>
+          <button class="btn-search"><i class="bi bi-search"></i></button>
+        </div>
+        <a href="profile.html" class="nav-icon-btn active" title="Account"><i class="bi bi-person-circle text-accent"></i></a>
+        <a href="checkout.html" class="nav-icon-btn position-relative" title="Cart">
+          <i class="bi bi-bag-fill"></i>
+          <span class="cart-badge">3</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-hero pt-4 pb-0">
+  <div class="container py-4">
+    <h1 class="page-hero-title mb-0">My <span class="text-gradient">Profile</span></h1>
+  </div>
+</section>
+
+<!-- PROFILE DASHBOARD -->
+<section class="section-padded pt-4">
+  <div class="container">
+    <div class="row g-4">
+      
+      <!-- SIDEBAR -->
+      <div class="col-lg-3">
+        <div class="profile-sidebar sticky-top" style="top: 100px;">
+          <div class="d-flex align-items-center gap-3 mb-4 px-2">
+            <div style="width:50px; height:50px; background:var(--th-accent); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:bold;">
+              JS
+            </div>
+            <div>
+              <h6 class="mb-0 fw-bold">John Smith</h6>
+              <span class="small text-muted"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b2d8dddadc9cc1dfdbc6daf2d7cad3dfc2ded79cd1dddf">[email&#160;protected]</a></span>
+            </div>
+          </div>
+          
+          <ul class="profile-nav">
+            <li><a href="profile.html" class="active"><i class="bi bi-person-vcard"></i> Dashboard</a></li>
+            <li><a href="tech_advisor.html"><i class="bi bi-stars"></i> Tech Advisor</a></li>
+            <li><a href="#"><i class="bi bi-box-seam"></i> Order History</a></li>
+            <li><a href="#"><i class="bi bi-heart"></i> Wishlist</a></li>
+            <li><a href="#"><i class="bi bi-gear"></i> Settings</a></li>
+            <li><a href="index.html" class="text-danger mt-3" onclick="localStorage.removeItem('th_logged_in'); localStorage.removeItem('th_show_interest_banner');"><i class="bi bi-box-arrow-right"></i> Sign Out</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- MAIN CONTENT -->
+      <div class="col-lg-9">
+        <div class="row g-4">
+          <!-- Loyalty Banner -->
+          <div class="col-12">
+            <div class="loyalty-banner">
+              <div class="loyalty-info">
+                <h4>Gold Member</h4>
+                <p class="mt-1">You have <strong>12,450</strong> TechHub Rewards Points.</p>
+                <a href="#" class="btn btn-sm btn-outline-light mt-3 border-secondary">View Rewards</a>
+              </div>
+              <div class="loyalty-icon"><i class="bi bi-trophy-fill"></i></div>
+            </div>
+          </div>
+          
+          <!-- Recent Orders -->
+          <div class="col-12">
+            <div class="profile-card">
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                  <h5 class="mb-0 fw-bold">Recent Orders</h5>
+                  <p class="text-muted small mb-0 mt-1">Your last 3 transactions</p>
+                </div>
+                <a href="#" class="btn btn-sm btn-outline-custom">View All <i class="bi bi-arrow-right ms-1"></i></a>
+              </div>
+
+              <div class="orders-list">
+
+                <!-- Order 1 — Processing -->
+                <div class="order-row">
+                  <div class="order-icon"><i class="bi bi-box-seam"></i></div>
+                  <div class="order-meta">
+                    <div class="order-id">#TH-2026-048291</div>
+                    <div class="order-date"><i class="bi bi-calendar3 me-1"></i>Mar 10, 2026 &nbsp;·&nbsp; <span style="color:var(--th-muted);">Samsung Galaxy S25 Ultra + MacBook Air M3</span></div>
+                  </div>
+                  <div class="order-amount">$3,460.60</div>
+                  <span class="order-status status-processing"><i class="bi bi-arrow-repeat me-1"></i>Processing</span>
+                  <a href="#" class="btn btn-sm btn-outline-custom ms-auto ms-sm-0">View <i class="bi bi-chevron-right ms-1"></i></a>
+                </div>
+
+                <!-- Order 2 — Delivered -->
+                <div class="order-row">
+                  <div class="order-icon" style="background:rgba(0,200,100,0.1); color:#34d399;"><i class="bi bi-check-circle"></i></div>
+                  <div class="order-meta">
+                    <div class="order-id">#TH-2025-092114</div>
+                    <div class="order-date"><i class="bi bi-calendar3 me-1"></i>Nov 24, 2025 &nbsp;·&nbsp; <span style="color:var(--th-muted);">Sony WH-1000XM5 Headphones</span></div>
+                  </div>
+                  <div class="order-amount">$149.95</div>
+                  <span class="order-status status-delivered"><i class="bi bi-check-circle me-1"></i>Delivered</span>
+                  <a href="#" class="btn btn-sm btn-outline-custom ms-auto ms-sm-0">View <i class="bi bi-chevron-right ms-1"></i></a>
+                </div>
+
+                <!-- Order 3 — Delivered -->
+                <div class="order-row">
+                  <div class="order-icon" style="background:rgba(0,200,100,0.1); color:#34d399;"><i class="bi bi-check-circle"></i></div>
+                  <div class="order-meta">
+                    <div class="order-id">#TH-2025-045882</div>
+                    <div class="order-date"><i class="bi bi-calendar3 me-1"></i>Jun 12, 2025 &nbsp;·&nbsp; <span style="color:var(--th-muted);">MacBook Air M2 13"</span></div>
+                  </div>
+                  <div class="order-amount">$1,299.00</div>
+                  <span class="order-status status-delivered"><i class="bi bi-check-circle me-1"></i>Delivered</span>
+                  <a href="#" class="btn btn-sm btn-outline-custom ms-auto ms-sm-0">View <i class="bi bi-chevron-right ms-1"></i></a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          
+          <!-- Account Details Snippet -->
+          <div class="col-md-6">
+            <div class="profile-card">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h6 class="mb-0 fw-bold">Account Info</h6>
+                <a href="#" class="text-muted-light"><i class="bi bi-pencil-square"></i></a>
+              </div>
+              <p class="mb-1" style="color:var(--th-text)">John Smith</p>
+              <p class="mb-1 text-muted"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5c36333432722f313528341c39313d3530723f3331">[email&#160;protected]</a></p>
+              <p class="mb-0 text-muted">+61 412 345 678</p>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="profile-card">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h6 class="mb-0 fw-bold">Default Address</h6>
+                <a href="#" class="text-muted-light"><i class="bi bi-pencil-square"></i></a>
+              </div>
+              <p class="mb-1" style="color:var(--th-text)">123 Example Street</p>
+              <p class="mb-1 text-muted">Sydney, NSW 2000</p>
+              <p class="mb-0 text-muted">Australia</p>
+            </div>
+          </div>
+
+          <!-- ── TECH ADVISOR CTA ── -->
+          <div class="col-12">
+            <div class="tech-advisor-cta-card">
+              <div class="tac-left">
+                <div class="tac-icon"><i class="bi bi-stars"></i></div>
+                <div>
+                  <h5 class="tac-title">Personal Tech Advisor</h5>
+                  <p class="tac-sub">Set your tech interests and get personalised product recommendations, upgrade alerts &amp; deals matched to your profile.</p>
+                </div>
+              </div>
+              <a href="tech_advisor.html" class="btn btn-primary-custom tac-btn"><i class="bi bi-arrow-right-circle me-2"></i>Open Tech Advisor</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer pt-5 pb-3 mt-5">
+  <div class="container">
+    <div class="row g-4 mb-5">
+      <div class="col-lg-4">
+        <a class="navbar-brand d-flex align-items-center gap-2 mb-3" href="home.html">
+          <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+          <span class="brand-name">Tech<span class="brand-accent">Hub</span></span>
+        </a>
+        <p class="text-muted-light">Australia's trusted electronics retailer since 1998. Competitive prices, expert staff, and exceptional service — online and in-store.</p>
+        <div class="social-links mt-3">
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-twitter-x"></i></a>
+          <a href="#"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Products</h6>
+        <ul class="footer-links">
+          <li><a href="products.html#smartphones">Smartphones</a></li>
+          <li><a href="products.html#laptops">Laptops</a></li>
+          <li><a href="products.html#gaming">Gaming</a></li>
+          <li><a href="products.html#smarthome">Smart Home</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Services</h6>
+        <ul class="footer-links">
+          <li><a href="click-collect.html">Click & Collect</a></li>
+          <li><a href="try-before-buy.html">Try Before You Buy</a></li>
+          <li><a href="price_match.html">Price Match</a></li>
+          <li><a href="trade_in.html">Trade-In &amp; Upgrade</a></li>
+          <li><a href="rewards.html">TechHub Rewards</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Support</h6>
+        <ul class="footer-links">
+          <li><a href="support.html">Help Centre</a></li>
+          <li><a href="#">Returns & Refunds</a></li>
+          <li><a href="#">Warranty Claims</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Legal</h6>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Copyright Notice</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Consumer Rights</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider"/>
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mt-4">
+      <p class="text-muted-light mb-0 small">© 2026 TechHub Electronics Pty Ltd. ABN 12 345 678 901. All rights reserved.</p>
+      <div class="payment-icons d-flex gap-2">
+        <span class="payment-icon"><i class="bi bi-credit-card-2-front"></i> Visa</span>
+        <span class="payment-icon"><i cla
+        <span class="payment-icon"><i class="bi bi-credit-card-fill"></i> Mastercard</span>
+        <span class="payment-icon"><i class="bi bi-paypal"></i> PayPal</span>
+        <span class="payment-icon">Afterpay</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="main.js"></script>
+<script>
+// Redirect to signin if not logged in
+if (localStorage.getItem('th_logged_in') !== 'true') {
+  window.location.replace('index.html');
+}
+// Load saved name
+(function() {
+  var name = localStorage.getItem('th_user_name') || 'John Smith';
+  var initials = name.split(' ').map(function(n){return n[0];}).join('').substring(0,2).toUpperCase();
+})();
+
+</script>
+</body>
+</html>

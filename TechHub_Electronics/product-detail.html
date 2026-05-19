@@ -1,0 +1,406 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Samsung Galaxy S25 Ultra – TechHub Electronics</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- COOKIE BANNER -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-banner-inner">
+      <div class="cookie-text">
+        <i class="bi bi-shield-lock-fill text-accent me-2"></i>
+        <span>We use cookies to improve your experience. By continuing you agree to our <a
+            href="#">Cookie Policy</a>.</span>
+      </div>
+      <div class="cookie-actions">
+        <button class="btn btn-sm btn-outline-custom" onclick="cookieDecline()">Manage Preferences</button>
+        <button class="btn btn-sm btn-primary-custom" onclick="cookieAccept()">Accept All</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container-fluid px-4">
+      <div class="d-flex justify-content-between align-items-center">
+        <span><i class="bi bi-truck me-1"></i> Free shipping on orders over $99</span>
+        <span class="d-none d-md-inline"><i class="bi bi-telephone me-1"></i> 1800-TECHHUB</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="mainNav">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="home.html">
+        <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+        <span class="brand-name">Tech<span class="brand-accent">Hub</span></span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav mx-auto gap-1">
+          <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="click-collect.html">Click & Collect</a></li>
+          <li class="nav-item"><a class="nav-link" href="try-before-buy.html">Try Before You Buy</a></li>
+          <li class="nav-item"><a class="nav-link" href="trade_in.html">Trade-In</a></li>
+        <li class="nav-item"><a class="nav-link" href="tech_blog.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="tech_advisor.html">Tech Advisor</a></li>
+          <li class="nav-item"><a class="nav-link" href="about_us.html">About Us</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+          <a href="profile.html" class="nav-icon-btn" id="navProfileBtn" title="Account"><i class="bi bi-person-circle text-accent"></i></a>></i></a>
+          <a href="checkout.html" class="nav-icon-btn position-relative">
+            <i class="bi bi-bag-fill"></i>
+            <span class="cart-badge">3</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="container px-4 py-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb breadcrumb-custom">
+        <li class="breadcrumb-item"><a href="home.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="products.html">Products</a></li>
+        <li class="breadcrumb-item"><a href="products.html#smartphones">Smartphones & Tablets</a></li>
+        <li class="breadcrumb-item active">Samsung Galaxy S25 Ultra</li>
+      </ol>
+    </nav>
+  </div>
+
+  <!-- PRODUCT DETAIL -->
+  <section class="section-padded pt-2">
+    <div class="container">
+      <div class="row g-5">
+
+        <!-- IMAGES -->
+        <div class="col-lg-5">
+          <div class="product-detail-img-main phone-gradient d-flex align-items-center justify-content-center">
+            <img src="assets/images/samsung.jfif" alt="Samsung Galaxy S25 Ultra"
+              style="width:100%; height:100%; object-fit:contain;">
+            <div class="product-detail-zoom-badge"><i class="bi bi-zoom-in"></i></div>
+          </div>
+          <div class="row g-2 mt-2">
+            <div class="col-3">
+              <div class="product-thumb active" style="background:transparent;"><img src="assets/images/samsung.jfif"
+                  alt="Thumb" style="width:100%; height:100%; object-fit:contain;"></div>
+            </div>
+            <div class="col-3">
+              <div class="product-thumb phone-gradient"><i class="bi bi-phone-flip"></i></div>
+            </div>
+            <div class="col-3">
+              <div class="product-thumb phone-gradient"><i class="bi bi-camera-fill"></i></div>
+            </div>
+            <div class="col-3">
+              <div class="product-thumb phone-gradient"><i class="bi bi-battery-full"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUCT INFO -->
+        <div class="col-lg-7">
+          <div class="product-detail-info">
+            <div class="d-flex align-items-center gap-3 mb-2">
+              <span class="product-cat">Smartphones</span>
+              <span class="product-badge badge-hot" style="position:static">HOT</span>
+              <span class="instock-badge"><i class="bi bi-check-circle-fill me-1"></i>In Stock</span>
+            </div>
+            <h1 class="product-detail-title">Samsung Galaxy S25 Ultra</h1>
+
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="product-rating large">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                  class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+              </div>
+              <span class="text-muted-light">4.5/5 &nbsp;(128 reviews)</span>
+            </div>
+
+            <div class="price-block mb-4">
+              <span class="detail-price-new">$1,899</span>
+              <span class="detail-price-old">$2,199</span>
+              <span class="saving-badge">Save $300</span>
+            </div>
+
+            <!-- VARIANTS -->
+            <div class="variant-section mb-4">
+              <label class="variant-label">Storage:</label>
+              <div class="variant-btns">
+                <button class="variant-btn">256GB</button>
+                <button class="variant-btn active">512GB</button>
+                <button class="variant-btn">1TB</button>
+              </div>
+            </div>
+            <div class="variant-section mb-4">
+              <label class="variant-label">Colour:</label>
+              <div class="variant-btns">
+                <button class="variant-btn">Titanium Black</button>
+                <button class="variant-btn active">Titanium Silver</button>
+                <button class="variant-btn">Titanium Blue</button>
+              </div>
+            </div>
+
+            <!-- QUANTITY -->
+            <div class="d-flex align-items-center gap-3 mb-4">
+              <label class="variant-label mb-0">Qty:</label>
+              <div class="qty-control">
+                <button class="qty-btn" id="qtyMinus">−</button>
+                <input type="number" class="qty-input" value="1" min="1" id="qtyInput" />
+                <button class="qty-btn" id="qtyPlus">+</button>
+              </div>
+            </div>
+
+            <!-- ACTIONS -->
+            <div class="d-flex flex-wrap gap-3 mb-4">
+              <button class="btn btn-primary-custom btn-lg flex-grow-1"><i class="bi bi-bag-plus me-2"></i>Add to
+                Cart</button>
+              <button class="btn btn-orange btn-lg flex-grow-1"><i class="bi bi-lightning-fill me-2"></i>Buy
+                Now</button>
+            </div>
+
+            <!-- SPECIAL FEATURES -->
+            <div class="special-features-row d-flex flex-wrap gap-3 mb-4">
+              <a href="click-collect.html" class="special-feature-btn">
+                <i class="bi bi-bag-check-fill"></i>
+                <div><strong>Click & Collect</strong><small>Ready in 2 hours</small></div>
+              </a>
+              <a href="try-before-buy.html" class="special-feature-btn">
+                <i class="bi bi-shop-window"></i>
+                <div><strong>Try In-Store</strong><small>Book a free demo</small></div>
+              </a>
+              <div class="special-feature-btn">
+                <i class="bi bi-arrow-repeat"></i>
+                <div><strong>30-Day Return</strong><small>No questions asked</small></div>
+              </div>
+            </div>
+
+            <!-- LOYALTY -->
+            <div class="loyalty-earn-bar">
+              <i class="bi bi-star-fill text-accent me-2"></i>
+              <span>You'll earn <strong>1,899 TechHub Reward Points</strong> on this purchase</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABS: SPECS / REVIEWS -->
+      <div class="mt-5">
+        <ul class="nav nav-tabs detail-tabs" id="productTabs">
+          <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#specs">Specifications</a></li>
+          <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#reviews">Reviews (128)</a></li>
+          <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#delivery">Delivery & Returns</a></li>
+        </ul>
+        <div class="tab-content detail-tab-content">
+          <div class="tab-pane fade show active" id="specs">
+            <div class="row g-0">
+              <div class="col-md-6">
+                <table class="spec-table">
+                  <tr>
+                    <th>Display</th>
+                    <td>6.9" Dynamic AMOLED 2X, 120Hz</td>
+                  </tr>
+                  <tr>
+                    <th>Processor</th>
+                    <td>Snapdragon 8 Elite</td>
+                  </tr>
+                  <tr>
+                    <th>RAM</th>
+                    <td>12GB LPDDR5X</td>
+                  </tr>
+                  <tr>
+                    <th>Storage</th>
+                    <td>512GB UFS 4.0</td>
+                  </tr>
+                  <tr>
+                    <th>Main Camera</th>
+                    <td>200MP + 50MP + 10MP + 10MP</td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-md-6">
+                <table class="spec-table">
+                  <tr>
+                    <th>Battery</th>
+                    <td>5,000 mAh, 45W fast charge</td>
+                  </tr>
+                  <tr>
+                    <th>OS</th>
+                    <td>Android 15, One UI 7</td>
+                  </tr>
+                  <tr>
+                    <th>5G</th>
+                    <td>Yes – Sub-6GHz & mmWave</td>
+                  </tr>
+                  <tr>
+                    <th>S Pen</th>
+                    <td>Included</td>
+                  </tr>
+                  <tr>
+                    <th>Warranty</th>
+                    <td>2 years (TechHub extended)</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="reviews">
+            <div class="review-summary d-flex gap-5 align-items-center mb-4">
+              <div class="review-big-num">4.5<span>/5</span></div>
+              <div>
+                <div class="review-bar-row"><span>5★</span>
+                  <div class="review-bar">
+                    <div style="width:62%"></div>
+                  </div><span>62%</span>
+                </div>
+                <div class="review-bar-row"><span>4★</span>
+                  <div class="review-bar">
+                    <div style="width:24%"></div>
+                  </div><span>24%</span>
+                </div>
+                <div class="review-bar-row"><span>3★</span>
+                  <div class="review-bar">
+                    <div style="width:9%"></div>
+                  </div><span>9%</span>
+                </div>
+                <div class="review-bar-row"><span>2★</span>
+                  <div class="review-bar">
+                    <div style="width:3%"></div>
+                  </div><span>3%</span>
+                </div>
+                <div class="review-bar-row"><span>1★</span>
+                  <div class="review-bar">
+                    <div style="width:2%"></div>
+                  </div><span>2%</span>
+                </div>
+              </div>
+            </div>
+            <div class="review-item">
+              <div class="d-flex justify-content-between">
+                <strong>Michael T.</strong>
+                <small class="text-muted-light">12 Jan 2026</small>
+              </div>
+              <div class="product-rating small">★★★★★</div>
+              <p>Best phone I've ever owned. The S Pen is incredible for note-taking and the camera is insane. TechHub's
+                Click & Collect was super fast too!</p>
+            </div>
+            <div class="review-item">
+              <div class="d-flex justify-content-between">
+                <strong>Sarah K.</strong>
+                <small class="text-muted-light">3 Feb 2026</small>
+              </div>
+              <div class="product-rating small">★★★★☆</div>
+              <p>Great device. Booked a Try Before You Buy demo at the Sydney store and was sold after 10 minutes with
+                the staff.</p>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="delivery">
+            <div class="row g-4">
+              <div class="col-md-4">
+                <div class="delivery-option-card">
+                  <i class="bi bi-truck"></i>
+                  <h6>Standard Delivery</h6>
+                  <p>3–5 business days. Free on orders over $99.</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="delivery-option-card">
+                  <i class="bi bi-lightning-fill"></i>
+                  <h6>Express Delivery</h6>
+                  <p>Next business day. $14.95 flat rate.</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="delivery-option-card highlight">
+                  <i class="bi bi-bag-check-fill"></i>
+                  <h6>Click & Collect</h6>
+                  <p>Ready in 2 hours at your chosen TechHub store. Free.</p>
+                  <a href="click-collect.html" class="btn btn-sm btn-primary-custom mt-2">Find a Store</a>
+                </div>
+              </div>
+            </div>
+            <div class="mt-4 p-4 returns-box">
+              <h6><i class="bi bi-arrow-repeat me-2 text-accent"></i>Returns Policy</h6>
+              <p class="text-muted-light mb-0">Return any product within 30 days of purchase for a full refund or
+                exchange. Items must be in original packaging. Compliant with the Australian Consumer Law (ACL).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RELATED PRODUCTS -->
+      <div class="mt-5">
+        <h4 class="section-title mb-4">You Might Also <span class="text-gradient">Like</span></h4>
+        <div class="row g-4">
+          <div class="col-sm-6 col-lg-3">
+            <div class="product-card">
+              <div class="product-img-wrap">
+                <div class="product-img-placeholder" style="background:transparent;"><img
+                    src="assets/images/smartphone.png" alt="Product" style="max-height:100%; object-fit:contain;"></div>
+              </div>
+              <div class="product-body">
+                <div class="product-cat">Tablets</div>
+                <h6 class="product-name">Apple iPad Pro 13" M4</h6>
+                <div class="product-price-row"><span class="price-new">$1,699</span></div>
+                <a href="product-detail.html" class="btn btn-primary-custom w-100 mt-2">View Details</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="product-card">
+              <div class="product-img-wrap">
+                <div class="product-img-placeholder" style="background:transparent;"><img src="assets/images/laptop.png"
+                    alt="Product" style="max-height:100%; object-fit:contain;"></div>
+              </div>
+              <div class="product-body">
+                <div class="product-cat">Laptops</div>
+                <h6 class="product-name">MacBook Air M3 15"</h6>
+                <div class="product-price-row"><span class="price-new">$1,599</span></div>
+                <a href="product-detail.html" class="btn btn-primary-custom w-100 mt-2">View Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer pt-4 pb-3">
+    <div class="container">
+      <hr class="footer-divider mt-0" />
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <p class="text-muted-light mb-0 small">© 2026 TechHub Electronics Pty Ltd. ABN 12 345 678 901. All rights
+          reserved.</p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#" class="text-muted-light small">Privacy Policy</a>
+          <a href="#" class="text-muted-light small">Terms of Use</a>
+          <a href="#" class="text-muted-light small">Copyright</a>
+          <a href="#" class="text-muted-light small">Consumer Rights</a>
+          <a href="about_us.html" class="text-muted-light small">About Us</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>
