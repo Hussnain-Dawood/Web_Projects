@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- NextGen Robotics | Login Page -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NextGen Robotics | Login</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Inline CSS: login layout -->
+  <style>
+    .login-section {
+      min-height: calc(100vh - 68px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 4rem 6%; position: relative; overflow: hidden;
+    }
+    .login-section-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1600&q=80');
+      background-size: cover; background-position: center;
+      filter: brightness(0.1);
+      z-index: 0;
+    }
+    .login-wrap { width: 100%; max-width: 960px; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 1; }
+    @media (max-width: 768px) { .login-wrap { grid-template-columns: 1fr; gap: 2rem; } }
+    .login-info h2 { font-size: 1.8rem; color: #fff; margin-bottom: 1rem; }
+    .login-info p  { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+    .benefit-item  { display: flex; gap: 0.9rem; align-items: flex-start; margin-bottom: 1.1rem; }
+    .benefit-icon  {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: rgba(0,200,255,0.1); border: 1px solid var(--border);
+      border-radius: 5px; display: flex; align-items: center; justify-content: center;
+      color: var(--accent); font-size: 0.9rem; margin-top: 0.1rem;
+    }
+    .benefit-item p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+    .benefit-item span { color: var(--text-light); font-weight: 600; font-size: 0.9rem; display: block; margin-bottom: 0.2rem; }
+    .pw-toggle { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.9rem; transition: color 0.3s; }
+    .pw-toggle:hover { color: var(--accent); }
+    .pw-wrap { position: relative; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">Next<span>Gen</span> Robotics</a>
+    <div class="nav-links">
+      <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="about.html"><i class="fa-solid fa-circle-info"></i> About</a>
+      <a href="robotics.html"><i class="fa-solid fa-robot"></i> Robotics</a>
+      <a href="industries.html"><i class="fa-solid fa-industry"></i> Industries</a>
+      <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+      <a href="login.html" class="active"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="page-wrapper">
+    <div class="login-section">
+      <div class="login-section-bg"></div>
+      <div class="login-wrap">
+
+        <!-- Left: Benefits Info -->
+        <div class="login-info fade-up">
+          <p class="section-label"><i class="fa-solid fa-key"></i> &nbsp; Member Access</p>
+          <h2>Welcome <span style="color:var(--accent);">Back</span></h2>
+          <p>Log in to access your personalised dashboard, saved resources, and exclusive member content on NextGen Robotics.</p>
+
+          <div class="benefit-item">
+            <div class="benefit-icon"><i class="fa-solid fa-gauge"></i></div>
+            <div>
+              <span>Personalised Dashboard</span>
+              <p>Track your learning progress and access your bookmarked articles.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon"><i class="fa-solid fa-file-arrow-down"></i></div>
+            <div>
+              <span>Exclusive Resources</span>
+              <p>Download research papers, infographics, and technical guides.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon"><i class="fa-solid fa-comments"></i></div>
+            <div>
+              <span>Community Access</span>
+              <p>Join discussions, ask questions, and connect with robotics enthusiasts.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon"><i class="fa-solid fa-newspaper"></i></div>
+            <div>
+              <span>Newsletter</span>
+              <p>Receive personalised robotics news and updates based on your interests.</p>
+            </div>
+          </div>
+
+          <p style="margin-top:2rem; font-size:0.82rem; color:var(--text-muted);">
+            <i class="fa-solid fa-user-plus" style="color:var(--accent); margin-right:0.4rem;"></i>Not a member yet? <a href="contact.html" style="color:var(--accent);">Contact us</a> to request access.
+          </p>
+        </div>
+
+        <!-- Right: Login Form -->
+        <div class="login-card fade-up">
+          <h2><i class="fa-solid fa-right-to-bracket" style="margin-right:0.5rem;"></i>Member Login</h2>
+          <p>Enter your credentials to access your account.</p>
+
+          <!-- JavaScript-validated login form -->
+          <form id="loginForm" novalidate>
+            <div class="form-group">
+              <label for="username"><i class="fa-solid fa-user" style="margin-right:0.4rem;"></i>Username or Email</label>
+              <input type="text" id="username" name="username" placeholder="Enter your username or email" required />
+              <span class="form-error" id="usernameError"><i class="fa-solid fa-triangle-exclamation" style="margin-right:0.3rem;"></i>Please enter a valid username (minimum 3 characters).</span>
+            </div>
+
+            <div class="form-group">
+              <label for="password"><i class="fa-solid fa-lock" style="margin-right:0.4rem;"></i>Password</label>
+              <div class="pw-wrap">
+                <input type="password" id="password" name="password" placeholder="Enter your password" required />
+                <button type="button" class="pw-toggle" onclick="togglePassword()" aria-label="Toggle password visibility">
+                  <i class="fa-solid fa-eye" id="pwToggleIcon"></i>
+                </button>
+              </div>
+              <span class="form-error" id="passwordError"><i class="fa-solid fa-triangle-exclamation" style="margin-right:0.3rem;"></i>Password must be at least 6 characters.</span>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+              <label style="display:flex; gap:0.5rem; align-items:center; text-transform:none; letter-spacing:0; cursor:pointer;">
+                <input type="checkbox" id="rememberMe" style="width:auto; padding:0;" />
+                <span style="font-size:0.85rem; color:var(--text-muted);">Remember me</span>
+              </label>
+              <a href="contact.html" style="font-size:0.82rem; color:var(--text-muted);"><i class="fa-solid fa-circle-question" style="margin-right:0.3rem;"></i>Forgot password?</a>
+            </div>
+
+            <button type="submit" class="btn-primary" style="width:100%;"><i class="fa-solid fa-right-to-bracket" style="margin-right:0.5rem;"></i>Sign In</button>
+            <div class="form-success" id="loginSuccess">
+              <i class="fa-solid fa-circle-check" style="margin-right:0.5rem;"></i>Login successful. Redirecting to your dashboard...
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Key Features Table -->
+    <section style="border-top:1px solid var(--border);">
+      <p class="section-label text-center fade-up"><i class="fa-solid fa-crown"></i> &nbsp; Membership Benefits</p>
+      <h2 class="section-title text-center fade-up">What Members <span>Get Access To</span></h2>
+      <div class="divider fade-up" style="margin: 0.8rem auto 3rem;"></div>
+      <div class="table-wrapper fade-up">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Description</th>
+              <th>Access Level</th>
+              <th>Available</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><i class="fa-solid fa-gauge" style="color:var(--accent); margin-right:0.5rem;"></i>Learning Dashboard</td>
+              <td>Track progress across all topic areas</td>
+              <td>All Members</td>
+              <td><i class="fa-solid fa-circle-check" style="color:var(--accent);"></i> Yes</td>
+            </tr>
+            <tr>
+              <td><i class="fa-solid fa-file-pdf" style="color:var(--accent); margin-right:0.5rem;"></i>Research Downloads</td>
+              <td>Access downloadable PDFs and technical papers</td>
+              <td>All Members</td>
+              <td><i class="fa-solid fa-circle-check" style="color:var(--accent);"></i> Yes</td>
+            </tr>
+            <tr>
+              <td><i class="fa-solid fa-comments" style="color:var(--accent); margin-right:0.5rem;"></i>Community Forum</td>
+              <td>Participate in topic-specific discussion boards</td>
+              <td>All Members</td>
+              <td><i class="fa-solid fa-circle-check" style="color:var(--accent);"></i> Yes</td>
+            </tr>
+            <tr>
+              <td><i class="fa-solid fa-newspaper" style="color:var(--accent); margin-right:0.5rem;"></i>Newsletter</td>
+              <td>Weekly personalised robotics news digest</td>
+              <td>All Members</td>
+              <td><i class="fa-solid fa-circle-check" style="color:var(--accent);"></i> Yes</td>
+            </tr>
+            <tr>
+              <td><i class="fa-solid fa-chalkboard-teacher" style="color:var(--accent); margin-right:0.5rem;"></i>Educator Resources</td>
+              <td>Lesson plans and classroom materials</td>
+              <td>Educator Accounts</td>
+              <td><i class="fa-solid fa-circle-info" style="color:var(--text-muted);"></i> On Request</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="nav-logo">Next<span>Gen</span> Robotics</span>
+          <p>Educating the next generation about robotics and its transformative role across industries and society.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Pages</h3>
+          <ul>
+            <li><a href="index.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Home</a></li>
+            <li><a href="about.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>About</a></li>
+            <li><a href="robotics.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Robotics</a></li>
+            <li><a href="industries.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Industries</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Contact</a></li>
+            <li><a href="login.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Login</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="robotics.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Robot Types</a></li>
+            <li><a href="industries.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Applications</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Help Desk</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p><i class="fa-regular fa-copyright"></i> 2025 NextGen Robotics. All rights reserved. | Educational purposes only.</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    /* Password visibility toggle */
+    function togglePassword() {
+      var pwField = document.getElementById('password');
+      var icon    = document.getElementById('pwToggleIcon');
+      if (pwField.type === 'password') {
+        pwField.type = 'text';
+        icon.className = 'fa-solid fa-eye-slash';
+      } else {
+        pwField.type = 'password';
+        icon.className = 'fa-solid fa-eye';
+      }
+    }
+  </script>
+</body>
+</html>

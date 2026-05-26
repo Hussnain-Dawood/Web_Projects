@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- NextGen Robotics | Contact Page -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NextGen Robotics | Contact Us</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Inline CSS: contact info card -->
+  <style>
+    .contact-info-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 6px; padding: 1.6rem; margin-bottom: 1.2rem;
+      display: flex; gap: 1.2rem; align-items: flex-start;
+      transition: border-color 0.3s ease;
+    }
+    .contact-info-card:hover { border-color: rgba(0,200,255,0.4); }
+    .contact-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(0,200,255,0.08); border: 1px solid var(--border);
+      border-radius: 6px; display: flex; align-items: center; justify-content: center;
+      color: var(--accent); font-size: 1.1rem;
+    }
+    .contact-info-card h4 { color: var(--accent); font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 0.3rem; }
+    .contact-info-card p  { color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
+    @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">Next<span>Gen</span> Robotics</a>
+    <div class="nav-links">
+      <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="about.html"><i class="fa-solid fa-circle-info"></i> About</a>
+      <a href="robotics.html"><i class="fa-solid fa-robot"></i> Robotics</a>
+      <a href="industries.html"><i class="fa-solid fa-industry"></i> Industries</a>
+      <a href="contact.html" class="active"><i class="fa-solid fa-envelope"></i> Contact</a>
+      <a href="login.html"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+      <div class="page-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1600&q=80');"></div>
+      <p class="section-label fade-up"><i class="fa-solid fa-paper-plane"></i> &nbsp; Get in Touch</p>
+      <h1 class="fade-up">Contact <span>NextGen Robotics</span></h1>
+      <p class="fade-up">Have a question, suggestion, or want to collaborate? We would love to hear from you.</p>
+    </div>
+
+    <!-- Contact Section -->
+    <section>
+      <div class="contact-grid">
+
+        <!-- Contact Info -->
+        <div class="fade-up">
+          <p class="section-label"><i class="fa-solid fa-address-card"></i> &nbsp; Reach Us</p>
+          <h2 class="section-title">Our <span>Contact Details</span></h2>
+          <div class="divider"></div>
+
+          <div class="contact-info-card">
+            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <h3>Email</h3>
+              <p>info@nextgenrobotics.co.uk<br />support@nextgenrobotics.co.uk</p>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <h3>Address</h3>
+              <p>NextGen Robotics Education Platform<br />University Technology Hub<br />London, EC1A 1BB, United Kingdom</p>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+            <div>
+              <h3>Response Times</h3>
+              <p>General Enquiries: Within 2 business days<br />Technical Support: Within 1 business day</p>
+            </div>
+          </div>
+
+          <!-- FAQ List -->
+          <h3 style="color:var(--accent); font-size:0.85rem; letter-spacing:1.5px; margin: 2rem 0 1rem; text-transform:uppercase;"><i class="fa-solid fa-circle-question" style="margin-right:0.5rem;"></i>Frequently Asked Questions</h3>
+          <ul class="styled-list">
+            <li><i class="fa-solid fa-chevron-right"></i> Is the content on NextGen Robotics free to use?</li>
+            <li><i class="fa-solid fa-chevron-right"></i> Can I contribute articles or research to the platform?</li>
+            <li><i class="fa-solid fa-chevron-right"></i> How do I report inaccurate information?</li>
+            <li><i class="fa-solid fa-chevron-right"></i> Are resources available for educators and schools?</li>
+            <li><i class="fa-solid fa-chevron-right"></i> How often is the content updated?</li>
+          </ul>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="fade-up">
+          <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 2.5rem;">
+            <h3 style="color:var(--accent); font-size:1rem; letter-spacing:1px; margin-bottom:0.5rem;"><i class="fa-solid fa-comment-dots" style="margin-right:0.5rem;"></i>Send a Message</h3>
+            <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:2rem;">Fill in the form below and our team will respond promptly.</p>
+
+            <!-- JavaScript-validated contact form -->
+            <form id="contactForm" novalidate>
+              <div class="form-group">
+                <label for="name"><i class="fa-solid fa-user" style="margin-right:0.4rem;"></i>Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Your full name" required />
+                <span class="form-error" id="nameError"><i class="fa-solid fa-triangle-exclamation" style="margin-right:0.3rem;"></i>Please enter your name (minimum 2 characters).</span>
+              </div>
+
+              <div class="form-group">
+                <label for="email"><i class="fa-solid fa-envelope" style="margin-right:0.4rem;"></i>Email Address</label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required />
+                <span class="form-error" id="emailError"><i class="fa-solid fa-triangle-exclamation" style="margin-right:0.3rem;"></i>Please enter a valid email address.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="subject"><i class="fa-solid fa-tag" style="margin-right:0.4rem;"></i>Subject</label>
+                <select id="subject" name="subject">
+                  <option value="">Select a subject</option>
+                  <option value="general">General Enquiry</option>
+                  <option value="content">Content Feedback</option>
+                  <option value="collaboration">Collaboration Proposal</option>
+                  <option value="technical">Technical Support</option>
+                  <option value="education">Educational Resources</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="message"><i class="fa-solid fa-message" style="margin-right:0.4rem;"></i>Your Message</label>
+                <textarea id="message" name="message" placeholder="Write your message here (minimum 10 characters)..." required></textarea>
+                <span class="form-error" id="messageError"><i class="fa-solid fa-triangle-exclamation" style="margin-right:0.3rem;"></i>Please enter a message (minimum 10 characters).</span>
+              </div>
+
+              <button type="submit" class="btn-primary" style="width:100%; margin-top:0.5rem;"><i class="fa-solid fa-paper-plane" style="margin-right:0.5rem;"></i>Send Message</button>
+              <div class="form-success" id="formSuccess">
+                <i class="fa-solid fa-circle-check" style="margin-right:0.5rem;"></i>Thank you for your message. We will get back to you within 2 business days.
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section style="border-top:1px solid var(--border); text-align:center;">
+      <p class="section-label text-center fade-up"><i class="fa-solid fa-bell"></i> &nbsp; Stay Updated</p>
+      <h2 class="section-title text-center fade-up">Subscribe to Our <span>Newsletter</span></h2>
+      <div class="divider fade-up" style="margin: 0.8rem auto 1.5rem;"></div>
+      <p class="fade-up" style="color:var(--text-muted); max-width:500px; margin: 0 auto 2rem;">Get the latest updates on robotics developments, new articles, and industry news delivered directly to your inbox.</p>
+      <form id="newsletterForm" style="display:flex; gap:1rem; max-width:480px; margin:0 auto; flex-wrap:wrap;" class="fade-up">
+        <input type="email" placeholder="Enter your email address" style="flex:1; min-width:220px;" />
+        <button type="submit" class="btn-primary"><i class="fa-solid fa-bell" style="margin-right:0.4rem;"></i>Subscribe</button>
+      </form>
+      <div class="form-success" id="newsletterSuccess" style="max-width:480px; margin: 1rem auto 0; display:none;">
+        <i class="fa-solid fa-circle-check" style="margin-right:0.5rem;"></i>You have been subscribed successfully. Welcome to the NextGen Robotics community.
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="nav-logo">Next<span>Gen</span> Robotics</span>
+          <p>Educating the next generation about robotics and its transformative role across industries and society.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Pages</h3>
+          <ul>
+            <li><a href="index.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Home</a></li>
+            <li><a href="about.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>About</a></li>
+            <li><a href="robotics.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Robotics</a></li>
+            <li><a href="industries.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Industries</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Contact</a></li>
+            <li><a href="login.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Login</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="robotics.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Robot Types</a></li>
+            <li><a href="industries.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Applications</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Help Desk</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p><i class="fa-regular fa-copyright"></i> 2025 NextGen Robotics. All rights reserved. | Educational purposes only.</p>
+      </div>
+    </footer>
+
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
