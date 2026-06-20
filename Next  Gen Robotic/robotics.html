@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- NextGen Robotics | Robotics Page -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NextGen Robotics | Types of Robots</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Inline CSS: robot type badge -->
+  <style>
+    .type-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+      background: rgba(0,200,255,0.1); color: var(--accent);
+      border: 1px solid var(--border); padding: 0.25rem 0.8rem;
+      border-radius: 20px; margin-bottom: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">Next<span>Gen</span> Robotics</a>
+    <div class="nav-links">
+      <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="about.html"><i class="fa-solid fa-circle-info"></i> About</a>
+      <a href="robotics.html" class="active"><i class="fa-solid fa-robot"></i> Robotics</a>
+      <a href="industries.html"><i class="fa-solid fa-industry"></i> Industries</a>
+      <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+      <a href="login.html"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- Page Hero with Unsplash background -->
+    <div class="page-hero">
+      <div class="page-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1600&q=80');"></div>
+      <p class="section-label fade-up"><i class="fa-solid fa-database"></i> &nbsp; Knowledge Base</p>
+      <h1 class="fade-up">Types of <span>Robots</span></h1>
+      <p class="fade-up">Explore the different categories of robots driving change across industries, from industrial arms to humanoid companions.</p>
+    </div>
+
+    <!-- What is a Robot -->
+    <section>
+      <div class="two-col">
+        <div>
+          <p class="section-label fade-up"><i class="fa-solid fa-book"></i> &nbsp; Fundamentals</p>
+          <h2 class="section-title fade-up">What is a <span>Robot?</span></h2>
+          <div class="divider fade-up"></div>
+          <p class="fade-up" style="color:var(--text-muted); margin-bottom:1rem;">A robot is an automated machine capable of performing tasks either autonomously or under human control. Modern robots integrate mechanical systems, sensors, actuators, and computational intelligence to interact with their environment.</p>
+          <p class="fade-up" style="color:var(--text-muted); margin-bottom:1.5rem;">Key components common to most robots include a physical structure or chassis, sensors that perceive the environment, a processing unit that makes decisions, actuators that enable movement, and a power source.</p>
+          <div class="highlight-box fade-up">
+            <p><i class="fa-solid fa-quote-left" style="color:var(--accent); margin-right:0.5rem;"></i>The word "robot" originates from the Czech word <em style="color:var(--accent);">robota</em>, meaning forced labour, first used in Karel Capek's 1920 play R.U.R. (Rossum's Universal Robots).</p>
+          </div>
+        </div>
+        <div class="fade-up">
+          <!-- Unsplash image: robot components / circuit board -->
+          <div class="img-overlay-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1561144257-e32e8efc6c4f?w=800&q=80"
+              alt="Close-up of a robotic arm showing mechanical components and sensors"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Robot Types Cards -->
+    <section style="border-top: 1px solid var(--border);">
+      <p class="section-label text-center fade-up"><i class="fa-solid fa-layer-group"></i> &nbsp; Categories</p>
+      <h2 class="section-title text-center fade-up">Six Major <span>Robot Types</span></h2>
+      <div class="divider fade-up" style="margin: 0.8rem auto 3rem;"></div>
+
+      <div class="card-grid">
+        <div class="card scan-card fade-up">
+          <span class="type-badge"><i class="fa-solid fa-gears"></i> Industrial</span>
+          <div class="card-icon"><i class="fa-solid fa-cog"></i></div>
+          <h3>Industrial Robots</h3>
+          <p>Used predominantly in manufacturing, these robots perform tasks such as welding, painting, assembly, and packaging. Examples include articulated arm robots used in automotive production lines by companies such as Toyota and BMW.</p>
+        </div>
+        <div class="card scan-card fade-up">
+          <span class="type-badge"><i class="fa-solid fa-hand-holding-heart"></i> Service</span>
+          <div class="card-icon"><i class="fa-solid fa-broom"></i></div>
+          <h3>Service Robots</h3>
+          <p>Designed to assist humans in domestic or commercial environments. Examples include the iRobot Roomba for household cleaning and hotel concierge robots that guide guests. Service robots are the fastest-growing category globally.</p>
+        </div>
+        <div class="card scan-card fade-up">
+          <span class="type-badge"><i class="fa-solid fa-stethoscope"></i> Medical</span>
+          <div class="card-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+          <h3>Medical Robots</h3>
+          <p>Used in surgical procedures, rehabilitation, and diagnostics. The da Vinci Surgical System allows surgeons to perform minimally invasive procedures with high precision, reducing recovery times and surgical risks for patients.</p>
+        </div>
+        <div class="card scan-card fade-up">
+          <span class="type-badge"><i class="fa-solid fa-seedling"></i> Agricultural</span>
+          <div class="card-icon"><i class="fa-solid fa-tractor"></i></div>
+          <h3>Agricultural Robots</h3>
+          <p>Known as agribots, these machines harvest crops, monitor soil conditions, apply pesticides precisely, and tend to livestock. They address labour shortages in farming and reduce waste through precision agriculture techniques.</p>
+        </div>
+        <div class="card scan-card fade-up">
+          <span class="type-badge"><i class="fa-solid fa-car"></i> Autonomous</span>
+          <div class="card-icon"><i class="fa-solid fa-car-side"></i></div>
+          <h3>Autonomous Vehicles</h3>
+          <p>Self-driving cars, delivery drones, and underwater vehicles represent a class of mobile robots capable of navigating environments without human input, using LIDAR, cameras, GPS, and machine learning algorithms.</p>
+        </div>
+        <div class="card scan-card fade-up">
+          <span class="type-badge"><i class="fa-solid fa-person"></i> Humanoid</span>
+          <div class="card-icon"><i class="fa-solid fa-robot"></i></div>
+          <h3>Humanoid Robots</h3>
+          <p>Robots designed to resemble and interact with humans. Examples include SoftBank's Pepper, used for customer service, and Boston Dynamics' Atlas, designed for search and rescue operations in hazardous environments.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section>
+      <p class="section-label fade-up"><i class="fa-solid fa-table"></i> &nbsp; Comparison</p>
+      <h2 class="section-title fade-up">Robot Types <span>Comparison</span></h2>
+      <div class="divider fade-up"></div>
+      <div class="table-wrapper fade-up">
+        <table>
+          <thead>
+            <tr>
+              <th>Robot Type</th>
+              <th>Primary Use</th>
+              <th>Key Feature</th>
+              <th>Example</th>
+              <th>Sector</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Industrial</td>
+              <td>Manufacturing &amp; Assembly</td>
+              <td>High precision and speed</td>
+              <td>KUKA Articulated Arm</td>
+              <td>Manufacturing</td>
+            </tr>
+            <tr>
+              <td>Service</td>
+              <td>Domestic &amp; Retail Assistance</td>
+              <td>Human interaction</td>
+              <td>iRobot Roomba</td>
+              <td>Consumer</td>
+            </tr>
+            <tr>
+              <td>Medical</td>
+              <td>Surgery &amp; Rehabilitation</td>
+              <td>Micro-precision operation</td>
+              <td>da Vinci Surgical System</td>
+              <td>Healthcare</td>
+            </tr>
+            <tr>
+              <td>Agricultural</td>
+              <td>Crop Monitoring &amp; Harvesting</td>
+              <td>Autonomous outdoor navigation</td>
+              <td>DJI Agras Drone</td>
+              <td>Agriculture</td>
+            </tr>
+            <tr>
+              <td>Autonomous Vehicle</td>
+              <td>Transport &amp; Logistics</td>
+              <td>Self-navigation with AI</td>
+              <td>Waymo Self-Driving Car</td>
+              <td>Transport</td>
+            </tr>
+            <tr>
+              <td>Humanoid</td>
+              <td>Customer Service &amp; Research</td>
+              <td>Human-like movement</td>
+              <td>Boston Dynamics Atlas</td>
+              <td>Research / Retail</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- How Robots Work -->
+    <section style="border-top: 1px solid var(--border);">
+      <p class="section-label fade-up"><i class="fa-solid fa-microchip"></i> &nbsp; Technical Overview</p>
+      <h2 class="section-title fade-up">How <span>Robots Work</span></h2>
+      <div class="divider fade-up"></div>
+      <div class="two-col">
+        <div class="fade-up">
+          <ul class="nested-list">
+            <li>
+              <span><i class="fa-solid fa-eye"></i> Sensing</span>
+              <ul>
+                <li><i class="fa-solid fa-minus"></i> Cameras and visual sensors detect objects and environments</li>
+                <li><i class="fa-solid fa-minus"></i> LIDAR maps three-dimensional surroundings in real time</li>
+                <li><i class="fa-solid fa-minus"></i> Force and torque sensors measure resistance and contact</li>
+              </ul>
+            </li>
+            <li>
+              <span><i class="fa-solid fa-brain"></i> Processing</span>
+              <ul>
+                <li><i class="fa-solid fa-minus"></i> Onboard computers interpret sensor data instantly</li>
+                <li><i class="fa-solid fa-minus"></i> AI algorithms make decisions based on programmed goals</li>
+                <li><i class="fa-solid fa-minus"></i> Machine learning allows robots to improve over time</li>
+              </ul>
+            </li>
+            <li>
+              <span><i class="fa-solid fa-hand"></i> Acting</span>
+              <ul>
+                <li><i class="fa-solid fa-minus"></i> Motors and actuators convert commands into movement</li>
+                <li><i class="fa-solid fa-minus"></i> End effectors (grippers, tools) interact with objects</li>
+                <li><i class="fa-solid fa-minus"></i> Feedback loops ensure accurate and controlled motion</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="fade-up">
+          <!-- Unsplash image: AI / circuit processing -->
+          <div class="img-overlay-wrap">
+            <img
+              src="advance-robotics.jpg"
+              alt="Advanced robotic processing system showing AI-driven decision making"
+            />
+          </div>
+          <p style="color:var(--text-muted); margin-top:1.2rem; font-size:0.9rem;"><i class="fa-solid fa-info-circle" style="color:var(--accent); margin-right:0.4rem;"></i>Modern robots often use a combination of pre-programmed behaviours and adaptive AI, allowing them to handle unexpected situations in real-world environments.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="nav-logo">Next<span>Gen</span> Robotics</span>
+          <p>Educating the next generation about robotics and its transformative role across industries and society.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Pages</h3>
+          <ul>
+            <li><a href="index.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Home</a></li>
+            <li><a href="about.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>About</a></li>
+            <li><a href="robotics.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Robotics</a></li>
+            <li><a href="industries.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Industries</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Contact</a></li>
+            <li><a href="login.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Login</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="robotics.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Robot Types</a></li>
+            <li><a href="industries.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Applications</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Help Desk</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p><i class="fa-regular fa-copyright"></i> 2025 NextGen Robotics. All rights reserved. | Educational purposes only.</p>
+      </div>
+    </footer>
+
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>

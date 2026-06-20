@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- NextGen Robotics | Industries Page -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NextGen Robotics | Industries</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Inline CSS: tab component styles -->
+  <style>
+    .tabs-nav { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .tab-btn {
+      padding: 0.6rem 1.4rem; background: transparent;
+      border: 1px solid var(--border); color: var(--text-muted);
+      font-family: var(--font-heading); font-size: 0.72rem;
+      letter-spacing: 1px; text-transform: uppercase;
+      border-radius: 3px; cursor: pointer; transition: all 0.3s ease;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .tab-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .tab-btn.active { background: var(--accent); color: var(--primary); border-color: var(--accent); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: fadeInUp 0.4s ease forwards; }
+    .industry-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    @media (max-width:768px) { .industry-detail { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">Next<span>Gen</span> Robotics</a>
+    <div class="nav-links">
+      <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="about.html"><i class="fa-solid fa-circle-info"></i> About</a>
+      <a href="robotics.html"><i class="fa-solid fa-robot"></i> Robotics</a>
+      <a href="industries.html" class="active"><i class="fa-solid fa-industry"></i> Industries</a>
+      <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+      <a href="login.html"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+      <div class="page-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1600&q=80');"></div>
+      <p class="section-label fade-up"><i class="fa-solid fa-chart-bar"></i> &nbsp; Applications</p>
+      <h1 class="fade-up">Robotics Across <span>Industries</span></h1>
+      <p class="fade-up">Discover how robotics is transforming five major sectors, driving efficiency, safety, and innovation worldwide.</p>
+    </div>
+
+    <!-- Industry Tabs -->
+    <section>
+      <p class="section-label fade-up"><i class="fa-solid fa-filter"></i> &nbsp; Explore by Sector</p>
+      <h2 class="section-title fade-up">Select an <span>Industry</span></h2>
+      <div class="divider fade-up"></div>
+
+      <!-- Tab Navigation -->
+      <div class="tabs-nav fade-up">
+        <button class="tab-btn active" data-tab="healthcare"><i class="fa-solid fa-hospital"></i> Healthcare</button>
+        <button class="tab-btn" data-tab="manufacturing"><i class="fa-solid fa-industry"></i> Manufacturing</button>
+        <button class="tab-btn" data-tab="logistics"><i class="fa-solid fa-truck"></i> Logistics</button>
+        <button class="tab-btn" data-tab="agriculture"><i class="fa-solid fa-seedling"></i> Agriculture</button>
+        <button class="tab-btn" data-tab="general"><i class="fa-solid fa-globe"></i> General Environments</button>
+      </div>
+
+      <!-- Healthcare Tab -->
+      <div class="tab-panel active" id="healthcare">
+        <div class="industry-detail">
+          <div>
+            <h3 style="color:var(--accent); font-size:1.1rem; margin-bottom:1rem;"><i class="fa-solid fa-hospital" style="margin-right:0.5rem;"></i>Robotics in Healthcare</h3>
+            <p style="color:var(--text-muted); margin-bottom:1rem;">Healthcare robotics is one of the most impactful applications of modern robotic technology. From performing complex surgeries to dispensing medication and supporting rehabilitation, robots are improving patient outcomes across the globe.</p>
+            <ul class="nested-list">
+              <li>
+                <span><i class="fa-solid fa-scalpel"></i> Surgical Robots</span>
+                <ul>
+                  <li><i class="fa-solid fa-minus"></i> da Vinci Surgical System enables minimally invasive surgery</li>
+                  <li><i class="fa-solid fa-minus"></i> Smaller incisions lead to faster patient recovery times</li>
+                  <li><i class="fa-solid fa-minus"></i> Surgeon controls robot arms from a console with full precision</li>
+                </ul>
+              </li>
+              <li>
+                <span><i class="fa-solid fa-person-walking-with-cane"></i> Rehabilitation Robots</span>
+                <ul>
+                  <li><i class="fa-solid fa-minus"></i> Exoskeletons assist patients with mobility impairments</li>
+                  <li><i class="fa-solid fa-minus"></i> Robotic therapy helps stroke patients regain movement</li>
+                </ul>
+              </li>
+              <li>
+                <span><i class="fa-solid fa-pills"></i> Pharmacy Robots</span>
+                <ul>
+                  <li><i class="fa-solid fa-minus"></i> Automated dispensing reduces medication errors significantly</li>
+                  <li><i class="fa-solid fa-minus"></i> Speeds up prescription fulfilment in hospitals and pharmacies</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <!-- Unsplash: medical / healthcare -->
+            <div class="img-overlay-wrap">
+              <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=80" alt="Medical robotics equipment in a hospital surgical suite" />
+            </div>
+            <div class="highlight-box" style="margin-top:1.5rem;">
+              <p><i class="fa-solid fa-circle-check" style="color:var(--accent); margin-right:0.5rem;"></i>Over <strong style="color:var(--accent);">5,000</strong> da Vinci Surgical Systems are currently in use globally, having performed over 10 million procedures (Intuitive Surgical, 2023).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manufacturing Tab -->
+      <div class="tab-panel" id="manufacturing">
+        <div class="industry-detail">
+          <div>
+            <h3 style="color:var(--accent); font-size:1.1rem; margin-bottom:1rem;"><i class="fa-solid fa-industry" style="margin-right:0.5rem;"></i>Robotics in Manufacturing</h3>
+            <p style="color:var(--text-muted); margin-bottom:1rem;">Manufacturing was the first sector to widely adopt robotics. Industrial robots have transformed production lines by increasing speed, precision, and safety while reducing costs associated with human labour in repetitive or hazardous tasks.</p>
+            <ul class="nested-list">
+              <li>
+                <span><i class="fa-solid fa-car"></i> Automotive Industry</span>
+                <ul>
+                  <li><i class="fa-solid fa-minus"></i> Robotic arms weld and assemble car bodies at high speed</li>
+                  <li><i class="fa-solid fa-minus"></i> Paint robots apply uniform coatings with minimal waste</li>
+                  <li><i class="fa-solid fa-minus"></i> Quality inspection systems identify defects instantly</li>
+                </ul>
+              </li>
+              <li>
+                <span><i class="fa-solid fa-microchip"></i> Electronics Manufacturing</span>
+                <ul>
+                  <li><i class="fa-solid fa-minus"></i> Micro-precision robots assemble circuit boards</li>
+                  <li><i class="fa-solid fa-minus"></i> Collaborative robots work safely alongside human workers</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <!-- Unsplash: factory / manufacturing -->
+            <div class="img-overlay-wrap">
+              <img src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&q=80" alt="Industrial robotic arms on an automotive manufacturing production line" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Logistics Tab -->
+      <div class="tab-panel" id="logistics">
+        <div class="industry-detail">
+          <div>
+            <h3 style="color:var(--accent); font-size:1.1rem; margin-bottom:1rem;"><i class="fa-solid fa-truck" style="margin-right:0.5rem;"></i>Robotics in Logistics</h3>
+            <p style="color:var(--text-muted); margin-bottom:1rem;">The logistics and warehousing sector has seen dramatic improvements from robotic automation. E-commerce growth has accelerated the adoption of robots to handle the enormous increase in order volumes efficiently and accurately.</p>
+            <ul class="nested-list">
+              <li>
+                <span><i class="fa-solid fa-warehouse"></i> Warehouse Automation</span>
+                <ul>
+                  <li><i class="fa-solid fa-minus"></i> Amazon Kiva robots move shelves directly to pickers</li>
+                  <li><i class="fa-solid fa-minus"></i> Sorting robots classify and route parcels at high speed</li>
+                  <li><i class="fa-solid fa-minus"></i> Autonomous mobile robots navigate warehouse floors safely</li>
+                </ul>
+              </li>
+              <li>
+                <span><i class="fa-solid fa-box"></i> Delivery Robots</span>
+                <ul>
+                  <li><i class="fa-solid fa-minus"></i> Last-mile delivery robots operate on pavements in pilot cities</li>
+                  <li><i class="fa-solid fa-minus"></i> Drone deliveries reduce delivery times in rural areas</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <!-- Unsplash: warehouse / logistics -->
+            <div class="img-overlay-wrap">
+              <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&q=80" alt="Automated warehouse with robotic systems managing inventory" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agriculture Tab -->
+      <div class="tab-panel" id="agriculture">
+        <div class="industry-detail">
+          <div>
+            <h3 style="color:var(--accent); font-size:1.1rem; margin-bottom:1rem;"><i class="fa-solid fa-seedling" style="margin-right:0.5rem;"></i>Robotics in Agriculture</h3>
+            <p style="color:var(--text-muted); margin-bottom:1rem;">Agricultural robotics addresses critical challenges including labour shortages, food security, and sustainability. Precision robots apply only what is needed, where it is needed, reducing chemical use and environmental impact.</p>
+            <ul class="nested-list">
+              <li>
+                <span><i class="fa-solid fa-wheat-awn"></i> Crop Management</span>
+                <ul>
+                  <li><i class="fa-solid fa-minus"></i> Harvesting robots pick fruit and vegetables gently and quickly</li>
+                  <li><i class="fa-solid fa-minus"></i> Weeding robots identify and remove weeds without herbicides</li>
+                  <li><i class="fa-solid fa-minus"></i> Soil sampling robots analyse nutrients and moisture levels</li>
+                </ul>
+              </li>
+              <li>
+                <span><i class="fa-solid fa-helicopter"></i> Aerial Monitoring</span>
+                <ul>
+                  <li><i class="fa-solid fa-minus"></i> Agricultural drones survey large fields from the air</li>
+                  <li><i class="fa-solid fa-minus"></i> Thermal imaging identifies diseased crops early</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <!-- Unsplash: agriculture drone -->
+            <div class="img-overlay-wrap">
+              <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=800&q=80" alt="Agricultural drone flying over green crop fields for precision farming" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- General Environments Tab -->
+      <div class="tab-panel" id="general">
+        <div class="industry-detail">
+          <div>
+            <h3 style="color:var(--accent); font-size:1.1rem; margin-bottom:1rem;"><i class="fa-solid fa-globe" style="margin-right:0.5rem;"></i>Robots in General Environments</h3>
+            <p style="color:var(--text-muted); margin-bottom:1rem;">Beyond specialised industries, robots are increasingly present in public and domestic spaces, from schools and hotels to disaster response teams and space exploration missions.</p>
+            <ul class="nested-list">
+              <li>
+                <span><i class="fa-solid fa-school"></i> Education</span>
+                <ul>
+                  <li><i class="fa-solid fa-minus"></i> Educational robots teach coding and problem-solving to students</li>
+                  <li><i class="fa-solid fa-minus"></i> AI tutors personalise learning experiences for individuals</li>
+                </ul>
+              </li>
+              <li>
+                <span><i class="fa-solid fa-shield-halved"></i> Emergency Response</span>
+                <ul>
+                  <li><i class="fa-solid fa-minus"></i> Search and rescue robots enter collapsed buildings safely</li>
+                  <li><i class="fa-solid fa-minus"></i> Bomb disposal robots neutralise explosive threats remotely</li>
+                </ul>
+              </li>
+              <li>
+                <span><i class="fa-solid fa-satellite"></i> Space Exploration</span>
+                <ul>
+                  <li><i class="fa-solid fa-minus"></i> NASA's Perseverance rover explores the Martian surface</li>
+                  <li><i class="fa-solid fa-minus"></i> Robotic arms on the ISS perform external maintenance tasks</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <!-- Unsplash: space / technology -->
+            <div class="img-overlay-wrap">
+              <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&q=80" alt="Space exploration robot representing advanced robotics in general environments" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Industry Overview Table -->
+    <section style="border-top: 1px solid var(--border);">
+      <p class="section-label fade-up"><i class="fa-solid fa-table"></i> &nbsp; Summary</p>
+      <h2 class="section-title fade-up">Industry <span>Overview Table</span></h2>
+      <div class="divider fade-up"></div>
+      <div class="table-wrapper fade-up">
+        <table>
+          <thead>
+            <tr>
+              <th>Industry</th>
+              <th>Key Robot Types</th>
+              <th>Primary Benefit</th>
+              <th>Adoption Level</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Healthcare</td>
+              <td>Surgical, rehabilitation, pharmacy</td>
+              <td>Improved precision and patient safety</td>
+              <td>High</td>
+            </tr>
+            <tr>
+              <td>Manufacturing</td>
+              <td>Articulated arms, collaborative robots</td>
+              <td>Speed, consistency, and reduced waste</td>
+              <td>Very High</td>
+            </tr>
+            <tr>
+              <td>Logistics</td>
+              <td>AMRs, drones, sorting robots</td>
+              <td>Faster order fulfilment</td>
+              <td>High</td>
+            </tr>
+            <tr>
+              <td>Agriculture</td>
+              <td>Harvesting robots, aerial drones</td>
+              <td>Labour saving and sustainability</td>
+              <td>Medium</td>
+            </tr>
+            <tr>
+              <td>General Environments</td>
+              <td>Humanoid, service, exploration robots</td>
+              <td>Accessibility and hazard reduction</td>
+              <td>Growing</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="nav-logo">Next<span>Gen</span> Robotics</span>
+          <p>Educating the next generation about robotics and its transformative role across industries and society.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Pages</h3>
+          <ul>
+            <li><a href="index.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Home</a></li>
+            <li><a href="about.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>About</a></li>
+            <li><a href="robotics.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Robotics</a></li>
+            <li><a href="industries.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Industries</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Contact</a></li>
+            <li><a href="login.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Login</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="robotics.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Robot Types</a></li>
+            <li><a href="industries.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Applications</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem; margin-right:0.4rem;"></i>Help Desk</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p><i class="fa-regular fa-copyright"></i> 2025 NextGen Robotics. All rights reserved. | Educational purposes only.</p>
+      </div>
+    </footer>
+
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>

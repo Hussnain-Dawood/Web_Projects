@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Personal Tech Advisor – TechHub Electronics</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ── SIDEBAR ── */
+    .profile-sidebar { background: var(--th-navy-card); border-radius: var(--radius-lg); padding: 20px; border: 1px solid var(--th-border); box-shadow: var(--shadow-card); }
+    .profile-nav { list-style: none; padding: 0; margin: 0; }
+    .profile-nav li { margin-bottom: 5px; }
+    .profile-nav a { display: flex; align-items: center; gap: 10px; color: var(--th-text); text-decoration: none; padding: 12px 15px; border-radius: 8px; font-weight: 500; transition: all 0.2s; }
+    .profile-nav a:hover, .profile-nav a.active { background: var(--th-accent-dim); color: var(--th-accent); }
+    .profile-nav a i { font-size: 1.1rem; }
+
+    /* ── HERO BANNER ── */
+    .ta-hero {
+      background: linear-gradient(135deg, rgba(11,94,215,0.18) 0%, rgba(99,57,237,0.14) 60%, rgba(0,200,100,0.06) 100%);
+      border: 1px solid rgba(11,94,215,0.3); border-radius: var(--radius-lg);
+      padding: 36px 40px; display: flex; align-items: center;
+      justify-content: space-between; gap: 24px; flex-wrap: wrap;
+      position: relative; overflow: hidden;
+    }
+    .ta-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 50%,rgba(11,94,215,0.12) 0%,transparent 70%); pointer-events:none; }
+    .ta-hero-left h2 { font-family:'Rajdhani',sans-serif; font-size:32px; font-weight:700; margin:0 0 6px; }
+    .ta-hero-left p  { color:var(--th-muted); margin:0; font-size:14px; max-width:520px; }
+    .ta-hero-icon    { font-size:72px; color:var(--th-accent); opacity:0.85; line-height:1; flex-shrink:0; }
+    .ta-badge {
+      display:inline-flex; align-items:center; gap:6px;
+      background:rgba(11,94,215,0.15); border:1px solid rgba(11,94,215,0.35);
+      color:var(--th-accent); border-radius:20px; padding:4px 12px;
+      font-size:12px; font-weight:600; margin-bottom:10px;
+    }
+
+    /* ── SECTION CARD ── */
+    .ta-card { background:var(--th-navy-card); border-radius:var(--radius-lg); border:1px solid var(--th-border); box-shadow:var(--shadow-card); overflow:hidden; }
+    .ta-card-head { padding:18px 24px 16px; border-bottom:1px solid var(--th-border); display:flex; align-items:center; gap:12px; }
+    .ta-card-head-icon { width:40px; height:40px; border-radius:10px; background:rgba(11,94,215,0.15); display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--th-accent); flex-shrink:0; }
+    .ta-card-head h5 { font-family:'Rajdhani',sans-serif; font-weight:700; margin:0; font-size:17px; }
+    .ta-card-head p  { margin:0; font-size:12px; color:var(--th-muted); }
+    .ta-card-body { padding:22px 24px 26px; }
+
+    /* ── CATEGORY GRID ── */
+    .ta-cat-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(165px,1fr)); gap:12px; }
+    .ta-cat-item {
+      background:rgba(255,255,255,0.03); border:2px solid var(--th-border);
+      border-radius:14px; padding:18px 14px; text-align:center;
+      cursor:pointer; transition:all .22s; user-select:none; position:relative;
+    }
+    .ta-cat-item:hover { border-color:var(--th-accent); background:rgba(11,94,215,0.07); transform:translateY(-2px); }
+    .ta-cat-item.selected { border-color:var(--th-accent); background:rgba(11,94,215,0.17); }
+    .ta-cat-item.selected .ta-check { opacity:1; transform:scale(1); }
+    .ta-cat-item.selected .ta-ci { color:var(--th-accent); }
+    .ta-check { position:absolute; top:9px; right:9px; width:20px; height:20px; background:var(--th-accent); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; color:#fff; opacity:0; transform:scale(0.4); transition:all .2s; }
+    .ta-ci { font-size:28px; color:var(--th-muted); margin-bottom:8px; transition:color .2s; display:block; }
+    .ta-cn { font-family:'Rajdhani',sans-serif; font-weight:600; font-size:14px; color:var(--th-text); margin-bottom:2px; }
+    .ta-cd { font-size:11px; color:var(--th-muted); line-height:1.4; }
+
+    /* ── USE CASE GRID ── */
+    .ta-use-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(148px,1fr)); gap:10px; }
+    .ta-use-item { background:rgba(255,255,255,0.03); border:1.5px solid var(--th-border); border-radius:10px; padding:12px 14px; cursor:pointer; transition:all .2s; user-select:none; display:flex; align-items:center; gap:8px; }
+    .ta-use-item i { font-size:16px; color:var(--th-muted); transition:color .2s; flex-shrink:0; }
+    .ta-use-item span { font-size:13px; font-weight:500; color:var(--th-text); }
+    .ta-use-item:hover { border-color:var(--th-accent); background:rgba(11,94,215,0.07); }
+    .ta-use-item.selected { border-color:var(--th-accent); background:rgba(11,94,215,0.17); }
+    .ta-use-item.selected i { color:var(--th-accent); }
+
+    /* ── BUDGET BUTTONS ── */
+    .ta-budget-row { display:flex; flex-wrap:wrap; gap:10px; }
+    .ta-budget-btn { background:rgba(255,255,255,0.04); border:1.5px solid var(--th-border); color:var(--th-text); border-radius:8px; padding:9px 18px; font-size:13px; font-weight:500; cursor:pointer; transition:all .2s; user-select:none; }
+    .ta-budget-btn:hover { border-color:var(--th-accent); background:rgba(11,94,215,0.08); }
+    .ta-budget-btn.selected { border-color:var(--th-accent); background:rgba(11,94,215,0.2); color:#fff; }
+
+    /* ── SAVE BAR ── */
+    .ta-save-bar { background:var(--th-navy-card); border:1px solid var(--th-border); border-radius:var(--radius-lg); padding:20px 24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; }
+    .ta-save-info strong { color:var(--th-text); display:block; margin-bottom:2px; font-size:16px; font-family:'Rajdhani',sans-serif; font-weight:700; }
+    .ta-save-info span { font-size:13px; color:var(--th-muted); }
+    .ta-save-btn { background:var(--th-accent); color:#fff; border:none; border-radius:10px; padding:12px 28px; font-size:15px; font-weight:700; cursor:pointer; font-family:'Rajdhani',sans-serif; transition:background .2s; display:flex; align-items:center; gap:8px; }
+    .ta-save-btn:hover { background:#0a5fd4; }
+    .ta-saved-msg { display:none; align-items:center; gap:8px; color:#00c864; font-size:14px; font-weight:600; }
+    .ta-saved-msg.show { display:flex; }
+
+    /* ── REC CARDS ── */
+    .ta-rec-card { background:var(--th-navy-card); border:1px solid var(--th-border); border-radius:14px; overflow:hidden; transition:border-color .2s, transform .2s; height:100%; display:flex; flex-direction:column; }
+    .ta-rec-card:hover { border-color:var(--th-accent); transform:translateY(-3px); }
+    .ta-rec-img { height:150px; background:rgba(255,255,255,0.03); display:flex; align-items:center; justify-content:center; border-bottom:1px solid var(--th-border); position:relative; padding:10px; }
+    .ta-rec-img img { max-height:120px; object-fit:contain; }
+    .ta-advisor-badge { position:absolute; top:8px; left:8px; background:linear-gradient(135deg,var(--th-accent),#6339ed); color:#fff; border-radius:20px; padding:3px 10px; font-size:10px; font-weight:700; display:flex; align-items:center; gap:4px; }
+    .ta-rec-body { padding:14px 16px 16px; flex:1; display:flex; flex-direction:column; }
+    .ta-rec-cat { font-size:11px; color:var(--th-accent); font-weight:600; text-transform:uppercase; letter-spacing:.5px; margin-bottom:4px; }
+    .ta-rec-name { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:15px; color:var(--th-text); margin-bottom:4px; line-height:1.3; }
+    .ta-rec-why { font-size:11px; color:var(--th-muted); margin-bottom:10px; line-height:1.5; flex:1; }
+    .ta-rec-price { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:19px; color:var(--th-text); margin-bottom:10px; }
+    .ta-rec-price .old { font-size:13px; color:var(--th-muted); text-decoration:line-through; margin-left:6px; font-weight:400; }
+
+    /* ── SIDEBAR SUMMARY ── */
+    .ta-sum-chip { display:inline-flex; align-items:center; gap:5px; background:rgba(11,94,215,0.14); border:1px solid rgba(11,94,215,0.3); color:#93c5fd; border-radius:20px; padding:4px 10px; font-size:11px; font-weight:500; margin:3px; }
+    .ta-empty-note { text-align:center; padding:20px 10px; color:var(--th-muted); font-size:13px; }
+    .ta-empty-note i { font-size:28px; opacity:.3; display:block; margin-bottom:8px; }
+
+    /* ── EMPTY STATE REC ── */
+    .ta-recs-empty { text-align:center; padding:50px 24px; }
+    .ta-recs-empty i { font-size:52px; opacity:.15; display:block; margin-bottom:14px; color:var(--th-accent); }
+    .ta-recs-empty h5 { font-family:'Rajdhani',sans-serif; font-weight:700; margin-bottom:8px; }
+    .ta-recs-empty p  { font-size:14px; color:var(--th-muted); margin:0; }
+  </style>
+</head>
+<body class="bg-section-alt">
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-banner-inner">
+    <div class="cookie-text">
+      <i class="bi bi-shield-lock-fill text-accent me-2"></i>
+      <span>We use cookies to improve your shopping experience. By continuing you agree to our <a href="#">Cookie Policy</a>.</span>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn btn-sm btn-outline-custom" onclick="cookieDecline()">Manage Preferences</button>
+      <button class="btn btn-sm btn-primary-custom" onclick="cookieAccept()">Accept All</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container-fluid px-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <span><i class="bi bi-truck me-1"></i> Free shipping on orders over $99 Australia-wide</span>
+      <span class="d-none d-md-inline"><i class="bi bi-telephone me-1"></i> 1800-TECHHUB &nbsp;|&nbsp; <i class="bi bi-clock me-1"></i> Mon–Sat 9am–6pm AEST</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="mainNav">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="home.html">
+      <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+      <span class="brand-name">Tech<span class="brand-accent">Hub</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="products.html" data-bs-toggle="dropdown">Products</a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="products.html#smartphones"><img src="assets/images/smartphone.png" style="width:18px;object-fit:contain;" class="me-2">Smartphones &amp; Tablets</a></li>
+            <li><a class="dropdown-item" href="products.html#laptops"><img src="assets/images/laptop.png" style="width:18px;object-fit:contain;" class="me-2">Laptops &amp; Accessories</a></li>
+            <li><a class="dropdown-item" href="products.html#gaming"><img src="assets/images/gaming.png" style="width:18px;object-fit:contain;" class="me-2">Gaming</a></li>
+            <li><a class="dropdown-item" href="products.html#smarthome"><img src="assets/images/smarthome.png" style="width:18px;object-fit:contain;" class="me-2">Smart Home &amp; IoT</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="click-collect.html">Click &amp; Collect</a></li>
+        <li class="nav-item"><a class="nav-link" href="try-before-buy.html">Try Before You Buy</a></li>
+        <li class="nav-item"><a class="nav-link" href="trade_in.html">Trade-In</a></li>
+        <li class="nav-item"><a class="nav-link" href="tech_blog.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="about_us.html">About Us</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+        <div class="search-wrap d-none d-lg-flex">
+          <input class="form-control search-input" type="search" placeholder="Search products…"/>
+          <button class="btn-search"><i class="bi bi-search"></i></button>
+        </div>
+        <a href="profile.html" class="nav-icon-btn" id="navProfileBtn" title="Account"><i class="bi bi-person-circle text-accent"></i></a>
+        <a href="checkout.html" class="nav-icon-btn position-relative" title="Cart">
+          <i class="bi bi-bag-fill"></i>
+          <span class="cart-badge">3</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-hero pt-4 pb-0">
+  <div class="container py-4">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb" style="font-size:13px;opacity:.7;">
+        <li class="breadcrumb-item"><a href="home.html" class="text-accent text-decoration-none">Home</a></li>
+        <li class="breadcrumb-item"><a href="profile.html" class="text-accent text-decoration-none">My Profile</a></li>
+        <li class="breadcrumb-item active">Tech Advisor</li>
+      </ol>
+    </nav>
+    <h1 class="page-hero-title mb-0">Personal <span class="text-gradient">Tech Advisor</span></h1>
+    <p class="text-muted-light mt-2 mb-0" style="max-width:580px;">Tell us your tech interests and lifestyle. Our AI advisor will instantly curate product recommendations, upgrade alerts, and deals built around your profile.</p>
+  </div>
+</section>
+
+<!-- MAIN LAYOUT -->
+<section class="section-padded pt-4">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- SIDEBAR -->
+      <div class="col-lg-3">
+        <div class="profile-sidebar sticky-top" style="top:100px;">
+          <div class="d-flex align-items-center gap-3 mb-4 px-2">
+            <div id="sidebarAvatar" style="width:50px;height:50px;background:var(--th-accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:bold;">JS</div>
+            <div>
+              <h6 class="mb-0 fw-bold" id="sidebarName">John Smith</h6>
+              <span class="small text-muted">TechHub Member</span>
+            </div>
+          </div>
+          <ul class="profile-nav">
+            <li><a href="profile.html"><i class="bi bi-person-vcard"></i> Dashboard</a></li>
+            <li><a href="tech_advisor.html" class="active"><i class="bi bi-stars"></i> Tech Advisor</a></li>
+            <li><a href="#"><i class="bi bi-box-seam"></i> Order History</a></li>
+            <li><a href="#"><i class="bi bi-heart"></i> Wishlist</a></li>
+            <li><a href="#"><i class="bi bi-gear"></i> Settings</a></li>
+            <li><a href="index.html" class="text-danger mt-3" onclick="localStorage.removeItem('th_logged_in');localStorage.removeItem('th_show_interest_banner');"><i class="bi bi-box-arrow-right"></i> Sign Out</a></li>
+          </ul>
+          <hr style="border-color:var(--th-border);margin:16px 0;">
+          <p style="font-size:11px;font-weight:700;color:var(--th-muted);text-transform:uppercase;letter-spacing:.5px;padding:0 6px;margin-bottom:10px;">Your Profile</p>
+          <div id="sidebarSummary">
+            <div class="ta-empty-note"><i class="bi bi-stars"></i><p>No profile yet — set it up on the right!</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT -->
+      <div class="col-lg-9">
+        <div class="row g-4">
+
+          <!-- HERO -->
+          <div class="col-12">
+            <div class="ta-hero">
+              <div class="ta-hero-left">
+                <div class="ta-badge"><i class="bi bi-stars"></i> AI-Powered Personalisation</div>
+                <h2>Your Tech, <span class="text-gradient">Your Profile.</span></h2>
+                <p>Select your interests, lifestyle, and budget. Our advisor instantly matches the best products, upgrades, and exclusive deals to your unique tech profile — updated every time you save.</p>
+              </div>
+              <div class="ta-hero-icon d-none d-md-block"><i class="bi bi-stars"></i></div>
+            </div>
+          </div>
+
+          <!-- STEP 1: INTERESTS -->
+          <div class="col-12">
+            <div class="ta-card">
+              <div class="ta-card-head">
+                <div class="ta-card-head-icon"><i class="bi bi-tag-fill"></i></div>
+                <div>
+                  <h5>Step 1 — Choose Your Interests</h5>
+                  <p>Select all the tech categories you care about — pick as many as you like.</p>
+                </div>
+              </div>
+              <div class="ta-card-body">
+                <div class="ta-cat-grid" id="taCatGrid">
+                  <div class="ta-cat-item" data-id="gaming"       onclick="toggleCat(this)"><div class="ta-check"><i class="bi bi-check"></i></div><i class="bi bi-controller ta-ci"></i><div class="ta-cn">Gaming</div><div class="ta-cd">Consoles, PCs &amp; peripherals</div></div>
+                  <div class="ta-cat-item" data-id="smartphones"  onclick="toggleCat(this)"><div class="ta-check"><i class="bi bi-check"></i></div><i class="bi bi-phone ta-ci"></i><div class="ta-cn">Smartphones</div><div class="ta-cd">Flagship phones &amp; tablets</div></div>
+                  <div class="ta-cat-item" data-id="laptops"      onclick="toggleCat(this)"><div class="ta-check"><i class="bi bi-check"></i></div><i class="bi bi-laptop ta-ci"></i><div class="ta-cn">Laptops &amp; Work</div><div class="ta-cd">Ultrabooks, MacBooks, accessories</div></div>
+                  <div class="ta-cat-item" data-id="smarthome"    onclick="toggleCat(this)"><div class="ta-check"><i class="bi bi-check"></i></div><i class="bi bi-house-gear ta-ci"></i><div class="ta-cn">Smart Home</div><div class="ta-cd">IoT, lighting &amp; security</div></div>
+                  <div class="ta-cat-item" data-id="audio"        onclick="toggleCat(this)"><div class="ta-check"><i class="bi bi-check"></i></div><i class="bi bi-headphones ta-ci"></i><div class="ta-cn">Audio</div><div class="ta-cd">Headphones, speakers &amp; home theatre</div></div>
+                  <div class="ta-cat-item" data-id="photography"  onclick="toggleCat(this)"><div class="ta-check"><i class="bi bi-check"></i></div><i class="bi bi-camera ta-ci"></i><div class="ta-cn">Photography</div><div class="ta-cd">Cameras, drones &amp; video gear</div></div>
+                  <div class="ta-cat-item" data-id="wearables"    onclick="toggleCat(this)"><div class="ta-check"><i class="bi bi-check"></i></div><i class="bi bi-watch ta-ci"></i><div class="ta-cn">Wearables</div><div class="ta-cd">Smartwatches &amp; fitness trackers</div></div>
+                  <div class="ta-cat-item" data-id="networking"   onclick="toggleCat(this)"><div class="ta-check"><i class="bi bi-check"></i></div><i class="bi bi-wifi ta-ci"></i><div class="ta-cn">Networking</div><div class="ta-cd">Routers, NAS &amp; mesh Wi-Fi</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2: USE CASE -->
+          <div class="col-12">
+            <div class="ta-card">
+              <div class="ta-card-head">
+                <div class="ta-card-head-icon"><i class="bi bi-person-gear"></i></div>
+                <div>
+                  <h5>Step 2 — How Do You Use Tech?</h5>
+                  <p>Help us understand your lifestyle so we can match the right products.</p>
+                </div>
+              </div>
+              <div class="ta-card-body">
+                <div class="ta-use-grid" id="taUseGrid">
+                  <div class="ta-use-item" data-id="student"      onclick="toggleUse(this)"><i class="bi bi-mortarboard"></i><span>Student</span></div>
+                  <div class="ta-use-item" data-id="professional" onclick="toggleUse(this)"><i class="bi bi-briefcase"></i><span>Professional</span></div>
+                  <div class="ta-use-item" data-id="creator"      onclick="toggleUse(this)"><i class="bi bi-brush"></i><span>Content Creator</span></div>
+                  <div class="ta-use-item" data-id="gamer"        onclick="toggleUse(this)"><i class="bi bi-joystick"></i><span>Hardcore Gamer</span></div>
+                  <div class="ta-use-item" data-id="family"       onclick="toggleUse(this)"><i class="bi bi-people"></i><span>Family &amp; Home</span></div>
+                  <div class="ta-use-item" data-id="traveller"    onclick="toggleUse(this)"><i class="bi bi-airplane"></i><span>Traveller</span></div>
+                  <div class="ta-use-item" data-id="casual"       onclick="toggleUse(this)"><i class="bi bi-emoji-smile"></i><span>Casual User</span></div>
+                  <div class="ta-use-item" data-id="techie"       onclick="toggleUse(this)"><i class="bi bi-cpu"></i><span>Tech Enthusiast</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: BUDGET -->
+          <div class="col-12">
+            <div class="ta-card">
+              <div class="ta-card-head">
+                <div class="ta-card-head-icon"><i class="bi bi-cash-coin"></i></div>
+                <div>
+                  <h5>Step 3 — Your Budget Range</h5>
+                  <p>We'll prioritise recommendations within your preferred spend range.</p>
+                </div>
+              </div>
+              <div class="ta-card-body">
+                <div class="ta-budget-row" id="taBudgetRow">
+                  <button class="ta-budget-btn" data-id="under200"   onclick="selectBudget(this)">Under $200</button>
+                  <button class="ta-budget-btn" data-id="200to500"   onclick="selectBudget(this)">$200 – $500</button>
+                  <button class="ta-budget-btn" data-id="500to1000"  onclick="selectBudget(this)">$500 – $1,000</button>
+                  <button class="ta-budget-btn" data-id="1000to2000" onclick="selectBudget(this)">$1,000 – $2,000</button>
+                  <button class="ta-budget-btn" data-id="over2000"   onclick="selectBudget(this)">$2,000+</button>
+                  <button class="ta-budget-btn" data-id="any"        onclick="selectBudget(this)">No Limit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SAVE BAR -->
+          <div class="col-12">
+            <div class="ta-save-bar">
+              <div class="ta-save-info">
+                <strong>Ready to personalise your experience?</strong>
+                <span>Save your profile and we'll instantly show your advisor picks below.</span>
+              </div>
+              <div class="d-flex align-items-center gap-3 flex-wrap">
+                <span class="ta-saved-msg" id="taSavedMsg"><i class="bi bi-check-circle-fill"></i> Profile saved! Showing your picks.</span>
+                <button class="ta-save-btn" onclick="saveProfile()"><i class="bi bi-stars"></i> Save My Profile</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- YOUR ADVISOR PICKS -->
+          <div class="col-12">
+            <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+              <div>
+                <div class="ta-badge mb-1"><i class="bi bi-stars"></i> Based on Your Profile</div>
+                <h4 class="mb-0" style="font-family:'Rajdhani',sans-serif;font-weight:700;">Your Advisor Picks</h4>
+              </div>
+              <a href="products.html" class="btn btn-outline-custom btn-sm">Browse All <i class="bi bi-arrow-right ms-1"></i></a>
+            </div>
+
+            <!-- Empty State -->
+            <div class="ta-card" id="taRecsEmpty">
+              <div class="ta-recs-empty">
+                <i class="bi bi-stars"></i>
+                <h5>No profile set yet</h5>
+                <p>Select your interests above and save your profile to see personalised picks here.</p>
+              </div>
+            </div>
+
+            <!-- Recs Grid -->
+            <div class="row g-3" id="taRecsGrid" style="display:none;"></div>
+          </div>
+
+        </div>
+      </div><!-- end col-lg-9 -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer pt-5 pb-3 mt-5">
+  <div class="container">
+    <div class="row g-4 mb-5">
+      <div class="col-lg-4">
+        <a class="navbar-brand d-flex align-items-center gap-2 mb-3" href="home.html">
+          <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+          <span class="brand-name">Tech<span class="brand-accent">Hub</span></span>
+        </a>
+        <p class="text-muted-light">Australia's trusted electronics retailer since 1998.</p>
+        <div class="social-links mt-3">
+          <a href="#"><i class="bi bi-facebook"></i></a><a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-twitter-x"></i></a><a href="#"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Products</h6>
+        <ul class="footer-links">
+          <li><a href="products.html#smartphones">Smartphones</a></li>
+          <li><a href="products.html#laptops">Laptops</a></li>
+          <li><a href="products.html#gaming">Gaming</a></li>
+          <li><a href="products.html#smarthome">Smart Home</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Services</h6>
+        <ul class="footer-links">
+          <li><a href="click-collect.html">Click &amp; Collect</a></li>
+          <li><a href="try-before-buy.html">Try Before You Buy</a></li>
+          <li><a href="trade_in.html">Trade-In &amp; Upgrade</a></li>
+          <li><a href="rewards.html">TechHub Rewards</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Support</h6>
+        <ul class="footer-links">
+          <li><a href="support.html">Help Centre</a></li>
+          <li><a href="#">Returns &amp; Refunds</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Legal</h6>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider"/>
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mt-4">
+      <p class="text-muted-light mb-0 small">© 2026 TechHub Electronics Pty Ltd. ABN 12 345 678 901. All rights reserved.</p>
+      <div class="payment-icons d-flex gap-2">
+        <span class="payment-icon"><i class="bi bi-credit-card-2-front"></i> Visa</span>
+        <span class="payment-icon"><i class="bi bi-credit-card-fill"></i> Mastercard</span>
+        <span class="payment-icon"><i class="bi bi-paypal"></i> PayPal</span>
+        <span class="payment-icon">Afterpay</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="main.js"></script>
+<script>
+/* ── AUTH GUARD ── */
+if (localStorage.getItem('th_logged_in') !== 'true') {
+  window.location.replace('index.html');
+}
+
+/* ── PRODUCTS DATABASE ── */
+var PRODUCTS = [
+  { name:'Samsung Galaxy S25 Ultra', cat:'Smartphones', interest:'smartphones', price:'$1,899', old:'$2,199', img:'assets/images/samsung.jfif',   why:'Top-rated smartphone — perfect for mobile-first users.' },
+  { name:'Apple iPhone 16 Pro Max',  cat:'Smartphones', interest:'smartphones', price:'$1,799', old:null,     img:'assets/images/smartphone.png', why:'Latest iPhone with titanium build and Action Button.' },
+  { name:'MacBook Air M3 15"',       cat:'Laptops',     interest:'laptops',     price:'$1,599', old:'$1,799', img:'assets/images/laptop.png',     why:'Best-rated laptop for work, study and creative tasks.' },
+  { name:'Dell XPS 15 OLED',         cat:'Laptops',     interest:'laptops',     price:'$2,299', old:null,     img:'assets/images/laptop.png',     why:'Stunning OLED display — ideal for professionals.' },
+  { name:'PlayStation 5 Pro',        cat:'Gaming',      interest:'gaming',      price:'$849',   old:null,     img:'assets/images/gaming.png',     why:'Next-gen console matched to your gaming profile.' },
+  { name:'ASUS ROG Strix G16',       cat:'Gaming',      interest:'gaming',      price:'$2,499', old:'$2,799', img:'assets/images/gaming.png',     why:'High-refresh gaming laptop — built for competitive play.' },
+  { name:'Google Nest Hub Max',      cat:'Smart Home',  interest:'smarthome',   price:'$249',   old:'$349',   img:'assets/images/smarthome.png',  why:'Central smart home hub matching your IoT interests.' },
+  { name:'Philips Hue Starter Kit',  cat:'Smart Home',  interest:'smarthome',   price:'$189',   old:null,     img:'assets/images/smarthome.png',  why:'Best-selling smart lighting kit for connected homes.' },
+  { name:'Sony WH-1000XM5',          cat:'Audio',       interest:'audio',       price:'$449',   old:'$549',   img:'assets/images/smarthome.png',  why:'Industry-leading noise cancellation for audiophiles.' },
+  { name:'Apple Watch Ultra 2',      cat:'Wearables',   interest:'wearables',   price:'$1,299', old:null,     img:'assets/images/smartphone.png', why:'Premium smartwatch for active lifestyles.' },
+  { name:'DJI Osmo Pocket 3',        cat:'Photography', interest:'photography', price:'$699',   old:null,     img:'assets/images/smartphone.png', why:'Compact 4K camera perfect for content creators.' },
+  { name:'TP-Link Deco XE75 Pro',    cat:'Networking',  interest:'networking',  price:'$329',   old:'$399',   img:'assets/images/smarthome.png',  why:'Whole-home mesh Wi-Fi 6E for seamless connectivity.' },
+];
+
+/* ── STATE ── */
+var S = { interests:[], usecases:[], budget:null };
+
+/* ── INIT: load saved data ── */
+(function init() {
+  // Load full profile
+  var saved = JSON.parse(localStorage.getItem('th_ta_profile') || '{}');
+  if (saved.interests) S.interests = saved.interests;
+  if (saved.usecases)  S.usecases  = saved.usecases;
+  if (saved.budget)    S.budget    = saved.budget;
+
+  // Merge simple banner interests
+  var simple = JSON.parse(localStorage.getItem('th_interests') || '[]');
+  simple.forEach(function(i){ if(S.interests.indexOf(i)===-1) S.interests.push(i); });
+
+  // Mark UI
+  S.interests.forEach(function(id){
+    var el = document.querySelector('#taCatGrid [data-id="'+id+'"]');
+    if(el) el.classList.add('selected');
+  });
+  S.usecases.forEach(function(id){
+    var el = document.querySelector('#taUseGrid [data-id="'+id+'"]');
+    if(el) el.classList.add('selected');
+  });
+  if(S.budget){
+    var el = document.querySelector('#taBudgetRow [data-id="'+S.budget+'"]');
+    if(el) el.classList.add('selected');
+  }
+
+  // Load name
+  var name = localStorage.getItem('th_user_name') || 'John Smith';
+  document.getElementById('sidebarName').textContent = name;
+  document.getElementById('sidebarAvatar').textContent = name.split(' ').map(function(n){return n[0];}).join('').substring(0,2).toUpperCase();
+
+  // Render if data exists
+  if(S.interests.length > 0){ renderRecs(); renderSummary(); }
+})();
+
+/* ── TOGGLE HANDLERS ── */
+function toggleCat(el){
+  el.classList.toggle('selected');
+  var id=el.dataset.id, idx=S.interests.indexOf(id);
+  if(idx>-1) S.interests.splice(idx,1); else S.interests.push(id);
+}
+function toggleUse(el){
+  el.classList.toggle('selected');
+  var id=el.dataset.id, idx=S.usecases.indexOf(id);
+  if(idx>-1) S.usecases.splice(idx,1); else S.usecases.push(id);
+}
+function selectBudget(el){
+  document.querySelectorAll('.ta-budget-btn').forEach(function(b){b.classList.remove('selected');});
+  el.classList.add('selected');
+  S.budget=el.dataset.id;
+}
+
+/* ── SAVE ── */
+function saveProfile(){
+  if(S.interests.length===0){
+    if(window.showToast) showToast('Please select at least one interest!','error');
+    var g=document.getElementById('taCatGrid');
+    g.style.animation='none'; g.offsetHeight; g.style.animation='shake .4s ease';
+    return;
+  }
+  localStorage.setItem('th_ta_profile', JSON.stringify(S));
+  localStorage.setItem('th_interests', JSON.stringify(S.interests));
+  var msg=document.getElementById('taSavedMsg');
+  msg.classList.add('show');
+  setTimeout(function(){msg.classList.remove('show');},4000);
+  if(window.showToast) showToast('Tech Advisor profile saved!','success');
+  renderRecs();
+  renderSummary();
+}
+
+/* ── RENDER RECOMMENDATIONS ── */
+function renderRecs(){
+  var grid=document.getElementById('taRecsGrid');
+  var empty=document.getElementById('taRecsEmpty');
+  var matched=PRODUCTS.filter(function(p){ return S.interests.indexOf(p.interest)>-1; });
+  if(matched.length===0){ grid.style.display='none'; empty.style.display='block'; return; }
+  empty.style.display='none'; grid.style.display='flex'; grid.style.flexWrap='wrap';
+  grid.innerHTML=matched.map(function(p){
+    return '<div class="col-sm-6 col-lg-4">'+
+      '<div class="ta-rec-card">'+
+        '<div class="ta-rec-img">'+
+          '<div class="ta-advisor-badge"><i class="bi bi-stars"></i> Advisor Pick</div>'+
+          '<img src="'+p.img+'" alt="'+p.name+'" onerror="this.style.display=\'none\'">'+
+        '</div>'+
+        '<div class="ta-rec-body">'+
+          '<div class="ta-rec-cat">'+p.cat+'</div>'+
+          '<div class="ta-rec-name">'+p.name+'</div>'+
+          '<div class="ta-rec-why">'+p.why+'</div>'+
+          '<div class="ta-rec-price">'+p.price+(p.old?'<span class="old">'+p.old+'</span>':'')+'</div>'+
+          '<a href="product-detail.html" class="btn btn-primary-custom w-100" style="font-size:13px;padding:8px;">View Details <i class="bi bi-arrow-right ms-1"></i></a>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+/* ── RENDER SIDEBAR SUMMARY ── */
+function renderSummary(){
+  var el=document.getElementById('sidebarSummary');
+  var LABELS={gaming:'Gaming',smartphones:'Smartphones',laptops:'Laptops',smarthome:'Smart Home',audio:'Audio',photography:'Photography',wearables:'Wearables',networking:'Networking'};
+  if(S.interests.length===0){ el.innerHTML='<div class="ta-empty-note"><i class="bi bi-stars"></i><p>No interests saved yet.</p></div>'; return; }
+  var budgetEl=document.querySelector('#taBudgetRow [data-id="'+(S.budget||'')+'"]');
+  el.innerHTML='<div class="px-2">'+
+    S.interests.map(function(id){ return '<span class="ta-sum-chip"><i class="bi bi-check-circle-fill" style="font-size:10px;"></i>'+(LABELS[id]||id)+'</span>'; }).join('')+
+    (S.budget&&budgetEl?'<div class="mt-2 px-1" style="font-size:12px;color:var(--th-muted);">Budget: <span style="color:var(--th-text);">'+budgetEl.textContent+'</span></div>':'')+
+  '</div>';
+}
+</script>
+</body>
+</html>

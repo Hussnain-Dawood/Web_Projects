@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore all services at Harmony Fitness – gym, personal training, yoga, pilates, meditation, nutrition consulting, virtual sessions and wellness workshops." />
+  <title>Our Services | Harmony Fitness &amp; Wellness Studio</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .service-detail { background:var(--dark-card); border:1px solid var(--dark-border); border-radius:var(--radius); overflow:hidden; display:grid; grid-template-columns:1fr 1fr; }
+    .service-detail.reverse .sd-img { order:2; }
+    .service-detail.reverse .sd-body { order:1; }
+    .sd-img img { width:100%; height:100%; object-fit:cover; min-height:300px; }
+    .sd-body { padding:40px; }
+    .sd-body h3 { color:var(--text-main); font-size:1.5rem; margin-bottom:12px; }
+    .sd-body ul { margin:16px 0 24px; }
+    .sd-body ul li { padding:7px 0; color:var(--text-muted); font-size:0.9rem; border-bottom:1px solid var(--dark-border); display:flex; align-items:center; gap:8px; }
+    .sd-body ul li::before { content:"\f00c"; font-family:"Font Awesome 6 Free"; font-weight:900; color:var(--primary); font-weight:700; }
+    @media(max-width:768px) { .service-detail { grid-template-columns:1fr; } .service-detail.reverse .sd-img { order:0; } .service-detail.reverse .sd-body { order:0; } }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<header id="site-header">
+  <div class="nav-wrapper">
+    <a href="index.html" class="logo"><div class="logo-icon"><i class="fa-solid fa-dumbbell"></i></div>Harmony<span>Fitness</span></a>
+    <nav><ul id="nav-menu"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html" class="active">Services</a></li><li><a href="trainers.html">Trainers</a></li><li><a href="schedule.html">Schedule</a></li><li><a href="membership.html">Membership</a></li><li><a href="virtual.html">Virtual</a></li><li><a href="blog.html">Blog</a></li><li><a href="gallery.html">Gallery</a></li>
+        <li class="nav-extra-menu">
+          <button class="extra-hamburger" aria-label="Menu Actions"><i class="fa-solid fa-bars"></i></button>
+          <ul class="extra-dropdown">
+            <li><a href="contact.html">Contact Us</a></li>
+            <li class="auth-out"><a href="signin.html">Sign In</a></li>
+            <li class="auth-out"><a href="signup.html">Sign Up</a></li>
+            <li class="auth-in" style="display:none;"><a href="#" class="logout-btn">Logout</a></li>
+          </ul>
+        </li>
+</ul></nav>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<div class="page-hero" style="--hero-bg: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600&q=80');">
+  <div class="container">
+    <span class="section-label">What We Offer</span>
+    <h1>Our Services</h1>
+    <p>A complete range of fitness and wellness services designed to meet you where you are and take you where you want to go.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div style="display:flex;flex-direction:column;gap:28px;">
+
+      <div class="service-detail reveal">
+        <div class="sd-img"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80" alt="Gym and personal training facility with modern equipment" /></div>
+        <div class="sd-body">
+          <span class="badge badge-green" style="margin-bottom:14px;">Most Popular</span>
+          <h3><i class="fa-solid fa-dumbbell"></i> Gym &amp; Personal Training</h3>
+          <p>Our 1,500 sqm gym floor is equipped with the latest cardio machines, free weights, and functional training zones. Pair it with a certified personal trainer for maximum results.</p>
+          <ul>
+            <li>State-of-the-art equipment updated annually</li>
+            <li>24/7 gym access for premium members</li>
+            <li>1-on-1 personal training sessions</li>
+            <li>Group strength and conditioning classes</li>
+            <li>Inbody composition analysis</li>
+            <li>Progress tracking via member app</li>
+          </ul>
+          <a href="membership.html" class="btn btn-primary">Get Started</a>
+        </div>
+      </div>
+
+      <div class="service-detail reverse reveal">
+        <div class="sd-img"><img src="https://images.unsplash.com/photo-1588286840104-8957b019727f?w=800&q=80" alt="Yoga class in a serene studio environment" /></div>
+        <div class="sd-body">
+          <h3><i class="fa-solid fa-person-praying"></i> Yoga, Pilates &amp; Meditation</h3>
+          <p>Find balance and inner calm in our purpose-designed mind-body studios. Our expert instructors guide you through practices that improve flexibility, core strength, and mental clarity.</p>
+          <ul>
+            <li>Hatha, Vinyasa &amp; Restorative Yoga</li>
+            <li>Classical and Contemporary Pilates</li>
+            <li>Guided Mindfulness Meditation</li>
+            <li>Prenatal Yoga classes</li>
+            <li>Corporate wellness programs</li>
+            <li>Workshops and retreats</li>
+          </ul>
+          <a href="schedule.html" class="btn btn-primary">View Schedule</a>
+        </div>
+      </div>
+
+      <div class="service-detail reveal">
+        <div class="sd-img"><img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80" alt="Nutrition consultation with healthy food on table" /></div>
+        <div class="sd-body">
+          <h3><i class="fa-solid fa-bowl-food"></i> Nutrition &amp; Wellness Consulting</h3>
+          <p>Our accredited nutritionists and wellness coaches create personalised plans that complement your fitness training and support long-term sustainable health.</p>
+          <ul>
+            <li>Personalised nutritional assessments</li>
+            <li>Custom meal planning and macro coaching</li>
+            <li>Weight management programs</li>
+            <li>Sports nutrition for athletes</li>
+            <li>Gut health and digestive wellness</li>
+            <li>Monthly check-ins and plan adjustments</li>
+          </ul>
+          <a href="contact.html" class="btn btn-primary">Book Consultation</a>
+        </div>
+      </div>
+
+      <div class="service-detail reverse reveal">
+        <div class="sd-img"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80" alt="Online virtual fitness training session on laptop" /></div>
+        <div class="sd-body">
+          <h3><i class="fa-solid fa-laptop"></i> Virtual Fitness Sessions</h3>
+          <p>Access live and on-demand classes from anywhere in the world. Our virtual platform delivers the full Harmony Fitness experience directly to your device.</p>
+          <ul>
+            <li>Live-streamed classes daily</li>
+            <li>300+ on-demand workout library</li>
+            <li>1-on-1 virtual personal training</li>
+            <li>HD video with interactive coaching</li>
+            <li>Compatible with all devices</li>
+            <li>Offline download option</li>
+          </ul>
+          <a href="virtual.html" class="btn btn-primary">Explore Virtual</a>
+        </div>
+      </div>
+
+      <div class="service-detail reveal">
+        <div class="sd-img"><img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=800&q=80" alt="Wellness workshop with group discussion" /></div>
+        <div class="sd-body">
+          <h3><i class="fa-solid fa-graduation-cap"></i> Wellness Workshops &amp; Events</h3>
+          <p>Deepen your knowledge and connect with like-minded individuals through our regular workshops, seminars, and community wellness events throughout the year.</p>
+          <ul>
+            <li>Monthly wellness masterclasses</li>
+            <li>Stress management and sleep workshops</li>
+            <li>Corporate health &amp; wellness days</li>
+            <li>Fitness challenges and competitions</li>
+            <li>Community fitness fundraisers</li>
+            <li>Annual Harmony Wellness Retreat</li>
+          </ul>
+          <a href="contact.html" class="btn btn-primary">Register Interest</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Equipment &amp; Facilities</span>
+      <h2 class="section-title">World-Class Facilities</h2>
+    </div>
+    <div class="grid-4">
+      <div class="card reveal"><div class="card-body" style="text-align:center;"><div style="font-size:2rem;margin-bottom:12px;"></div><h3>Cardio Zone</h3><p>50+ treadmills, bikes, ellipticals, and rowing machines with entertainment screens.</p></div></div>
+      <div class="card reveal"><div class="card-body" style="text-align:center;"><div style="font-size:2rem;margin-bottom:12px;"><i class="fa-solid fa-dumbbell"></i></div><h3>Weights Floor</h3><p>Comprehensive free-weights area with dumbbells, barbells, squat racks, and benches.</p></div></div>
+      <div class="card reveal"><div class="card-body" style="text-align:center;"><div style="font-size:2rem;margin-bottom:12px;"><i class="fa-solid fa-person-praying"></i></div><h3>Yoga &amp; Pilates Studio</h3><p>Dedicated 200 sqm studio with reformation machines and all yoga props.</p></div></div>
+      <div class="card reveal"><div class="card-body" style="text-align:center;"><div style="font-size:2rem;margin-bottom:12px;"></div><h3>Premium Changerooms</h3><p>Spa-quality showers, lockers, towel service, and grooming amenities.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><div class="logo-icon"><i class="fa-solid fa-dumbbell"></i></div>Harmony<span>Fitness</span></a>
+        <p>Sydney's premier fitness &amp; wellness destination since 2012.</p>
+        <div class="social-links"><a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook">Fb</a><a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">In</a><a href="https://plus.google.com" target="_blank" rel="noopener" aria-label="Google Plus">G+</a><a href="https://www.pinterest.com" target="_blank" rel="noopener" aria-label="Pinterest">Pt</a><a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram">Ig</a><a href="https://www.twitter.com" target="_blank" rel="noopener" aria-label="Twitter">Tw</a></div>
+      </div>
+      <div><div class="footer-heading">Quick Links</div><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="trainers.html">Trainers</a></li><li><a href="schedule.html">Schedule</a></li><li><a href="references.html">References</a></li></ul></div>
+      <div><div class="footer-heading">Programs</div><ul class="footer-links"><li><a href="services.html">Gym &amp; Weights</a></li><li><a href="services.html">Yoga &amp; Pilates</a></li><li><a href="virtual.html">Virtual Sessions</a></li><li><a href="membership.html">Memberships</a></li><li><a href="blog.html">Wellness Blog</a></li></ul></div>
+      <div><div class="footer-heading">Contact</div><ul class="footer-links"><li><a href="#"><i class="fa-solid fa-location-dot"></i> 42 Wellness Ave, Sydney NSW 2000</a></li><li><a href="tel:+61292001234"><i class="fa-solid fa-phone"></i> (02) 9200 1234</a></li><li><a href="mailto:info@harmonyfitness.com.au"><i class="fa-solid fa-envelope"></i> info@harmonyfitness.com.au</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Harmony Fitness &amp; Wellness Studio. All rights reserved.</p>
+      <div class="w3c-badge"><a href="https://www.w3.org/standards/" target="_blank" rel="noopener"><img src="https://www.w3.org/Icons/valid-html401" alt="Valid HTML" /></a></div>
+    </div>
+  </div>
+</footer>
+<div class="cookie-banner" id="cookie-banner"><p style="margin-bottom:14px;font-size:0.9rem;color:var(--text-main);"><i class="fa-solid fa-cookie-bite"></i> We use cookies to enhance your experience. By clicking Accept, you agree to our cookie policy.</p><div style="display:flex;gap:12px;justify-content:center;"><button class="btn btn-primary" id="cookie-accept" style="padding:10px 24px;font-size:0.82rem;">Accept All</button><button class="btn btn-outline" id="cookie-decline" style="padding:10px 24px;font-size:0.82rem;color:var(--text-main);border-color:var(--dark-border);">Decline</button></div></div>
+<div class="modal-overlay" id="newsletter-modal"><div class="modal-box"><button class="modal-close" id="modal-close">✕</button><div style="text-align:center;margin-bottom:24px;"><div style="font-size:2.5rem;margin-bottom:10px;"><i class="fa-solid fa-hand-fist"></i></div><h3 style="margin-bottom:8px;">Get Free Fitness Tips!</h3><p>Subscribe for weekly wellness advice.</p></div><form id="newsletter-form"><div class="form-group"><label for="nl-email">Email Address</label><input type="email" id="nl-email" name="nl-email" placeholder="your@email.com" required /></div><button type="submit" class="btn btn-primary" style="width:100%;">Subscribe – It's Free!</button></form></div></div>
+<button id="back-to-top" aria-label="Back to Top">↑</button>
+<script src="js/main.js"></script>
+</body>
+</html>

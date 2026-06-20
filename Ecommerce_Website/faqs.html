@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vogue Vista - FAQs</title>
+
+  <!-- Global styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Page-specific styles -->
+  <style>
+    .help-hero {
+      background-color: #000000;
+      color: #ffffff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .help-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .help-hero p {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      color: #f0f0f0;
+    }
+
+    .help-container {
+      max-width: 1000px;
+      margin: 40px auto 60px auto;
+      padding: 0 20px;
+    }
+
+    .faq-intro {
+      margin-bottom: 30px;
+      font-size: 1rem;
+      color: #444;
+    }
+
+    .faq-category {
+      margin-bottom: 40px;
+    }
+
+    .faq-category h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .faq-category p {
+      color: #555;
+      margin-bottom: 15px;
+    }
+
+    .faq-list details {
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      background-color: #ffffff;
+    }
+
+    .faq-list summary {
+      cursor: pointer;
+      font-weight: 600;
+      font-family: 'Lato', sans-serif;
+    }
+
+    .faq-list summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-list summary::before {
+      content: "+";
+      display: inline-block;
+      margin-right: 8px;
+      font-weight: 700;
+    }
+
+    .faq-list details[open] summary::before {
+      content: "-";
+    }
+
+    .faq-list p {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    .help-contact-strip {
+      margin-top: 40px;
+      padding: 20px 18px;
+      border-radius: 12px;
+      background-color: #fdf7e8;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+
+    .help-contact-strip a {
+      font-family: 'Lato', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #000000;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+      transition: color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .help-contact-strip a:hover,
+    .help-contact-strip a:focus-visible {
+      color: #d4af37;
+      border-color: #d4af37;
+    }
+
+    @media (max-width: 700px) {
+      .help-hero h1 {
+        font-size: 2.3rem;
+      }
+
+      .help-contact-strip {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&family=Playfair+Display&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body class="page-help page-faqs">
+
+  <!-- Header placeholder -->
+  <div id="site-header"></div>
+
+  <main>
+    <section class="help-hero" aria-label="Frequently asked questions">
+      <h1>Frequently Asked Questions</h1>
+      <p>
+        Find quick answers to common questions about orders, delivery, returns, and your Vogue Vista account.
+      </p>
+    </section>
+
+    <section class="help-container">
+      <p class="faq-intro">
+        If you can’t find what you’re looking for below, our customer care team is happy to help via
+        the <a href="contact_us.html">Contact Us</a> page.
+      </p>
+
+      <!-- Orders & Payments -->
+      <section class="faq-category" aria-label="Orders and payments">
+        <h2>Orders &amp; Payments</h2>
+        <p>Everything you need to know about placing and managing your order.</p>
+
+        <div class="faq-list">
+          <details>
+            <summary>Which payment methods do you accept?</summary>
+            <p>
+              We currently accept Visa, Mastercard, American Express, and PayPal for online purchases. All payments are
+              processed securely in AUD.
+            </p>
+          </details>
+
+          <details>
+            <summary>Can I modify or cancel my order after placing it?</summary>
+            <p>
+              We start preparing your order as soon as it is confirmed. If you need to change or cancel, please contact
+              us within 1 hour of placing the order and we’ll do our best to help.
+            </p>
+          </details>
+
+          <details>
+            <summary>Will I be charged customs or duties?</summary>
+            <p>
+              Orders within Australia are not charged customs duties. For international deliveries, local customs or
+              import taxes may apply depending on your country’s regulations.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- Shipping & Delivery -->
+      <section class="faq-category" aria-label="Shipping and delivery">
+        <h2>Shipping &amp; Delivery</h2>
+        <p>Timelines, tracking, and delivery options for your Vogue Vista order.</p>
+
+        <div class="faq-list">
+          <details>
+            <summary>How long does delivery take?</summary>
+            <p>
+              Standard delivery within Australia typically takes 3–7 business days, depending on your location.
+              Express options are available at checkout for faster delivery.
+            </p>
+          </details>
+
+          <details>
+            <summary>How can I track my order?</summary>
+            <p>
+              Once your parcel leaves our warehouse, you’ll receive a shipping confirmation email with a tracking link.
+              You can check real-time updates any time.
+            </p>
+          </details>
+
+          <details>
+            <summary>Do you offer international shipping?</summary>
+            <p>
+              Yes, we ship to selected international destinations. Available countries and estimated timelines are shown
+              on the <a href="shipping.html">Shipping</a> page and at checkout.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- Returns & Refunds -->
+      <section class="faq-category" aria-label="Returns and refunds">
+        <h2>Returns &amp; Refunds</h2>
+        <p>Learn how returns work and when you can expect your refund.</p>
+
+        <div class="faq-list">
+          <details>
+            <summary>What is your return policy?</summary>
+            <p>
+              We accept change-of-mind returns within 30 days of delivery for full-priced items that are unworn, unwashed,
+              and in original condition with tags attached. View full details on our
+              <a href="returns.html">Returns</a> page.
+            </p>
+          </details>
+
+          <details>
+            <summary>How do I initiate a return?</summary>
+            <p>
+              You can submit a return request using the instructions on the Returns page. After it’s approved, you’ll
+              receive a prepaid label or drop-off instructions, depending on your location.
+            </p>
+          </details>
+
+          <details>
+            <summary>When will I receive my refund?</summary>
+            <p>
+              Once we’ve received and inspected your return, refunds are typically processed within 3–5 business days
+              back to your original payment method. Processing times may vary by bank.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- Accounts & Wishlist -->
+      <section class="faq-category" aria-label="Account and wishlist">
+        <h2>Accounts &amp; Wishlist</h2>
+        <p>Information about your Vogue Vista profile and saved items.</p>
+
+        <div class="faq-list">
+          <details>
+            <summary>Do I need an account to place an order?</summary>
+            <p>
+              You can checkout as a guest, but we recommend creating an account for faster checkout, order tracking, and
+              saving your wishlist.
+            </p>
+          </details>
+
+          <details>
+            <summary>How does the wishlist work?</summary>
+            <p>
+              Add items to your wishlist from any product page. When you sign in, your wishlist is synced across
+              devices, so you can access it anytime.
+            </p>
+          </details>
+
+          <details>
+            <summary>How is my personal data used?</summary>
+            <p>
+              We only use your data to provide and improve your shopping experience. Read more in our
+              <a href="privacy.html">Privacy Policy</a>.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- Contact strip -->
+      <div class="help-contact-strip">
+        <span>Still have questions? Our customer care team is here to help.</span>
+        <a href="contact_us.html">Contact Support</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer placeholder -->
+  <div id="site-footer"></div>
+
+  <!-- Layout loader -->
+  <script src="layout.js"></script>
+</body>
+</html>

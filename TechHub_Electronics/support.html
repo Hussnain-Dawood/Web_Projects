@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Help Centre – TechHub Electronics</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ---- HERO ---- */
+    .support-hero {
+      background: linear-gradient(135deg, #07111f 0%, var(--th-navy) 100%);
+      padding: 80px 0 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    .support-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 50% 70% at 50% 100%, rgba(11,94,215,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .support-search-wrap {
+      position: relative;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+    .support-search-wrap input {
+      background: var(--th-navy-card);
+      border: 1.5px solid var(--th-border);
+      color: var(--th-text);
+      border-radius: 50px;
+      padding: 16px 60px 16px 24px;
+      font-size: 16px;
+      width: 100%;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .support-search-wrap input:focus {
+      outline: none;
+      border-color: var(--th-accent);
+      box-shadow: 0 0 0 4px rgba(11,94,215,0.15);
+    }
+    .support-search-wrap button {
+      position: absolute;
+      right: 8px; top: 50%;
+      transform: translateY(-50%);
+      background: var(--th-accent);
+      border: none;
+      color: #fff;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .support-search-wrap button:hover { background: #0652cc; }
+    .popular-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
+    .popular-tag {
+      background: rgba(11,94,215,0.1);
+      color: var(--th-muted);
+      border: 1px solid var(--th-border);
+      border-radius: 30px;
+      padding: 5px 14px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .popular-tag:hover { background: var(--th-accent-dim); color: var(--th-accent); border-color: var(--th-accent); }
+
+    /* ---- TOPIC CARDS ---- */
+    .topics-section { padding: 70px 0; background: var(--th-navy); }
+    .topic-card {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      height: 100%;
+      text-decoration: none;
+      color: var(--th-text);
+      display: block;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+    .topic-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--th-accent);
+      box-shadow: 0 12px 30px rgba(11,94,215,0.15);
+      color: var(--th-text);
+    }
+    .topic-icon {
+      width: 50px; height: 50px;
+      background: var(--th-accent-dim);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      color: var(--th-accent);
+      margin-bottom: 16px;
+    }
+    .topic-card h6 { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 6px; }
+    .topic-card p { font-size: 13px; color: var(--th-muted); margin: 0; line-height: 1.5; }
+    .topic-count { font-size: 12px; color: var(--th-accent); font-weight: 600; margin-top: 12px; }
+
+    /* ---- FAQ ---- */
+    .faq-section { padding: 80px 0; background: var(--th-navy-alt, #07111f); }
+    .faq-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+    .faq-tab {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      color: var(--th-muted);
+      border-radius: 30px;
+      padding: 8px 18px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .faq-tab.active, .faq-tab:hover { background: var(--th-accent-dim); color: var(--th-accent); border-color: var(--th-accent); }
+    .faq-accordion .accordion-item {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      border-radius: 12px !important;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .faq-accordion .accordion-button {
+      background: var(--th-navy-card);
+      color: var(--th-text);
+      font-weight: 500;
+      font-size: 15px;
+      padding: 18px 20px;
+      box-shadow: none;
+    }
+    .faq-accordion .accordion-button:not(.collapsed) {
+      background: var(--th-accent-dim);
+      color: var(--th-accent);
+    }
+    .faq-accordion .accordion-button::after { filter: invert(1); }
+    .faq-accordion .accordion-body {
+      background: var(--th-navy-card);
+      color: var(--th-muted);
+      font-size: 14px;
+      line-height: 1.7;
+      padding: 0 20px 18px;
+      border-top: 1px solid var(--th-border);
+    }
+
+    /* ---- CONTACT SECTION ---- */
+    .contact-section { padding: 80px 0; background: var(--th-navy); }
+    .contact-channel {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      text-align: center;
+      height: 100%;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-channel:hover {
+      transform: translateY(-5px);
+      border-color: var(--th-accent);
+      box-shadow: 0 12px 30px rgba(11,94,215,0.12);
+    }
+    .contact-channel .ch-icon {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      margin: 0 auto 18px;
+    }
+    .contact-channel h5 { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 20px; margin-bottom: 8px; }
+    .contact-channel p { font-size: 14px; color: var(--th-muted); line-height: 1.6; margin-bottom: 18px; }
+    .availability-badge {
+      display: inline-block;
+      background: rgba(0,200,100,0.12);
+      color: #00c864;
+      border-radius: 20px;
+      padding: 3px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .availability-badge.yellow { background: rgba(255,200,0,0.12); color: #f5a623; }
+
+    /* ---- CONTACT FORM ---- */
+    .contact-form-section { padding: 80px 0; background: var(--th-navy-alt, #07111f); }
+    .contact-form-card {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+    .contact-form-card .form-control,
+    .contact-form-card .form-select {
+      background: var(--th-navy-light);
+      border: 1px solid var(--th-border);
+      color: var(--th-text);
+      border-radius: 10px;
+    }
+    .contact-form-card .form-control:focus,
+    .contact-form-card .form-select:focus {
+      border-color: var(--th-accent);
+      box-shadow: 0 0 0 0.2rem rgba(11,94,215,0.2);
+    }
+    .contact-form-card textarea { min-height: 130px; resize: vertical; }
+
+    /* ---- STORE LOCATOR ---- */
+    .stores-section { padding: 80px 0; background: var(--th-navy); }
+    .store-map-placeholder {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      border-radius: var(--radius-lg);
+      height: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--th-muted);
+      font-size: 15px;
+      gap: 12px;
+    }
+    .store-list-item {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .store-list-item:hover, .store-list-item.active { border-color: var(--th-accent); }
+    .store-list-item h6 { font-weight: 600; margin-bottom: 4px; font-size: 15px; }
+    .store-list-item p { font-size: 13px; color: var(--th-muted); margin: 0; }
+    .store-open { color: #00c864; font-weight: 600; font-size: 12px; }
+    .store-closed { color: #ff4444; font-weight: 600; font-size: 12px; }
+  </style>
+</head>
+<body>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-banner-inner">
+    <div class="cookie-text">
+      <i class="bi bi-shield-lock-fill text-accent me-2"></i>
+      <span>We use cookies to improve your shopping experience and for analytics. By continuing you agree to our <a href="#">Cookie Policy</a>.</span>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn btn-sm btn-outline-custom" onclick="cookieDecline()">Manage Preferences</button>
+      <button class="btn btn-sm btn-primary-custom" onclick="cookieAccept()">Accept All</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container-fluid px-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <span><i class="bi bi-truck me-1"></i> Free shipping on orders over $99 Australia-wide</span>
+      <span class="d-none d-md-inline"><i class="bi bi-telephone me-1"></i> 1800-TECHHUB &nbsp;|&nbsp; <i class="bi bi-clock me-1"></i> Mon–Sat 9am–6pm AEST</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="mainNav">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="home.html">
+      <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+      <span class="brand-name">Tech<span class="brand-accent">Hub</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="products.html" data-bs-toggle="dropdown">Products</a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="products.html#smartphones"><i class="bi bi-phone me-2 text-accent"></i>Smartphones & Tablets</a></li>
+            <li><a class="dropdown-item" href="products.html#laptops"><i class="bi bi-laptop me-2 text-accent"></i>Laptops & Accessories</a></li>
+            <li><a class="dropdown-item" href="products.html#gaming"><i class="bi bi-controller me-2 text-accent"></i>Gaming</a></li>
+            <li><a class="dropdown-item" href="products.html#smarthome"><i class="bi bi-house-gear me-2 text-accent"></i>Smart Home & IoT</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="click-collect.html">Click & Collect</a></li>
+        <li class="nav-item"><a class="nav-link" href="try-before-buy.html">Try Before You Buy</a></li>
+        <li class="nav-item"><a class="nav-link" href="trade_in.html">Trade-In</a></li>
+        <li class="nav-item"><a class="nav-link" href="tech_blog.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="tech_advisor.html">Tech Advisor</a></li>
+        <li class="nav-item"><a class="nav-link" href="about_us.html">About Us</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+        <div class="search-wrap d-none d-lg-flex">
+          <input class="form-control search-input" type="search" placeholder="Search products…"/>
+          <button class="btn-search"><i class="bi bi-search"></i></button>
+        </div>
+        <a href="profile.html" class="nav-icon-btn" id="navProfileBtn" title="Account"><i class="bi bi-person-circle text-accent"></i></a>></i></a>
+        <a href="checkout.html" class="nav-icon-btn position-relative" title="Cart">
+          <i class="bi bi-bag-fill"></i>
+          <span class="cart-badge">3</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="support-hero">
+  <div class="container text-center position-relative">
+    <div class="hero-tag mb-3">👋 We're here to help</div>
+    <h1 class="hero-title mb-3">TechHub <span class="text-gradient">Help Centre</span></h1>
+    <p class="hero-sub mb-5 mx-auto" style="max-width: 520px;">Search our knowledge base, browse FAQs, or get in touch with our expert support team. We've got you covered.</p>
+    <div class="support-search-wrap">
+      <input type="search" id="supportSearch" placeholder="Search for answers… e.g. 'track my order', 'return policy'" />
+      <button onclick="doSupportSearch()"><i class="bi bi-search"></i></button>
+    </div>
+    <div class="popular-tags mt-3">
+      <span class="popular-tag" onclick="setSearch('Track my order')">Track my order</span>
+      <span class="popular-tag" onclick="setSearch('Return a product')">Return a product</span>
+      <span class="popular-tag" onclick="setSearch('Warranty claim')">Warranty claim</span>
+      <span class="popular-tag" onclick="setSearch('Cancel order')">Cancel order</span>
+      <span class="popular-tag" onclick="setSearch('Payment issue')">Payment issue</span>
+      <span class="popular-tag" onclick="setSearch('Change address')">Change address</span>
+    </div>
+  </div>
+</section>
+
+<!-- TOPIC CARDS -->
+<section class="topics-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title">Browse by <span class="text-gradient">Topic</span></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3">
+        <a href="#faq" class="topic-card" onclick="filterFaq('orders')">
+          <div class="topic-icon"><i class="bi bi-box-seam"></i></div>
+          <h6>Orders & Delivery</h6>
+          <p>Tracking, estimated delivery times, address changes, same-day orders.</p>
+          <div class="topic-count">18 articles</div>
+        </a>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <a href="#faq" class="topic-card" onclick="filterFaq('returns')">
+          <div class="topic-icon"><i class="bi bi-arrow-return-left"></i></div>
+          <h6>Returns & Refunds</h6>
+          <p>Our 30-day return policy, how to start a return, refund timelines.</p>
+          <div class="topic-count">12 articles</div>
+        </a>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <a href="#faq" class="topic-card" onclick="filterFaq('warranty')">
+          <div class="topic-icon"><i class="bi bi-shield-check"></i></div>
+          <h6>Warranty & Repairs</h6>
+          <p>Manufacturer warranties, TechHub Care plans, in-store repair service.</p>
+          <div class="topic-count">9 articles</div>
+        </a>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <a href="#faq" class="topic-card" onclick="filterFaq('account')">
+          <div class="topic-icon"><i class="bi bi-person-gear"></i></div>
+          <h6>Account & Rewards</h6>
+          <p>Profile settings, loyalty points, password resets, TechHub Rewards.</p>
+          <div class="topic-count">14 articles</div>
+        </a>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <a href="#faq" class="topic-card" onclick="filterFaq('payment')">
+          <div class="topic-icon"><i class="bi bi-credit-card"></i></div>
+          <h6>Payments & Billing</h6>
+          <p>Accepted methods, Afterpay, failed payments, invoices & receipts.</p>
+          <div class="topic-count">10 articles</div>
+        </a>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <a href="#faq" class="topic-card" onclick="filterFaq('products')">
+          <div class="topic-icon"><i class="bi bi-cpu"></i></div>
+          <h6>Product Help</h6>
+          <p>Setup guides, compatibility questions, software & firmware support.</p>
+          <div class="topic-count">23 articles</div>
+        </a>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <a href="click-collect.html" class="topic-card">
+          <div class="topic-icon"><i class="bi bi-shop"></i></div>
+          <h6>Click & Collect</h6>
+          <p>How it works, collection windows, ID requirements, store readiness.</p>
+          <div class="topic-count">7 articles</div>
+        </a>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <a href="try-before-buy.html" class="topic-card">
+          <div class="topic-icon"><i class="bi bi-bag-heart"></i></div>
+          <h6>Try Before You Buy</h6>
+          <p>Booking demos, what's available, deposit policy, booking changes.</p>
+          <div class="topic-count">6 articles</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title">Frequently Asked <span class="text-gradient">Questions</span></h2>
+    </div>
+    <div class="faq-tabs">
+      <button class="faq-tab active" onclick="filterFaq('all', this)">All</button>
+      <button class="faq-tab" onclick="filterFaq('orders', this)">Orders & Delivery</button>
+      <button class="faq-tab" onclick="filterFaq('returns', this)">Returns & Refunds</button>
+      <button class="faq-tab" onclick="filterFaq('warranty', this)">Warranty</button>
+      <button class="faq-tab" onclick="filterFaq('account', this)">Account</button>
+      <button class="faq-tab" onclick="filterFaq('payment', this)">Payments</button>
+    </div>
+    <div class="accordion faq-accordion" id="faqAccordion">
+
+      <!-- ORDERS -->
+      <div class="accordion-item" data-cat="orders">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+            How do I track my order?
+          </button>
+        </h2>
+        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Once your order is dispatched, you'll receive a confirmation email with a tracking link. You can also log into your <a href="profile.html" class="text-accent">profile</a> at any time and view live tracking under "Order History". Same-day orders in eligible cities are tracked via our courier partner's real-time map.</div>
+        </div>
+      </div>
+      <div class="accordion-item" data-cat="orders">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+            How long does delivery take?
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Standard shipping takes 2–5 business days Australia-wide. Express shipping is 1–2 business days. Same-day delivery is available in Sydney, Melbourne and Brisbane for orders placed before 12pm AEST. Remote areas may take up to 10 business days. Click & Collect is ready in as little as 2 hours at your nearest store.</div>
+        </div>
+      </div>
+      <div class="accordion-item" data-cat="orders">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+            Can I change or cancel my order after placing it?
+          </button>
+        </h2>
+        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Orders can be cancelled or modified within 1 hour of placement — log into your profile and select "Edit Order". After this window, the order will be in fulfilment and can no longer be changed. Once received, you can initiate a return under our 30-day policy.</div>
+        </div>
+      </div>
+
+      <!-- RETURNS -->
+      <div class="accordion-item" data-cat="returns">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+            What is TechHub's return policy?
+          </button>
+        </h2>
+        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">We offer a hassle-free 30-day return policy on all products. Items must be in original condition with all accessories and original packaging. Software, digital downloads, and opened headphones/earbuds are excluded for hygiene reasons. Returns are free — simply print the prepaid label from your account or drop it at any store.</div>
+        </div>
+      </div>
+      <div class="accordion-item" data-cat="returns">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+            How long do refunds take?
+          </button>
+        </h2>
+        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Once your return is received and inspected, refunds are processed within 3–5 business days. Credit card refunds typically appear within 2–7 business days depending on your bank. PayPal refunds are usually instant. Afterpay refunds are applied to your outstanding balance immediately.</div>
+        </div>
+      </div>
+
+      <!-- WARRANTY -->
+      <div class="accordion-item" data-cat="warranty">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+            How do I make a warranty claim?
+          </button>
+        </h2>
+        <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">All products come with the manufacturer's standard warranty plus your Australian Consumer Law rights. To make a claim, bring your item and proof of purchase to any TechHub store, or submit a claim via your online profile. Our in-store Tech Bar team can diagnose the issue on the spot — most repairs are completed within 5 business days.</div>
+        </div>
+      </div>
+      <div class="accordion-item" data-cat="warranty">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+            What is TechHub Care?
+          </button>
+        </h2>
+        <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">TechHub Care is our optional extended protection plan — available for most products at checkout. It extends your manufacturer warranty by 2 additional years and adds accidental damage cover. TechHub Care members get priority in-store repair service and a free loan device for repairs over 3 business days.</div>
+        </div>
+      </div>
+
+      <!-- ACCOUNT -->
+      <div class="accordion-item" data-cat="account">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
+            How do TechHub Rewards points work?
+          </button>
+        </h2>
+        <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">You earn 1 point for every $1 spent. Points can be redeemed at $0.01 per point (e.g., 500 points = $5 off). Points expire after 24 months of account inactivity. Gold members (5,000+ lifetime points) earn 1.5x points on all purchases. Platinum members (20,000+ lifetime points) earn 2x points and get free express shipping on every order.</div>
+        </div>
+      </div>
+      <div class="accordion-item" data-cat="account">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9">
+            I forgot my password — how do I reset it?
+          </button>
+        </h2>
+        <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Click "Forgot Password?" on the <a href="signin.html" class="text-accent">Sign In</a> page and enter your registered email address. You'll receive a reset link within 2 minutes. If you don't see it, check your spam folder. If you're still having trouble, our support team can verify your identity and reset your account manually.</div>
+        </div>
+      </div>
+
+      <!-- PAYMENT -->
+      <div class="accordion-item" data-cat="payment">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10">
+            What payment methods do you accept?
+          </button>
+        </h2>
+        <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">We accept Visa, Mastercard, American Express, PayPal, Apple Pay, Google Pay, and Afterpay (buy now, pay later in 4 fortnightly instalments). TechHub Rewards points can also be applied at checkout. We do not accept cryptocurrency or direct bank transfers for online orders.</div>
+        </div>
+      </div>
+      <div class="accordion-item" data-cat="payment">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq11">
+            Why was my payment declined?
+          </button>
+        </h2>
+        <div id="faq11" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Payments can be declined for several reasons: insufficient funds, incorrect card details, or your bank flagging an unusual transaction. Try re-entering your card details, contacting your bank to authorise the charge, or using an alternative payment method. Your order will not be placed until payment is successfully processed.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT CHANNELS -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title">Still Need <span class="text-gradient">Help?</span></h2>
+      <p class="text-muted-light mt-2">Our expert support team is ready to assist across multiple channels.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="contact-channel">
+          <div class="ch-icon" style="background: rgba(11,94,215,0.12); color: var(--th-accent);"><i class="bi bi-chat-dots-fill"></i></div>
+          <h5>Live Chat</h5>
+          <div class="availability-badge">● Online Now</div>
+          <p>Chat with a real human expert. Average wait time: under 2 minutes.</p>
+          <button class="btn btn-primary-custom w-100" onclick="showToast('Opening live chat…', 'info')">Start Chat</button>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="contact-channel">
+          <div class="ch-icon" style="background: rgba(0,200,100,0.12); color: #00c864;"><i class="bi bi-telephone-fill"></i></div>
+          <h5>Phone Support</h5>
+          <div class="availability-badge">● Mon–Sat 9am–6pm</div>
+          <p>Call us toll-free at <strong class="text-light">1800-TECHHUB</strong> for immediate assistance.</p>
+          <a href="tel:1800832448" class="btn btn-outline-custom w-100">Call Now</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="contact-channel">
+          <div class="ch-icon" style="background: rgba(245,166,35,0.12); color: #f5a623;"><i class="bi bi-envelope-fill"></i></div>
+          <h5>Email Support</h5>
+          <div class="availability-badge yellow">● Replies within 4hrs</div>
+          <p>Send us a detailed message and we'll get back to you fast.</p>
+          <button class="btn btn-outline-custom w-100" onclick="document.getElementById('contactFormSection').scrollIntoView({behavior:'smooth'})">Send Email</button>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="contact-channel">
+          <div class="ch-icon" style="background: rgba(124,58,237,0.12); color: #7c3aed;"><i class="bi bi-shop"></i></div>
+          <h5>Visit a Store</h5>
+          <div class="availability-badge" style="background: rgba(124,58,237,0.12); color: #a78bfa;">● 48 Locations</div>
+          <p>Visit any TechHub store. Our Tech Bar team can help in person.</p>
+          <button class="btn btn-outline-custom w-100" onclick="document.getElementById('storeLocator').scrollIntoView({behavior:'smooth'})">Find a Store</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="contact-form-section" id="contactFormSection">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="contact-form-card">
+          <div class="text-center mb-4">
+            <h3 class="section-title mb-1">Send Us a <span class="text-gradient">Message</span></h3>
+            <p class="text-muted-light small">We'll respond within 4 business hours.</p>
+          </div>
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label class="form-label fw-medium small">First Name</label>
+              <input type="text" class="form-control" placeholder="John">
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label fw-medium small">Last Name</label>
+              <input type="text" class="form-control" placeholder="Smith">
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label fw-medium small">Email Address</label>
+              <input type="email" class="form-control" placeholder="john@example.com">
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label fw-medium small">Order Number (optional)</label>
+              <input type="text" class="form-control" placeholder="#TH-2026-XXXXXX">
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-medium small">Topic</label>
+              <select class="form-select">
+                <option value="">Select a topic…</option>
+                <option>Order & Delivery</option>
+                <option>Returns & Refunds</option>
+                <option>Warranty & Repairs</option>
+                <option>Account & Rewards</option>
+                <option>Payments & Billing</option>
+                <option>Product Help</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-medium small">Your Message</label>
+              <textarea class="form-control" placeholder="Please describe your issue in as much detail as possible…"></textarea>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-primary-custom w-100 py-2" onclick="submitContactForm(this)">
+                Send Message <i class="bi bi-send ms-1"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORE LOCATOR -->
+<section class="stores-section" id="storeLocator">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title">Find a <span class="text-gradient">Store</span></h2>
+      <p class="text-muted-light mt-2">48 stores across Australia — always close to you.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <div class="store-map-placeholder">
+          <i class="bi bi-map fs-1 text-accent"></i>
+          <span>Interactive Store Map</span>
+          <small class="text-muted">Select a store from the list to see its location</small>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="mb-3">
+          <div class="search-wrap">
+            <input class="form-control search-input" id="storeSearchInput" type="search" placeholder="Search by suburb or postcode…"/>
+            <button class="btn-search"><i class="bi bi-search"></i></button>
+          </div>
+        </div>
+        <div style="max-height: 300px; overflow-y: auto;">
+          <div class="store-list-item active" onclick="selectStoreItem(this)">
+            <div class="d-flex justify-content-between align-items-start">
+              <h6>Sydney CBD</h6>
+              <span class="store-open">Open</span>
+            </div>
+            <p>Level 1, 450 George St, Sydney NSW 2000</p>
+            <small class="text-muted">0.4 km away · Mon–Sun 9am–7pm</small>
+          </div>
+          <div class="store-list-item" onclick="selectStoreItem(this)">
+            <div class="d-flex justify-content-between align-items-start">
+              <h6>Bondi Junction</h6>
+              <span class="store-open">Open</span>
+            </div>
+            <p>Shop 112, Westfield Bondi Junction NSW 2022</p>
+            <small class="text-muted">6.1 km away · Mon–Sun 9am–6pm</small>
+          </div>
+          <div class="store-list-item" onclick="selectStoreItem(this)">
+            <div class="d-flex justify-content-between align-items-start">
+              <h6>Parramatta</h6>
+              <span class="store-open">Open</span>
+            </div>
+            <p>Westfield Parramatta, 159 Church St NSW 2150</p>
+            <small class="text-muted">21 km away · Mon–Wed 9am–5:30pm</small>
+          </div>
+          <div class="store-list-item" onclick="selectStoreItem(this)">
+            <div class="d-flex justify-content-between align-items-start">
+              <h6>Chatswood</h6>
+              <span class="store-closed">Closed</span>
+            </div>
+            <p>Chatswood Chase, 345 Victoria Ave NSW 2067</p>
+            <small class="text-muted">11 km away · Opens 9am tomorrow</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer pt-5 pb-3">
+  <div class="container">
+    <div class="row g-4 mb-5">
+      <div class="col-lg-4">
+        <a class="navbar-brand d-flex align-items-center gap-2 mb-3" href="home.html">
+          <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+          <span class="brand-name">Tech<span class="brand-accent">Hub</span></span>
+        </a>
+        <p class="text-muted-light">Australia's trusted electronics retailer since 1998. Competitive prices, expert staff, and exceptional service — online and in-store.</p>
+        <div class="social-links mt-3">
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-twitter-x"></i></a>
+          <a href="#"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Products</h6>
+        <ul class="footer-links">
+          <li><a href="products.html#smartphones">Smartphones</a></li>
+          <li><a href="products.html#laptops">Laptops</a></li>
+          <li><a href="products.html#gaming">Gaming</a></li>
+          <li><a href="products.html#smarthome">Smart Home</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Services</h6>
+        <ul class="footer-links">
+          <li><a href="click-collect.html">Click & Collect</a></li>
+          <li><a href="try-before-buy.html">Try Before You Buy</a></li>
+          <li><a href="#">Same-Day Delivery</a></li>
+          <li><a href="trade_in.html">Trade-In &amp; Upgrade</a></li>
+          <li><a href="rewards.html">TechHub Rewards</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Company</h6>
+        <ul class="footer-links">
+          <li><a href="about_us.html">About Us</a></li>
+          <li><a href="support.html">Help Centre</a></li>
+          <li><a href="tech_blog.html">Tech Blog</a></li>
+          <li><a href="support.html#contact">Contact Us</a></li>
+          <li><a href="about_us.html#press">Press & Media</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Legal</h6>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Consumer Rights</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider"/>
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mt-4">
+      <p class="text-muted-light mb-0 small">© 2026 TechHub Electronics Pty Ltd. ABN 12 345 678 901. All rights reserved.</p>
+      <div class="payment-icons d-flex gap-2">
+        <span class="payment-icon"><i class="bi bi-credit-card-2-front"></i> Visa</span>
+        <span class="payment-icon"><i class="bi bi-credit-card-fill"></i> Mastercard</span>
+        <span class="payment-icon"><i class="bi bi-paypal"></i> PayPal</span>
+        <span class="payment-icon">Afterpay</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="main.js"></script>
+<script>
+  function filterFaq(cat, btn) {
+    if (btn) {
+      document.querySelectorAll('.faq-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+    }
+    document.querySelectorAll('#faqAccordion .accordion-item').forEach(item => {
+      item.style.display = (cat === 'all' || item.dataset.cat === cat) ? '' : 'none';
+    });
+    document.getElementById('faq').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function setSearch(val) {
+    document.getElementById('supportSearch').value = val;
+  }
+
+  function doSupportSearch() {
+    const val = document.getElementById('supportSearch').value.trim();
+    if (!val) return;
+    if (window.showToast) showToast(`Searching for "${val}"…`, 'info');
+  }
+
+  function submitContactForm(btn) {
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending…';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.innerHTML = '<i class="bi bi-check-circle me-2"></i>Message Sent!';
+      btn.style.background = '#00c864';
+      if (window.showToast) showToast('Your message has been received. We\'ll reply within 4 hours.', 'success');
+      setTimeout(() => {
+        btn.innerHTML = 'Send Message <i class="bi bi-send ms-1"></i>';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 4000);
+    }, 1600);
+  }
+
+  function selectStoreItem(el) {
+    document.querySelectorAll('.store-list-item').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+  }
+</script>
+</body>
+</html>

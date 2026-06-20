@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us – TechHub Electronics</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ---- ABOUT HERO ---- */
+    .about-hero {
+      background: linear-gradient(135deg, var(--th-navy) 0%, #0d1f3c 60%, #091830 100%);
+      padding: 90px 0 70px;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 80% 50%, rgba(11,94,215,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .about-hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(11,94,215,0.05) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(11,94,215,0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+    .about-hero-year {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 180px;
+      font-weight: 700;
+      line-height: 1;
+      color: rgba(11,94,215,0.08);
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* ---- MISSION BAND ---- */
+    .mission-band {
+      background: var(--th-accent);
+      padding: 18px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .mission-ticker {
+      display: inline-flex;
+      gap: 60px;
+      animation: ticker 30s linear infinite;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: 1px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .mission-ticker span { display: flex; align-items: center; gap: 12px; }
+    .mission-ticker .dot { width: 6px; height: 6px; background: rgba(255,255,255,0.5); border-radius: 50%; flex-shrink: 0; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ---- STATS STRIP ---- */
+    .stats-strip {
+      background: var(--th-navy-card);
+      border-top: 1px solid var(--th-border);
+      border-bottom: 1px solid var(--th-border);
+      padding: 40px 0;
+    }
+    .stat-big { text-align: center; padding: 20px; }
+    .stat-big .num {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--th-accent);
+      line-height: 1;
+      display: block;
+    }
+    .stat-big .label { font-size: 14px; color: var(--th-muted); margin-top: 6px; display: block; }
+    .stat-divider { width: 1px; background: var(--th-border); align-self: stretch; margin: 10px 0; }
+
+    /* ---- STORY SECTION ---- */
+    .story-section { padding: 90px 0; background: var(--th-navy); }
+    .story-year-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--th-accent-dim);
+      color: var(--th-accent);
+      border-radius: 30px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'Rajdhani', sans-serif;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .timeline { position: relative; padding-left: 40px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--th-accent), transparent);
+    }
+    .timeline-item { position: relative; margin-bottom: 36px; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -34px;
+      top: 6px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--th-accent);
+      box-shadow: 0 0 0 3px var(--th-accent-dim);
+    }
+    .timeline-year {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--th-accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .timeline-text { font-size: 15px; color: var(--th-muted); line-height: 1.6; }
+
+    /* ---- VALUES ---- */
+    .values-section { padding: 90px 0; background: var(--th-navy-alt, #07111f); }
+    .value-card {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      height: 100%;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .value-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--th-accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .value-card:hover { transform: translateY(-6px); border-color: var(--th-accent); box-shadow: 0 16px 40px rgba(11,94,215,0.15); }
+    .value-card:hover::after { transform: scaleX(1); }
+    .value-icon {
+      width: 52px; height: 52px;
+      background: var(--th-accent-dim);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      color: var(--th-accent);
+      margin-bottom: 20px;
+    }
+    .value-card h5 { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 20px; margin-bottom: 10px; }
+    .value-card p { font-size: 14px; color: var(--th-muted); line-height: 1.65; margin: 0; }
+
+    /* ---- TEAM ---- */
+    .team-section { padding: 90px 0; background: var(--th-navy); }
+    .team-card {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      border-radius: var(--radius-lg);
+      padding: 30px 24px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .team-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,0.3); }
+    .team-avatar {
+      width: 76px; height: 76px;
+      border-radius: 50%;
+      background: var(--th-accent);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 auto 16px;
+      border: 3px solid var(--th-accent-dim);
+    }
+    .team-card h6 { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 4px; }
+    .team-card .role { font-size: 13px; color: var(--th-accent); font-weight: 500; margin-bottom: 10px; }
+    .team-card p { font-size: 13px; color: var(--th-muted); line-height: 1.55; margin: 0; }
+
+    /* ---- PRESS / AWARDS ---- */
+    .press-section { padding: 60px 0; background: var(--th-navy-alt, #07111f); }
+    .press-logo {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      border-radius: 12px;
+      padding: 20px 28px;
+      text-align: center;
+      color: var(--th-muted);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .press-logo:hover { border-color: var(--th-accent); color: var(--th-text); }
+    .award-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      border: 1px solid #ffd700;
+      border-radius: 10px;
+      padding: 12px 18px;
+      color: #ffd700;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* ---- CTA STRIP ---- */
+    .about-cta {
+      background: linear-gradient(135deg, var(--th-accent) 0%, #0652cc 100%);
+      padding: 70px 0;
+      text-align: center;
+    }
+    .about-cta h2 { font-family: 'Rajdhani', sans-serif; font-size: 40px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+    .about-cta p { color: rgba(255,255,255,0.8); font-size: 16px; margin-bottom: 28px; }
+  </style>
+</head>
+<body>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-banner-inner">
+    <div class="cookie-text">
+      <i class="bi bi-shield-lock-fill text-accent me-2"></i>
+      <span>We use cookies to improve your shopping experience and for analytics. By continuing you agree to our <a href="about_us.html#cookies">Cookie Policy</a>.</span>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn btn-sm btn-outline-custom" onclick="cookieDecline()">Manage Preferences</button>
+      <button class="btn btn-sm btn-primary-custom" onclick="cookieAccept()">Accept All</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container-fluid px-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <span><i class="bi bi-truck me-1"></i> Free shipping on orders over $99 Australia-wide</span>
+      <span class="d-none d-md-inline"><i class="bi bi-telephone me-1"></i> 1800-TECHHUB &nbsp;|&nbsp; <i class="bi bi-clock me-1"></i> Mon–Sat 9am–6pm AEST</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="mainNav">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="home.html">
+      <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+      <span class="brand-name">Tech<span class="brand-accent">Hub</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="products.html" data-bs-toggle="dropdown">Products</a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="products.html#smartphones"><i class="bi bi-phone me-2 text-accent"></i>Smartphones & Tablets</a></li>
+            <li><a class="dropdown-item" href="products.html#laptops"><i class="bi bi-laptop me-2 text-accent"></i>Laptops & Accessories</a></li>
+            <li><a class="dropdown-item" href="products.html#gaming"><i class="bi bi-controller me-2 text-accent"></i>Gaming</a></li>
+            <li><a class="dropdown-item" href="products.html#smarthome"><i class="bi bi-house-gear me-2 text-accent"></i>Smart Home & IoT</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="click-collect.html">Click & Collect</a></li>
+        <li class="nav-item"><a class="nav-link" href="try-before-buy.html">Try Before You Buy</a></li>
+        <li class="nav-item"><a class="nav-link" href="trade_in.html">Trade-In</a></li>
+        <li class="nav-item"><a class="nav-link" href="tech_blog.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="tech_advisor.html">Tech Advisor</a></li>
+        
+        <li class="nav-item"><a class="nav-link active" href="about_us.html">About Us</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+        <div class="search-wrap d-none d-lg-flex">
+          <input class="form-control search-input" type="search" placeholder="Search products…"/>
+          <button class="btn-search"><i class="bi bi-search"></i></button>
+        </div>
+        <a href="profile.html" class="nav-icon-btn" id="navProfileBtn" title="Account"><i class="bi bi-person-circle text-accent"></i></a>></i></a>
+        <a href="checkout.html" class="nav-icon-btn position-relative" title="Cart">
+          <i class="bi bi-bag-fill"></i>
+          <span class="cart-badge">3</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="about-hero">
+  <div class="about-hero-grid"></div>
+  <div class="about-hero-year">1998</div>
+  <div class="container position-relative">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <div class="hero-tag mb-3">🇦🇺 Est. 1998 · Sydney, Australia</div>
+        <h1 class="hero-title mb-4">Powering Australia's<br/><span class="text-gradient">Tech Journey</span></h1>
+        <p class="hero-sub mb-5">For over 25 years, TechHub Electronics has been the trusted destination for Australians who demand the best in consumer technology — from cutting-edge smartphones to smart home ecosystems, backed by expert service and real human support.</p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="products.html" class="btn btn-primary-custom btn-lg">Explore Products <i class="bi bi-arrow-right ms-1"></i></a>
+          <a href="support.html" class="btn btn-outline-custom btn-lg">Contact Our Team</a>
+        </div>
+      </div>
+      <div class="col-lg-5 d-none d-lg-flex justify-content-center mt-4 mt-lg-0">
+        <div class="row g-3 w-100">
+          <div class="col-6">
+            <div class="value-card text-center p-4">
+              <i class="bi bi-award-fill fs-2 text-accent mb-2 d-block"></i>
+              <div class="fw-bold" style="font-family: Rajdhani; font-size: 18px;">Best Retailer 2024</div>
+              <div class="small text-muted">Choice Magazine</div>
+            </div>
+          </div>
+          <div class="col-6 mt-4">
+            <div class="value-card text-center p-4">
+              <i class="bi bi-star-fill fs-2 text-accent mb-2 d-block"></i>
+              <div class="fw-bold" style="font-family: Rajdhani; font-size: 18px;">4.8 / 5 Stars</div>
+              <div class="small text-muted">50,000+ Reviews</div>
+            </div>
+          </div>
+          <div class="col-6 mt-n3">
+            <div class="value-card text-center p-4">
+              <i class="bi bi-shop fs-2 text-accent mb-2 d-block"></i>
+              <div class="fw-bold" style="font-family: Rajdhani; font-size: 18px;">48 Stores</div>
+              <div class="small text-muted">Nationwide</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="value-card text-center p-4">
+              <i class="bi bi-people-fill fs-2 text-accent mb-2 d-block"></i>
+              <div class="fw-bold" style="font-family: Rajdhani; font-size: 18px;">1,200+ Staff</div>
+              <div class="small text-muted">Trained Experts</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER BAND -->
+<div class="mission-band">
+  <div class="mission-ticker">
+    <span><span class="dot"></span> Australia's Tech, Your Way</span>
+    <span><span class="dot"></span> 25+ Years of Excellence</span>
+    <span><span class="dot"></span> Expert Advice, Real Humans</span>
+    <span><span class="dot"></span> 48 Stores Nationwide</span>
+    <span><span class="dot"></span> Free Shipping Over $99</span>
+    <span><span class="dot"></span> Try Before You Buy</span>
+    <span><span class="dot"></span> Same-Day Delivery Available</span>
+    <span><span class="dot"></span> Australia's Tech, Your Way</span>
+    <span><span class="dot"></span> 25+ Years of Excellence</span>
+    <span><span class="dot"></span> Expert Advice, Real Humans</span>
+    <span><span class="dot"></span> 48 Stores Nationwide</span>
+    <span><span class="dot"></span> Free Shipping Over $99</span>
+    <span><span class="dot"></span> Try Before You Buy</span>
+    <span><span class="dot"></span> Same-Day Delivery Available</span>
+  </div>
+</div>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="row g-0 justify-content-center">
+      <div class="col-6 col-md-3"><div class="stat-big"><span class="num">1998</span><span class="label">Founded in Sydney</span></div></div>
+      <div class="col-6 col-md-3"><div class="stat-big"><span class="num">50K+</span><span class="label">Happy Customers</span></div></div>
+      <div class="col-6 col-md-3"><div class="stat-big"><span class="num">48</span><span class="label">Retail Stores</span></div></div>
+      <div class="col-6 col-md-3"><div class="stat-big"><span class="num">1,200+</span><span class="label">Expert Team Members</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- OUR STORY -->
+<section class="story-section" id="story">
+  <div class="container">
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-5">
+        <div class="story-year-pill"><i class="bi bi-clock-history"></i> Our Story</div>
+        <h2 class="section-title mb-4">From a <span class="text-gradient">Single Store</span> to a National Icon</h2>
+        <p class="text-muted-light mb-4">TechHub Electronics began in a modest shopfront on George Street, Sydney, founded by two tech-obsessed mates — Marcus Whitfield and Priya Nair — who believed Australians deserved more than confusing salespeople and overpriced electronics.</p>
+        <p class="text-muted-light mb-4">Their philosophy was radical for the time: transparent pricing, knowledgeable staff who actually use the products they sell, and a genuine commitment to after-sales support. It resonated immediately.</p>
+        <p class="text-muted-light">Today, TechHub is Australia's most awarded electronics retailer — but we haven't forgotten those roots. Every decision we make comes back to the same question our founders asked in 1998: <strong class="text-light">"Would we be proud to sell this to a friend?"</strong></p>
+        <div class="d-flex gap-3 mt-5">
+          <div class="award-badge"><i class="bi bi-trophy-fill"></i> Retailer of the Year 2023</div>
+          <div class="award-badge ms-2"><i class="bi bi-trophy-fill"></i> Best Service 2024</div>
+        </div>
+      </div>
+      <div class="col-lg-6 offset-lg-1">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">1998</div>
+            <p class="timeline-text">Marcus Whitfield and Priya Nair open the first TechHub store on George Street, Sydney, with a team of five.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2002</div>
+            <p class="timeline-text">TechHub expands to Melbourne and Brisbane, reaching 8 stores, and launches its first loyalty program — TechHub Rewards.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2008</div>
+            <p class="timeline-text">techhub.com.au launches, making TechHub one of Australia's first truly omnichannel electronics retailers.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2014</div>
+            <p class="timeline-text">20 stores nationwide. TechHub introduces its signature "Try Before You Buy" in-store demo experience — a first in Australian retail.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2019</div>
+            <p class="timeline-text">Same-day delivery launches in Sydney, Melbourne and Brisbane. TechHub is named Retailer of the Year by Choice Magazine for the first time.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2024</div>
+            <p class="timeline-text">48 stores. 50,000+ customers. Over 1,200 staff. TechHub celebrates 25 years as Australia's most trusted electronics destination.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2026</div>
+            <p class="timeline-text">TechHub launches its AI-powered product recommendation engine and expands Click & Collect to all 48 locations with 2-hour guaranteed pickup.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values-section" id="values">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="story-year-pill" style="display:inline-flex; margin-bottom: 16px;"><i class="bi bi-heart-pulse"></i> What Drives Us</div>
+      <h2 class="section-title">Our Core <span class="text-gradient">Values</span></h2>
+      <p class="text-muted-light mt-3 mx-auto" style="max-width: 520px;">Everything we do at TechHub is guided by a simple set of principles that haven't changed since Day 1.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="value-card">
+          <div class="value-icon"><i class="bi bi-eye"></i></div>
+          <h5>Radical Transparency</h5>
+          <p>No hidden fees, no fine print tricks, no commission-driven upsells. Our prices are our prices — and our staff are trained to recommend what's right for you, not what earns them the most.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="value-card">
+          <div class="value-icon"><i class="bi bi-lightbulb"></i></div>
+          <h5>Genuine Expertise</h5>
+          <p>Every TechHub team member completes our in-house Tech Academy — a 6-week immersive training program. We don't just sell gadgets; we understand them inside and out.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="value-card">
+          <div class="value-icon"><i class="bi bi-patch-check"></i></div>
+          <h5>Customer First, Always</h5>
+          <p>Our 30-day hassle-free returns, price-match guarantee, and lifetime customer support aren't marketing slogans — they're commitments baked into how we operate every single day.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="value-card">
+          <div class="value-icon"><i class="bi bi-leaf"></i></div>
+          <h5>Sustainable Future</h5>
+          <p>Our e-waste recycling program, carbon-neutral shipping initiative, and commitment to 100% renewable energy in all stores by 2028 reflect our responsibility to Australia's environment.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="value-card">
+          <div class="value-icon"><i class="bi bi-people"></i></div>
+          <h5>Community Roots</h5>
+          <p>Each of our 48 stores has a dedicated Community Tech Fund, sponsoring local schools, coding bootcamps, and digital literacy programs for seniors across Australia.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="value-card">
+          <div class="value-icon"><i class="bi bi-rocket-takeoff"></i></div>
+          <h5>Always Innovating</h5>
+          <p>From Australia's first Try Before You Buy program to same-day delivery and AI-powered recommendations, TechHub never stops looking for better ways to serve our customers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP TEAM -->
+<section class="team-section" id="team">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="story-year-pill" style="display:inline-flex; margin-bottom: 16px;"><i class="bi bi-person-badge"></i> Leadership</div>
+      <h2 class="section-title">Meet the <span class="text-gradient">Team</span></h2>
+      <p class="text-muted-light mt-3 mx-auto" style="max-width: 500px;">The people behind TechHub's mission — passionate about technology and genuinely committed to your experience.</p>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-sm-6 col-lg-3">
+        <div class="team-card">
+          <div class="team-avatar">MW</div>
+          <h6>Marcus Whitfield</h6>
+          <div class="role">Co-Founder & CEO</div>
+          <p>Serial entrepreneur and hardware enthusiast. Marcus sets the vision for TechHub's future while keeping its founding values front and centre.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="team-card">
+          <div class="team-avatar" style="background: #7c3aed;">PN</div>
+          <h6>Priya Nair</h6>
+          <div class="role">Co-Founder & COO</div>
+          <p>Operations and logistics mastermind. Priya built TechHub's supply chain from the ground up and leads our national store expansion strategy.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="team-card">
+          <div class="team-avatar" style="background: #059669;">JC</div>
+          <h6>James Chen</h6>
+          <div class="role">Chief Technology Officer</div>
+          <p>Former AWS engineering lead. James drives TechHub's digital platform — from AI recommendations to the real-time inventory system used across all 48 stores.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="team-card">
+          <div class="team-avatar" style="background: #dc2626;">SR</div>
+          <h6>Sophie Rousseau</h6>
+          <div class="role">Chief Customer Officer</div>
+          <p>Sophie oversees the entire customer journey — from first click to post-purchase support — and champions TechHub's industry-leading service standards.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESS & RECOGNITION -->
+<section class="press-section" id="press">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title">As <span class="text-gradient">Seen In</span></h2>
+    </div>
+    <div class="row g-3 justify-content-center mb-5">
+      <div class="col-6 col-md-2"><div class="press-logo">The Australian</div></div>
+      <div class="col-6 col-md-2"><div class="press-logo">AFR</div></div>
+      <div class="col-6 col-md-2"><div class="press-logo">Choice</div></div>
+      <div class="col-6 col-md-2"><div class="press-logo">Gizmodo AU</div></div>
+      <div class="col-6 col-md-2"><div class="press-logo">SMH</div></div>
+      <div class="col-6 col-md-2"><div class="press-logo">ABC News</div></div>
+    </div>
+    <div class="d-flex flex-wrap justify-content-center gap-3">
+      <div class="award-badge"><i class="bi bi-trophy-fill"></i> Retailer of the Year 2023 — Choice Magazine</div>
+      <div class="award-badge"><i class="bi bi-trophy-fill"></i> Best Customer Service 2024 — ACRA</div>
+      <div class="award-badge"><i class="bi bi-trophy-fill"></i> Top Workplace 2024 — AFR Boss</div>
+      <div class="award-badge"><i class="bi bi-trophy-fill"></i> Green Retailer Award 2023 — Sustainability Australia</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="about-cta">
+  <div class="container">
+    <h2>Ready to Experience the <span style="text-decoration: underline; text-underline-offset: 6px;">TechHub Difference?</span></h2>
+    <p>Shop online with same-day delivery, try products in-store, or collect your order in as little as 2 hours.</p>
+    <div class="d-flex flex-wrap gap-3 justify-content-center">
+      <a href="products.html" class="btn btn-light btn-lg fw-semibold" style="color: var(--th-accent);">Shop Now <i class="bi bi-arrow-right ms-1"></i></a>
+      <a href="support.html" class="btn btn-outline-light btn-lg">Find a Store</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer pt-5 pb-3">
+  <div class="container">
+    <div class="row g-4 mb-5">
+      <div class="col-lg-4">
+        <a class="navbar-brand d-flex align-items-center gap-2 mb-3" href="home.html">
+          <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+          <span class="brand-name">Tech<span class="brand-accent">Hub</span></span>
+        </a>
+        <p class="text-muted-light">Australia's trusted electronics retailer since 1998. Competitive prices, expert staff, and exceptional service — online and in-store.</p>
+        <div class="social-links mt-3">
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-twitter-x"></i></a>
+          <a href="#"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Products</h6>
+        <ul class="footer-links">
+          <li><a href="products.html#smartphones">Smartphones</a></li>
+          <li><a href="products.html#laptops">Laptops</a></li>
+          <li><a href="products.html#gaming">Gaming</a></li>
+          <li><a href="products.html#smarthome">Smart Home</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Services</h6>
+        <ul class="footer-links">
+          <li><a href="click-collect.html">Click & Collect</a></li>
+          <li><a href="try-before-buy.html">Try Before You Buy</a></li>
+          <li><a href="#">Same-Day Delivery</a></li>
+          <li><a href="trade_in.html">Trade-In &amp; Upgrade</a></li>
+          <li><a href="rewards.html">TechHub Rewards</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Company</h6>
+        <ul class="footer-links">
+          <li><a href="about_us.html">About Us</a></li>
+          <li><a href="support.html">Help Centre</a></li>
+          <li><a href="tech_blog.html">Tech Blog</a></li>
+          <li><a href="support.html#contact">Contact Us</a></li>
+          <li><a href="about_us.html#press">Press & Media</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Legal</h6>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Consumer Rights</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider"/>
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mt-4">
+      <p class="text-muted-light mb-0 small">© 2026 TechHub Electronics Pty Ltd. ABN 12 345 678 901. All rights reserved.</p>
+      <div class="payment-icons d-flex gap-2">
+        <span class="payment-icon"><i class="bi bi-credit-card-2-front"></i> Visa</span>
+        <span class="payment-icon"><i class="bi bi-credit-card-fill"></i> Mastercard</span>
+        <span class="payment-icon"><i class="bi bi-paypal"></i> PayPal</span>
+        <span class="payment-icon">Afterpay</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

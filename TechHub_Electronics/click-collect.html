@@ -1,0 +1,343 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Click & Collect – TechHub Electronics</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-banner-inner">
+    <div class="cookie-text">
+      <i class="bi bi-shield-lock-fill text-accent me-2"></i>
+      <span>We use cookies to improve your experience. By continuing you agree to our <a href="#">Cookie Policy</a>.</span>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn btn-sm btn-outline-custom" onclick="cookieDecline()">Manage Preferences</button>
+      <button class="btn btn-sm btn-primary-custom" onclick="cookieAccept()">Accept All</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container-fluid px-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <span><i class="bi bi-truck me-1"></i> Free shipping on orders over $99</span>
+      <span class="d-none d-md-inline"><i class="bi bi-telephone me-1"></i> 1800-TECHHUB</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="mainNav">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="home.html">
+      <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+      <span class="brand-name">Tech<span class="brand-accent">Hub</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+        <li class="nav-item"><a class="nav-link active" href="click-collect.html">Click & Collect</a></li>
+        <li class="nav-item"><a class="nav-link" href="try-before-buy.html">Try Before You Buy</a></li>
+        <li class="nav-item"><a class="nav-link" href="trade_in.html">Trade-In</a></li>
+        <li class="nav-item"><a class="nav-link" href="tech_blog.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="tech_advisor.html">Tech Advisor</a></li>
+        <li class="nav-item"><a class="nav-link" href="about_us.html">About Us</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+        <a href="profile.html" class="nav-icon-btn" id="navProfileBtn" title="Account"><i class="bi bi-person-circle text-accent"></i></a>></i></a>
+        <a href="checkout.html" class="nav-icon-btn position-relative">
+          <i class="bi bi-bag-fill"></i>
+          <span class="cart-badge">3</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container py-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb breadcrumb-custom">
+        <li class="breadcrumb-item"><a href="home.html">Home</a></li>
+        <li class="breadcrumb-item active">Click & Collect</li>
+      </ol>
+    </nav>
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <div class="hero-tag mb-3">🏪 Available at 48 Stores Nationwide</div>
+        <h1 class="page-hero-title">Click & <span class="text-gradient">Collect</span></h1>
+        <p class="text-muted-light mt-3" style="max-width:540px">Order online and pick up your items at your nearest TechHub store — ready in as little as 2 hours. No delivery fees, no waiting at home.</p>
+      </div>
+      <div class="col-lg-5 d-none d-lg-block">
+        <div class="cc-hero-steps">
+          <div class="cc-step-hero"><span class="step-circle">1</span><div><strong>Order Online</strong><p>Add to cart & choose Click & Collect at checkout</p></div></div>
+          <div class="step-connector"></div>
+          <div class="cc-step-hero"><span class="step-circle">2</span><div><strong>Get Notified</strong><p>SMS & email when your order is ready (usually 2hrs)</p></div></div>
+          <div class="step-connector"></div>
+          <div class="cc-step-hero active"><span class="step-circle">3</span><div><strong>Collect In-Store</strong><p>Show your QR code at the Click & Collect counter</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORE FINDER -->
+<section class="section-padded">
+  <div class="container">
+    <div class="section-header text-center mb-5">
+      <span class="section-tag">Store Locator</span>
+      <h2 class="section-title">Find Your <span class="text-gradient">Nearest Store</span></h2>
+    </div>
+
+    <!-- SEARCH BAR -->
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-6">
+        <div class="store-search-box">
+          <div class="input-group">
+            <span class="input-group-text store-search-icon"><i class="bi bi-geo-alt-fill"></i></span>
+            <input type="text" class="form-control store-search-input" placeholder="Enter your suburb or postcode…" id="postcodeInput"/>
+            <button class="btn btn-primary-custom px-4" id="findStoreBtn">Find Stores</button>
+          </div>
+          <div class="d-flex gap-3 mt-3 flex-wrap">
+            <button class="btn btn-sm btn-ghost-tag active">All Stores</button>
+            <button class="btn btn-sm btn-ghost-tag">Sydney</button>
+            <button class="btn btn-sm btn-ghost-tag">Melbourne</button>
+            <button class="btn btn-sm btn-ghost-tag">Brisbane</button>
+            <button class="btn btn-sm btn-ghost-tag">Perth</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAP PLACEHOLDER + STORE LIST -->
+    <div class="row g-4">
+      <div class="col-lg-5">
+        <div class="store-list-panel">
+          <h6 class="store-list-header">Showing 6 stores near Sydney CBD</h6>
+          <div class="store-item active" onclick="selectStore(this)">
+            <div class="store-item-icon"><i class="bi bi-shop-window"></i></div>
+            <div class="store-item-info">
+              <strong>TechHub Sydney CBD</strong>
+              <p>Level 2, 450 George Street, Sydney NSW 2000</p>
+              <div class="d-flex gap-3">
+                <span class="store-status open"><i class="bi bi-circle-fill me-1"></i>Open until 7pm</span>
+                <span class="store-dist">0.3km</span>
+              </div>
+            </div>
+            <div class="store-item-badge">
+              <i class="bi bi-bag-check-fill text-accent"></i>
+              <small>In Stock</small>
+            </div>
+          </div>
+          <div class="store-item" onclick="selectStore(this)">
+            <div class="store-item-icon"><i class="bi bi-shop-window"></i></div>
+            <div class="store-item-info">
+              <strong>TechHub Pitt Street</strong>
+              <p>Shop 12, Pitt Street Mall, Sydney NSW 2000</p>
+              <div class="d-flex gap-3">
+                <span class="store-status open"><i class="bi bi-circle-fill me-1"></i>Open until 9pm</span>
+                <span class="store-dist">0.8km</span>
+              </div>
+            </div>
+            <div class="store-item-badge">
+              <i class="bi bi-bag-check-fill text-accent"></i>
+              <small>In Stock</small>
+            </div>
+          </div>
+          <div class="store-item" onclick="selectStore(this)">
+            <div class="store-item-icon"><i class="bi bi-shop-window"></i></div>
+            <div class="store-item-info">
+              <strong>TechHub Chatswood</strong>
+              <p>Westfield Chatswood, 1 Anderson St, NSW 2067</p>
+              <div class="d-flex gap-3">
+                <span class="store-status open"><i class="bi bi-circle-fill me-1"></i>Open until 6pm</span>
+                <span class="store-dist">8.2km</span>
+              </div>
+            </div>
+            <div class="store-item-badge">
+              <i class="bi bi-bag-check-fill text-accent"></i>
+              <small>In Stock</small>
+            </div>
+          </div>
+          <div class="store-item" onclick="selectStore(this)">
+            <div class="store-item-icon"><i class="bi bi-shop-window"></i></div>
+            <div class="store-item-info">
+              <strong>TechHub Parramatta</strong>
+              <p>159 Church Street, Parramatta NSW 2150</p>
+              <div class="d-flex gap-3">
+                <span class="store-status open"><i class="bi bi-circle-fill me-1"></i>Open until 5:30pm</span>
+                <span class="store-dist">23km</span>
+              </div>
+            </div>
+            <div class="store-item-badge text-center">
+              <i class="bi bi-x-circle text-danger"></i>
+              <small class="text-danger">Low Stock</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="map-placeholder">
+          <div class="map-overlay-content">
+            <i class="bi bi-map-fill"></i>
+            <p>Interactive Store Map</p>
+            <small>Select a store from the list to view on map</small>
+          </div>
+          <!-- Map pins -->
+          <div class="map-pin pin-1 active"><i class="bi bi-geo-alt-fill"></i><span>Sydney CBD</span></div>
+          <div class="map-pin pin-2"><i class="bi bi-geo-alt-fill"></i><span>Pitt St</span></div>
+          <div class="map-pin pin-3"><i class="bi bi-geo-alt-fill"></i><span>Chatswood</span></div>
+        </div>
+
+        <!-- Selected Store Detail -->
+        <div class="selected-store-card mt-4" id="selectedStoreCard">
+          <div class="d-flex justify-content-between align-items-start">
+            <div>
+              <h5 class="mb-1">TechHub Sydney CBD</h5>
+              <p class="text-muted-light mb-0">Level 2, 450 George Street, Sydney NSW 2000</p>
+            </div>
+            <span class="store-status open"><i class="bi bi-circle-fill me-1"></i>Open</span>
+          </div>
+          <hr class="footer-divider my-3"/>
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <strong class="d-block text-muted-light small mb-1">STORE HOURS</strong>
+              <p class="mb-0 small">Mon–Fri: 9am – 7pm<br/>Saturday: 9am – 6pm<br/>Sunday: 10am – 5pm</p>
+            </div>
+            <div class="col-sm-6">
+              <strong class="d-block text-muted-light small mb-1">CONTACT</strong>
+              <p class="mb-0 small"><i class="bi bi-telephone me-1 text-accent"></i> (02) 9123 4567<br/><i class="bi bi-envelope me-1 text-accent"></i> sydney@techhub.com.au</p>
+            </div>
+          </div>
+          <div class="d-flex gap-3 mt-4">
+            <a href="checkout.html" class="btn btn-primary-custom flex-grow-1">Collect From This Store</a>
+            <a href="#" class="btn btn-outline-custom">Get Directions <i class="bi bi-arrow-up-right ms-1"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section-padded bg-section-alt">
+  <div class="container">
+    <div class="section-header text-center mb-5">
+      <span class="section-tag">How It Works</span>
+      <h2 class="section-title">3 Simple <span class="text-gradient">Steps</span></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="how-it-works-card">
+          <div class="hiw-num">01</div>
+          <div class="hiw-icon"><i class="bi bi-cart-check-fill"></i></div>
+          <h5>Add to Cart & Choose C&C</h5>
+          <p class="text-muted-light">Browse and add products to your cart. At checkout, select "Click & Collect" and search for your preferred store.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="how-it-works-card">
+          <div class="hiw-num">02</div>
+          <div class="hiw-icon"><i class="bi bi-bell-fill"></i></div>
+          <h5>We'll Notify You</h5>
+          <p class="text-muted-light">Once your order is packed and ready — usually within 2 hours — we'll send you an SMS and email with your unique QR code.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="how-it-works-card">
+          <div class="hiw-num">03</div>
+          <div class="hiw-icon"><i class="bi bi-qr-code"></i></div>
+          <h5>Show QR Code & Collect</h5>
+          <p class="text-muted-light">Walk in, show your QR code at the Click & Collect counter, and you're done. No queuing. No waiting at home.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-padded">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="section-header text-center mb-5">
+          <span class="section-tag">Got Questions?</span>
+          <h2 class="section-title">Click & Collect <span class="text-gradient">FAQs</span></h2>
+        </div>
+        <div class="accordion faq-accordion" id="ccFaq">
+          <div class="accordion-item faq-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">How long will my order be held?</button>
+            </h2>
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#ccFaq">
+              <div class="accordion-body faq-body">Your order will be held at the store for 7 days. If uncollected, it will be cancelled and refunded in full.</div>
+            </div>
+          </div>
+          <div class="accordion-item faq-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button faq-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">Can someone else collect on my behalf?</button>
+            </h2>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#ccFaq">
+              <div class="accordion-body faq-body">Yes. You can authorise a delegate at checkout by entering their name. They will need to provide the QR code and a valid photo ID.</div>
+            </div>
+          </div>
+          <div class="accordion-item faq-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button faq-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">Is there a fee for Click & Collect?</button>
+            </h2>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#ccFaq">
+              <div class="accordion-body faq-body">No, Click & Collect is completely free at all TechHub stores. There are no minimum order requirements either.</div>
+            </div>
+          </div>
+          <div class="accordion-item faq-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button faq-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">What if the product isn't available at my store?</button>
+            </h2>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#ccFaq">
+              <div class="accordion-body faq-body">The store search shows real-time availability. If a product shows as unavailable, choose a nearby store or opt for home delivery instead.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer pt-4 pb-3">
+  <div class="container">
+    <hr class="footer-divider mt-0"/>
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <p class="text-muted-light mb-0 small">© 2026 TechHub Electronics Pty Ltd. ABN 12 345 678 901. All rights reserved.</p>
+      <div class="d-flex flex-wrap gap-3">
+        <a href="#" class="text-muted-light small">Privacy Policy</a>
+        <a href="#" class="text-muted-light small">Terms of Use</a>
+        <a href="#" class="text-muted-light small">Consumer Rights</a>
+        <a href="about_us.html" class="text-muted-light small">About Us</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

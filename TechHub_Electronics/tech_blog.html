@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tech Blog – TechHub Electronics</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ---- HERO ---- */
+    .blog-hero {
+      background: linear-gradient(135deg, #080c18 0%, var(--th-navy) 50%, #0d0a1e 100%);
+      padding: 80px 0 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 50% 100%, rgba(11,94,215,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    /* Floating category pills in hero */
+    .hero-cat-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+    .hero-cat-pill {
+      background: rgba(11,94,215,0.12);
+      color: var(--th-muted);
+      border: 1px solid var(--th-border);
+      border-radius: 30px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .hero-cat-pill:hover, .hero-cat-pill.active { background: var(--th-accent-dim); color: var(--th-accent); border-color: var(--th-accent); }
+
+    /* ---- FEATURED POST ---- */
+    .featured-section { padding: 60px 0 0; background: var(--th-navy); }
+    .featured-card {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      cursor: pointer;
+    }
+    .featured-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+      border-color: var(--th-accent);
+    }
+    .featured-card-img {
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .featured-card-img .img-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .featured-card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+    .post-category {
+      display: inline-block;
+      border-radius: 20px;
+      padding: 3px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: 'Rajdhani', sans-serif;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .cat-review { background: rgba(11,94,215,0.15); color: var(--th-accent); }
+    .cat-news { background: rgba(245,166,35,0.15); color: #f5a623; }
+    .cat-guide { background: rgba(0,200,100,0.15); color: #00c864; }
+    .cat-tips { background: rgba(124,58,237,0.15); color: #a78bfa; }
+    .cat-deals { background: rgba(239,68,68,0.15); color: #f87171; }
+    .featured-card-body h4 { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.3; margin-bottom: 10px; }
+    .featured-card-body h5 { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 19px; line-height: 1.3; margin-bottom: 10px; }
+    .featured-card-body p { font-size: 14px; color: var(--th-muted); line-height: 1.6; flex: 1; margin-bottom: 16px; }
+    .post-meta { display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--th-muted); flex-wrap: wrap; }
+    .post-meta .author { display: flex; align-items: center; gap: 6px; }
+    .author-dot { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .read-time { display: flex; align-items: center; gap: 4px; }
+    .post-divider { width: 3px; height: 3px; border-radius: 50%; background: var(--th-border); }
+
+    /* ---- BLOG GRID ---- */
+    .blog-grid-section { padding: 60px 0; background: var(--th-navy); }
+    .blog-card {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      height: 100%;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+    }
+    .blog-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--th-accent);
+      box-shadow: 0 12px 30px rgba(11,94,215,0.1);
+    }
+    .blog-card-img {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    }
+    .blog-card-body { padding: 20px; }
+    .blog-card-body h6 { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 17px; line-height: 1.35; margin-bottom: 8px; }
+    .blog-card-body p { font-size: 13px; color: var(--th-muted); line-height: 1.55; margin-bottom: 14px; }
+    .rating-stars { color: #ffd700; font-size: 13px; letter-spacing: 1px; }
+    .score-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: linear-gradient(135deg, #ffd700, #f5a623);
+      color: #111;
+      border-radius: 8px;
+      padding: 3px 10px;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    /* ---- SIDEBAR ---- */
+    .sidebar-widget {
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .sidebar-widget h6 { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 17px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--th-border); }
+    .sidebar-post { display: flex; gap: 12px; margin-bottom: 14px; cursor: pointer; }
+    .sidebar-post:last-child { margin-bottom: 0; }
+    .sidebar-post-icon {
+      width: 44px; height: 44px;
+      border-radius: 8px;
+      background: var(--th-navy-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      color: var(--th-accent);
+      flex-shrink: 0;
+    }
+    .sidebar-post-title { font-size: 13px; font-weight: 500; line-height: 1.4; margin-bottom: 3px; }
+    .sidebar-post-meta { font-size: 12px; color: var(--th-muted); }
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
+    .blog-tag {
+      background: var(--th-navy-light);
+      border: 1px solid var(--th-border);
+      color: var(--th-muted);
+      border-radius: 6px;
+      padding: 4px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .blog-tag:hover { background: var(--th-accent-dim); color: var(--th-accent); border-color: var(--th-accent); }
+
+    /* ---- NEWSLETTER MINI ---- */
+    .blog-newsletter {
+      background: linear-gradient(135deg, var(--th-accent), #0652cc);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      text-align: center;
+    }
+    .blog-newsletter h6 { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 8px; color: #fff; }
+    .blog-newsletter p { font-size: 13px; color: rgba(255,255,255,0.8); margin-bottom: 14px; }
+    .blog-newsletter input {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      border-radius: 8px;
+      padding: 10px 14px;
+      width: 100%;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+    .blog-newsletter input::placeholder { color: rgba(255,255,255,0.5); }
+    .blog-newsletter input:focus { outline: none; border-color: rgba(255,255,255,0.6); }
+
+    /* ---- PAGINATION ---- */
+    .blog-pagination { display: flex; justify-content: center; gap: 6px; margin-top: 40px; }
+    .page-btn {
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      background: var(--th-navy-card);
+      border: 1px solid var(--th-border);
+      color: var(--th-muted);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .page-btn:hover, .page-btn.active { background: var(--th-accent-dim); color: var(--th-accent); border-color: var(--th-accent); }
+
+    /* ---- POST GRADIENT BACKGROUNDS ---- */
+    .bg-post-1 { background: linear-gradient(135deg, #0d1633, #1a2550); }
+    .bg-post-2 { background: linear-gradient(135deg, #0f1a0f, #1a2e1a); }
+    .bg-post-3 { background: linear-gradient(135deg, #1a0d1a, #2e1a2e); }
+    .bg-post-4 { background: linear-gradient(135deg, #1a1000, #2e1f00); }
+    .bg-post-5 { background: linear-gradient(135deg, #001a1a, #002e2e); }
+    .bg-post-6 { background: linear-gradient(135deg, #1a0000, #2e0000); }
+    .bg-post-7 { background: linear-gradient(135deg, #0d0d1a, #1a1a30); }
+    .bg-post-8 { background: linear-gradient(135deg, #001a10, #003020); }
+  </style>
+</head>
+<body>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-banner-inner">
+    <div class="cookie-text">
+      <i class="bi bi-shield-lock-fill text-accent me-2"></i>
+      <span>We use cookies to improve your shopping experience and for analytics. By continuing you agree to our <a href="#">Cookie Policy</a>.</span>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn btn-sm btn-outline-custom" onclick="cookieDecline()">Manage Preferences</button>
+      <button class="btn btn-sm btn-primary-custom" onclick="cookieAccept()">Accept All</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container-fluid px-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <span><i class="bi bi-truck me-1"></i> Free shipping on orders over $99 Australia-wide</span>
+      <span class="d-none d-md-inline"><i class="bi bi-telephone me-1"></i> 1800-TECHHUB &nbsp;|&nbsp; <i class="bi bi-clock me-1"></i> Mon–Sat 9am–6pm AEST</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="mainNav">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="home.html">
+      <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+      <span class="brand-name">Tech<span class="brand-accent">Hub</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="products.html" data-bs-toggle="dropdown">Products</a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="products.html#smartphones"><i class="bi bi-phone me-2 text-accent"></i>Smartphones & Tablets</a></li>
+            <li><a class="dropdown-item" href="products.html#laptops"><i class="bi bi-laptop me-2 text-accent"></i>Laptops & Accessories</a></li>
+            <li><a class="dropdown-item" href="products.html#gaming"><i class="bi bi-controller me-2 text-accent"></i>Gaming</a></li>
+            <li><a class="dropdown-item" href="products.html#smarthome"><i class="bi bi-house-gear me-2 text-accent"></i>Smart Home & IoT</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="click-collect.html">Click & Collect</a></li>
+        <li class="nav-item"><a class="nav-link" href="try-before-buy.html">Try Before You Buy</a></li>
+        <li class="nav-item"><a class="nav-link" href="trade_in.html">Trade-In</a></li>
+        <li class="nav-item"><a class="nav-link active" href="tech_blog.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="tech_advisor.html">Tech Advisor</a></li>
+        <li class="nav-item"><a class="nav-link" href="about_us.html">About Us</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+        <div class="search-wrap d-none d-lg-flex">
+          <input class="form-control search-input" type="search" placeholder="Search products…"/>
+          <button class="btn-search"><i class="bi bi-search"></i></button>
+        </div>
+        <a href="profile.html" class="nav-icon-btn" id="navProfileBtn" title="Account"><i class="bi bi-person-circle text-accent"></i></a>></i></a>
+        <a href="checkout.html" class="nav-icon-btn position-relative" title="Cart">
+          <i class="bi bi-bag-fill"></i>
+          <span class="cart-badge">3</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="hero-tag mb-3">📰 TechHub Blog</div>
+        <h1 class="hero-title mb-3">Expert Reviews.<br/><span class="text-gradient">Real Advice.</span></h1>
+        <p class="hero-sub mb-4">In-depth product reviews, buying guides, how-tos and the latest tech news — written by our in-store experts who actually use the products they write about.</p>
+        <div class="hero-cat-pills">
+          <a href="#" class="hero-cat-pill active" onclick="filterPosts('all', this)">All Posts</a>
+          <a href="#" class="hero-cat-pill" onclick="filterPosts('review', this)">Reviews</a>
+          <a href="#" class="hero-cat-pill" onclick="filterPosts('news', this)">News</a>
+          <a href="#" class="hero-cat-pill" onclick="filterPosts('guide', this)">Buying Guides</a>
+          <a href="#" class="hero-cat-pill" onclick="filterPosts('tips', this)">Tips & How-Tos</a>
+          <a href="#" class="hero-cat-pill" onclick="filterPosts('deals', this)">Deals Roundup</a>
+        </div>
+      </div>
+      <div class="col-lg-5 offset-lg-1 d-none d-lg-flex justify-content-center">
+        <div class="row g-2 w-100">
+          <div class="col-6">
+            <div class="featured-card" style="height:auto;" onclick="openPost(this)">
+              <div class="featured-card-img bg-post-1" style="height:120px; font-size:36px;"><i class="bi bi-phone-fill"></i></div>
+              <div class="featured-card-body" style="padding:14px;">
+                <span class="post-category cat-review">Review</span>
+                <h6 style="font-family:Rajdhani; font-weight:700; font-size:15px; margin-bottom:0;">Galaxy S25 Ultra — Is it Worth It?</h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="featured-card" style="height:auto;" onclick="openPost(this)">
+              <div class="featured-card-img bg-post-2" style="height:120px; font-size:36px;"><i class="bi bi-laptop-fill" style="color:#00c864;"></i></div>
+              <div class="featured-card-body" style="padding:14px;">
+                <span class="post-category cat-guide">Guide</span>
+                <h6 style="font-family:Rajdhani; font-weight:700; font-size:15px; margin-bottom:0;">Best Laptops Under $1,500</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED POSTS -->
+<section class="featured-section">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="section-title mb-0">Featured <span class="text-gradient">Stories</span></h2>
+      <a href="#" class="text-accent text-decoration-none small fw-medium">See All</a>
+    </div>
+    <div class="row g-4 mb-5">
+      <!-- Hero Featured -->
+      <div class="col-lg-6">
+        <div class="featured-card" onclick="openPost(this)" data-cat="review">
+          <div class="featured-card-img bg-post-1">
+            <div class="img-overlay"><i class="bi bi-phone-fill" style="color:var(--th-accent); opacity:0.6; font-size:80px;"></i></div>
+            <div style="position:relative; z-index:1; font-size:56px;"><i class="bi bi-phone-fill"></i></div>
+          </div>
+          <div class="featured-card-body">
+            <span class="post-category cat-review">Review</span>
+            <h4>Samsung Galaxy S25 Ultra – 3 Weeks Later: Is It the Best Android Phone Ever?</h4>
+            <p>Our tech editor lived with the S25 Ultra for three weeks. The titanium frame, 200MP camera, and built-in S Pen make for a compelling flagship — but is it a generational leap or incremental update?</p>
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="post-meta">
+                <div class="author">
+                  <div class="author-dot" style="background:var(--th-accent);">JL</div>
+                  <span>James Liu</span>
+                </div>
+                <div class="post-divider"></div>
+                <div class="read-time"><i class="bi bi-clock"></i> 8 min read</div>
+                <div class="post-divider"></div>
+                <span>Mar 8, 2026</span>
+              </div>
+              <div class="score-badge"><i class="bi bi-star-fill"></i> 9.2</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="row g-4 h-100">
+          <div class="col-12">
+            <div class="featured-card flex-row d-flex" style="flex-direction:row !important;" onclick="openPost(this)" data-cat="guide">
+              <div class="featured-card-img bg-post-3" style="width:140px; height:auto; flex-shrink:0; font-size:36px; border-radius:0;">
+                <i class="bi bi-laptop-fill" style="color:#a78bfa;"></i>
+              </div>
+              <div class="featured-card-body" style="padding:20px;">
+                <span class="post-category cat-guide">Buying Guide</span>
+                <h5>Best Laptops Under $1,500 in 2026 — Our Expert Picks</h5>
+                <p style="font-size:13px;">From MacBook Air to ThinkPad, we've tested 14 laptops to find the best value in 2026.</p>
+                <div class="post-meta">
+                  <div class="author"><div class="author-dot" style="background:#7c3aed;">SK</div><span>Sophie K.</span></div>
+                  <div class="post-divider"></div>
+                  <div class="read-time"><i class="bi bi-clock"></i> 12 min</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="featured-card flex-row d-flex" style="flex-direction:row !important;" onclick="openPost(this)" data-cat="news">
+              <div class="featured-card-img bg-post-4" style="width:140px; height:auto; flex-shrink:0; font-size:36px; border-radius:0;">
+                <i class="bi bi-cpu-fill" style="color:#f5a623;"></i>
+              </div>
+              <div class="featured-card-body" style="padding:20px;">
+                <span class="post-category cat-news">News</span>
+                <h5>Apple's M4 MacBook Pro Arrives: What's New and Should You Upgrade?</h5>
+                <p style="font-size:13px;">We break down every spec change, new feature, and pricing update for the M4 Pro lineup.</p>
+                <div class="post-meta">
+                  <div class="author"><div class="author-dot" style="background:#f5a623;">RN</div><span>Ryan N.</span></div>
+                  <div class="post-divider"></div>
+                  <div class="read-time"><i class="bi bi-clock"></i> 5 min</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN BLOG GRID + SIDEBAR -->
+<section class="blog-grid-section">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- POSTS GRID -->
+      <div class="col-lg-8">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3 class="section-title mb-0" style="font-size:24px;">Latest <span class="text-gradient">Posts</span></h3>
+          <div class="d-flex gap-2">
+            <select class="form-select form-select-sm" style="background:var(--th-navy-card); border:1px solid var(--th-border); color:var(--th-text); width:auto;" onchange="sortPosts(this.value)">
+              <option value="newest">Newest First</option>
+              <option value="popular">Most Popular</option>
+              <option value="reviews">Reviews Only</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row g-4" id="postsGrid">
+          <!-- Post 1 -->
+          <div class="col-sm-6" data-cat="review">
+            <div class="blog-card" onclick="openPost(this)">
+              <div class="blog-card-img bg-post-1"><i class="bi bi-phone-fill" style="color:var(--th-accent);"></i></div>
+              <div class="blog-card-body">
+                <span class="post-category cat-review">Review</span>
+                <h6>iPhone 16 Pro Max – One Month Review: Still the Best?</h6>
+                <p>Apple's latest flagship puts the camera system front and centre. We pushed it to its limits.</p>
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <div class="rating-stars">★★★★★</div>
+                  <div class="score-badge"><i class="bi bi-star-fill"></i> 9.4</div>
+                </div>
+                <div class="post-meta">
+                  <div class="author"><div class="author-dot" style="background:#ef4444; font-size:10px;">AM</div><span>Aisha M.</span></div>
+                  <div class="post-divider"></div>
+                  <span>Mar 10, 2026</span>
+                  <div class="post-divider"></div>
+                  <div class="read-time"><i class="bi bi-clock"></i> 7 min</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Post 2 -->
+          <div class="col-sm-6" data-cat="tips">
+            <div class="blog-card" onclick="openPost(this)">
+              <div class="blog-card-img bg-post-2"><i class="bi bi-shield-lock-fill" style="color:#00c864;"></i></div>
+              <div class="blog-card-body">
+                <span class="post-category cat-tips">Tips</span>
+                <h6>10 iPhone Privacy Settings You Should Enable Right Now</h6>
+                <p>Most people leave their iPhone's privacy settings on default. Don't be most people.</p>
+                <div class="post-meta mt-2">
+                  <div class="author"><div class="author-dot" style="background:#059669; font-size:10px;">DW</div><span>Dan W.</span></div>
+                  <div class="post-divider"></div>
+                  <span>Mar 9, 2026</span>
+                  <div class="post-divider"></div>
+                  <div class="read-time"><i class="bi bi-clock"></i> 5 min</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Post 3 -->
+          <div class="col-sm-6" data-cat="guide">
+            <div class="blog-card" onclick="openPost(this)">
+              <div class="blog-card-img bg-post-5"><i class="bi bi-house-gear-fill" style="color:#06b6d4;"></i></div>
+              <div class="blog-card-body">
+                <span class="post-category cat-guide">Buying Guide</span>
+                <h6>The Beginner's Guide to Building a Smart Home in 2026</h6>
+                <p>Matter, Thread, Zigbee, HomeKit — the smart home world is complicated. Here's how to cut through the noise.</p>
+                <div class="post-meta mt-2">
+                  <div class="author"><div class="author-dot" style="background:#0891b2; font-size:10px;">LH</div><span>Lily H.</span></div>
+                  <div class="post-divider"></div>
+                  <span>Mar 7, 2026</span>
+                  <div class="post-divider"></div>
+                  <div class="read-time"><i class="bi bi-clock"></i> 10 min</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Post 4 -->
+          <div class="col-sm-6" data-cat="review">
+            <div class="blog-card" onclick="openPost(this)">
+              <div class="blog-card-img bg-post-3"><i class="bi bi-headphones" style="color:#a78bfa; font-size:52px;"></i></div>
+              <div class="blog-card-body">
+                <span class="post-category cat-review">Review</span>
+                <h6>Sony WH-1000XM6 – The Noise-Cancelling King, Dethroned?</h6>
+                <p>Bose and Apple have been closing the gap. Does Sony still lead the ANC pack in 2026?</p>
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <div class="rating-stars">★★★★½</div>
+                  <div class="score-badge"><i class="bi bi-star-fill"></i> 8.8</div>
+                </div>
+                <div class="post-meta">
+                  <div class="author"><div class="author-dot" style="background:#7c3aed; font-size:10px;">TK</div><span>Tom K.</span></div>
+                  <div class="post-divider"></div>
+                  <span>Mar 6, 2026</span>
+                  <div class="post-divider"></div>
+                  <div class="read-time"><i class="bi bi-clock"></i> 6 min</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Post 5 -->
+          <div class="col-sm-6" data-cat="news">
+            <div class="blog-card" onclick="openPost(this)">
+              <div class="blog-card-img bg-post-4"><i class="bi bi-controller-fill" style="color:#f5a623;"></i></div>
+              <div class="blog-card-body">
+                <span class="post-category cat-news">News</span>
+                <h6>PS6 Confirmed: Everything We Know So Far</h6>
+                <p>Sony officially confirmed the PS6's existence with a teaser. We round up every confirmed spec, price rumour and launch detail.</p>
+                <div class="post-meta mt-2">
+                  <div class="author"><div class="author-dot" style="background:#d97706; font-size:10px;">BJ</div><span>Ben J.</span></div>
+                  <div class="post-divider"></div>
+                  <span>Mar 5, 2026</span>
+                  <div class="post-divider"></div>
+                  <div class="read-time"><i class="bi bi-clock"></i> 4 min</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Post 6 -->
+          <div class="col-sm-6" data-cat="deals">
+            <div class="blog-card" onclick="openPost(this)">
+              <div class="blog-card-img bg-post-6"><i class="bi bi-tag-fill" style="color:#f87171;"></i></div>
+              <div class="blog-card-body">
+                <span class="post-category cat-deals">Deals</span>
+                <h6>The Best Tech Deals This Week — March 2026 Roundup</h6>
+                <p>Our editors scoured every deal across TechHub, plus the wider market. Here's what's actually worth buying.</p>
+                <div class="post-meta mt-2">
+                  <div class="author"><div class="author-dot" style="background:#dc2626; font-size:10px;">ME</div><span>Mia E.</span></div>
+                  <div class="post-divider"></div>
+                  <span>Mar 4, 2026</span>
+                  <div class="post-divider"></div>
+                  <div class="read-time"><i class="bi bi-clock"></i> 3 min</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Post 7 -->
+          <div class="col-sm-6" data-cat="tips">
+            <div class="blog-card" onclick="openPost(this)">
+              <div class="blog-card-img bg-post-7"><i class="bi bi-battery-charging" style="color:#818cf8; font-size:52px;"></i></div>
+              <div class="blog-card-body">
+                <span class="post-category cat-tips">Tips</span>
+                <h6>Why You're Charging Your Phone Wrong — And How to Fix It</h6>
+                <p>Fast charging, wireless charging, overnight charging — myths vs. facts about battery health in 2026.</p>
+                <div class="post-meta mt-2">
+                  <div class="author"><div class="author-dot" style="background:#4f46e5; font-size:10px;">CL</div><span>Chris L.</span></div>
+                  <div class="post-divider"></div>
+                  <span>Mar 3, 2026</span>
+                  <div class="post-divider"></div>
+                  <div class="read-time"><i class="bi bi-clock"></i> 4 min</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Post 8 -->
+          <div class="col-sm-6" data-cat="review">
+            <div class="blog-card" onclick="openPost(this)">
+              <div class="blog-card-img bg-post-8"><i class="bi bi-watch" style="color:#34d399; font-size:52px;"></i></div>
+              <div class="blog-card-body">
+                <span class="post-category cat-review">Review</span>
+                <h6>Apple Watch Ultra 3 vs Garmin Fenix 8 — Which Wins?</h6>
+                <p>The smartwatch vs. sports watch battle finally gets serious. We wore both for a month of workouts.</p>
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <div class="rating-stars">★★★★★</div>
+                  <div class="score-badge" style="background: linear-gradient(135deg, #34d399, #059669);"><i class="bi bi-star-fill"></i> 9.1</div>
+                </div>
+                <div class="post-meta">
+                  <div class="author"><div class="author-dot" style="background:#059669; font-size:10px;">PW</div><span>Priya W.</span></div>
+                  <div class="post-divider"></div>
+                  <span>Mar 1, 2026</span>
+                  <div class="post-divider"></div>
+                  <div class="read-time"><i class="bi bi-clock"></i> 9 min</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="blog-pagination">
+          <div class="page-btn active">1</div>
+          <div class="page-btn" onclick="this.closest('.blog-pagination').querySelectorAll('.page-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active')">2</div>
+          <div class="page-btn" onclick="this.closest('.blog-pagination').querySelectorAll('.page-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active')">3</div>
+          <div class="page-btn">…</div>
+          <div class="page-btn" onclick="this.closest('.blog-pagination').querySelectorAll('.page-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active')">12</div>
+          <div class="page-btn"><i class="bi bi-chevron-right"></i></div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="col-lg-4">
+        <!-- Search -->
+        <div class="sidebar-widget">
+          <h6>Search the Blog</h6>
+          <div class="search-wrap">
+            <input class="form-control search-input" type="search" placeholder="Search articles…" id="blogSearchInput"/>
+            <button class="btn-search" onclick="blogSearch()"><i class="bi bi-search"></i></button>
+          </div>
+        </div>
+
+        <!-- Popular Posts -->
+        <div class="sidebar-widget">
+          <h6>Most Popular</h6>
+          <div class="sidebar-post" onclick="openPost(this)">
+            <div class="sidebar-post-icon"><i class="bi bi-phone-fill"></i></div>
+            <div>
+              <div class="sidebar-post-title">Best Smartphones of 2026 — All Budgets</div>
+              <div class="sidebar-post-meta">24,500 views · Feb 2026</div>
+            </div>
+          </div>
+          <div class="sidebar-post" onclick="openPost(this)">
+            <div class="sidebar-post-icon"><i class="bi bi-laptop-fill"></i></div>
+            <div>
+              <div class="sidebar-post-title">MacBook Air M3 vs Dell XPS 15 — Which to Buy?</div>
+              <div class="sidebar-post-meta">18,200 views · Jan 2026</div>
+            </div>
+          </div>
+          <div class="sidebar-post" onclick="openPost(this)">
+            <div class="sidebar-post-icon"><i class="bi bi-controller-fill"></i></div>
+            <div>
+              <div class="sidebar-post-title">PS5 Pro Complete Review — 6 Months Later</div>
+              <div class="sidebar-post-meta">15,700 views · Dec 2025</div>
+            </div>
+          </div>
+          <div class="sidebar-post" onclick="openPost(this)">
+            <div class="sidebar-post-icon"><i class="bi bi-house-gear-fill"></i></div>
+            <div>
+              <div class="sidebar-post-title">Top 10 Smart Home Gadgets Under $100</div>
+              <div class="sidebar-post-meta">12,300 views · Nov 2025</div>
+            </div>
+          </div>
+          <div class="sidebar-post" onclick="openPost(this)">
+            <div class="sidebar-post-icon"><i class="bi bi-headphones"></i></div>
+            <div>
+              <div class="sidebar-post-title">Best Wireless Earbuds — The Definitive Ranking</div>
+              <div class="sidebar-post-meta">11,000 views · Oct 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="sidebar-widget">
+          <h6>Categories</h6>
+          <div class="d-flex flex-column gap-2">
+            <div class="d-flex justify-content-between align-items-center py-1 border-bottom" style="border-color:var(--th-border)!important; cursor:pointer;" onclick="filterPosts('review', null)">
+              <span class="post-category cat-review mb-0" style="display:inline-block;">Reviews</span>
+              <span class="small text-muted">48 posts</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center py-1 border-bottom" style="border-color:var(--th-border)!important; cursor:pointer;" onclick="filterPosts('news', null)">
+              <span class="post-category cat-news mb-0" style="display:inline-block;">News</span>
+              <span class="small text-muted">31 posts</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center py-1 border-bottom" style="border-color:var(--th-border)!important; cursor:pointer;" onclick="filterPosts('guide', null)">
+              <span class="post-category cat-guide mb-0" style="display:inline-block;">Buying Guides</span>
+              <span class="small text-muted">22 posts</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center py-1 border-bottom" style="border-color:var(--th-border)!important; cursor:pointer;" onclick="filterPosts('tips', null)">
+              <span class="post-category cat-tips mb-0" style="display:inline-block;">Tips & How-Tos</span>
+              <span class="small text-muted">19 posts</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center py-1" style="cursor:pointer;" onclick="filterPosts('deals', null)">
+              <span class="post-category cat-deals mb-0" style="display:inline-block;">Deals Roundups</span>
+              <span class="small text-muted">14 posts</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tag Cloud -->
+        <div class="sidebar-widget">
+          <h6>Popular Tags</h6>
+          <div class="tag-cloud">
+            <a href="#" class="blog-tag">#iPhone</a>
+            <a href="#" class="blog-tag">#Samsung</a>
+            <a href="#" class="blog-tag">#MacBook</a>
+            <a href="#" class="blog-tag">#Gaming</a>
+            <a href="#" class="blog-tag">#SmartHome</a>
+            <a href="#" class="blog-tag">#ANC</a>
+            <a href="#" class="blog-tag">#5G</a>
+            <a href="#" class="blog-tag">#Privacy</a>
+            <a href="#" class="blog-tag">#BatteryLife</a>
+            <a href="#" class="blog-tag">#Deals</a>
+            <a href="#" class="blog-tag">#AppleWatch</a>
+            <a href="#" class="blog-tag">#AI</a>
+          </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="blog-newsletter">
+          <h6><i class="bi bi-envelope-fill me-2"></i>Weekly Tech Digest</h6>
+          <p>Get the best reviews and deals delivered to your inbox every Friday.</p>
+          <input type="email" placeholder="Your email address…" id="blogNewsletterInput"/>
+          <button class="btn w-100 fw-semibold py-2" style="background:#fff; color:var(--th-accent); border-radius:8px; font-size:14px;" onclick="subscribeBlog()">
+            Subscribe Free <i class="bi bi-send ms-1"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer pt-5 pb-3 mt-4">
+  <div class="container">
+    <div class="row g-4 mb-5">
+      <div class="col-lg-4">
+        <a class="navbar-brand d-flex align-items-center gap-2 mb-3" href="home.html">
+          <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+          <span class="brand-name">Tech<span class="brand-accent">Hub</span></span>
+        </a>
+        <p class="text-muted-light">Australia's trusted electronics retailer since 1998. Competitive prices, expert staff, and exceptional service — online and in-store.</p>
+        <div class="social-links mt-3">
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-twitter-x"></i></a>
+          <a href="#"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Products</h6>
+        <ul class="footer-links">
+          <li><a href="products.html#smartphones">Smartphones</a></li>
+          <li><a href="products.html#laptops">Laptops</a></li>
+          <li><a href="products.html#gaming">Gaming</a></li>
+          <li><a href="products.html#smarthome">Smart Home</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Services</h6>
+        <ul class="footer-links">
+          <li><a href="click-collect.html">Click & Collect</a></li>
+          <li><a href="try-before-buy.html">Try Before You Buy</a></li>
+          <li><a href="trade_in.html">Trade-In & Upgrade</a></li>
+          <li><a href="rewards.html">TechHub Rewards</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Company</h6>
+        <ul class="footer-links">
+          <li><a href="about_us.html">About Us</a></li>
+          <li><a href="support.html">Help Centre</a></li>
+          <li><a href="tech_blog.html">Tech Blog</a></li>
+          <li><a href="support.html#contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6 class="footer-heading">Legal</h6>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Consumer Rights</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider"/>
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mt-4">
+      <p class="text-muted-light mb-0 small">© 2026 TechHub Electronics Pty Ltd. ABN 12 345 678 901. All rights reserved.</p>
+      <div class="payment-icons d-flex gap-2">
+        <span class="payment-icon"><i class="bi bi-credit-card-2-front"></i> Visa</span>
+        <span class="payment-icon"><i class="bi bi-credit-card-fill"></i> Mastercard</span>
+        <span class="payment-icon"><i class="bi bi-paypal"></i> PayPal</span>
+        <span class="payment-icon">Afterpay</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="main.js"></script>
+<script>
+  function filterPosts(cat, pillEl) {
+    // Update pill UI
+    if (pillEl) {
+      document.querySelectorAll('.hero-cat-pill').forEach(p => p.classList.remove('active'));
+      pillEl.classList.add('active');
+    }
+    // Filter grid
+    document.querySelectorAll('#postsGrid [data-cat]').forEach(card => {
+      const parent = card.closest('.col-sm-6') || card;
+      parent.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+    });
+  }
+
+  function openPost(el) {
+    if (window.showToast) showToast('Opening article…', 'info');
+  }
+
+  function sortPosts(val) {
+    if (window.showToast) showToast('Sorting: ' + val, 'info');
+  }
+
+  function blogSearch() {
+    const val = document.getElementById('blogSearchInput').value.trim();
+    if (val && window.showToast) showToast('Searching for "' + val + '"…', 'info');
+  }
+
+  function subscribeBlog() {
+    const input = document.getElementById('blogNewsletterInput');
+    const val = input.value.trim();
+    if (!val || !val.includes('@')) {
+      input.style.borderColor = 'rgba(255,100,100,0.6)';
+      setTimeout(() => input.style.borderColor = '', 1500);
+      return;
+    }
+    if (window.showToast) showToast('Subscribed to the TechHub Weekly Digest!', 'success');
+    input.value = '';
+  }
+</script>
+</body>
+</html>

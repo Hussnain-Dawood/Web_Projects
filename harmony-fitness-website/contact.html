@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact Harmony Fitness for inquiries, membership, or to book a free trial session." />
+  <title>Contact Us | Harmony Fitness &amp; Wellness Studio</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<header id="site-header">
+  <div class="nav-wrapper">
+    <a href="index.html" class="logo"><div class="logo-icon"><i class="fa-solid fa-dumbbell"></i></div>Harmony<span>Fitness</span></a>
+    <nav><ul id="nav-menu"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="trainers.html">Trainers</a></li><li><a href="schedule.html">Schedule</a></li><li><a href="membership.html">Membership</a></li><li><a href="virtual.html">Virtual</a></li><li><a href="blog.html">Blog</a></li><li><a href="gallery.html">Gallery</a></li>
+        <li class="nav-extra-menu">
+          <button class="extra-hamburger" aria-label="Menu Actions"><i class="fa-solid fa-bars"></i></button>
+          <ul class="extra-dropdown">
+            <li><a href="contact.html">Contact Us</a></li>
+            <li class="auth-out"><a href="signin.html">Sign In</a></li>
+            <li class="auth-out"><a href="signup.html">Sign Up</a></li>
+            <li class="auth-in" style="display:none;"><a href="#" class="logout-btn">Logout</a></li>
+          </ul>
+        </li>
+</ul></nav>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<div class="page-hero" style="--hero-bg: url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=1600&q=80');">
+  <div class="container">
+    <span class="section-label">Get in Touch</span>
+    <h1>Contact Us</h1>
+    <p>Have questions about memberships, classes, or personal training? We're here to help.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="two-col" style="align-items:start;">
+      
+      <!-- Contact Info -->
+      <div class="reveal">
+        <h2 style="margin-bottom:24px;color:var(--text-main);">Visit The Studio</h2>
+        <p style="margin-bottom:30px;">Drop in during staffed hours for a facility tour or a chat with our team.</p>
+        
+        <div style="display:flex;gap:16px;margin-bottom:24px;">
+          <div style="font-size:1.8rem;"><i class="fa-solid fa-location-dot"></i></div>
+          <div><h4 style="color:var(--text-main);margin-bottom:4px;">Address</h4><p>42 Wellness Avenue<br/>Sydney CBD, NSW 2000</p></div>
+        </div>
+        
+        <div style="display:flex;gap:16px;margin-bottom:24px;">
+          <div style="font-size:1.8rem;"><i class="fa-solid fa-phone"></i></div>
+          <div><h4 style="color:var(--text-main);margin-bottom:4px;">Phone &amp; Email</h4><p><a href="tel:+61292001234" style="color:var(--primary);">(02) 9200 1234</a><br/><a href="mailto:info@harmonyfitness.com.au" style="color:var(--primary);">info@harmonyfitness.com.au</a></p></div>
+        </div>
+
+        <div style="display:flex;gap:16px;margin-bottom:24px;">
+          <div style="font-size:1.8rem;"><i class="fa-solid fa-clock"></i></div>
+          <div><h4 style="color:var(--text-main);margin-bottom:4px;">Staffed Hours</h4><p>Monday - Friday: 5:00am - 10:00pm<br/>Weekends: 6:00am - 8:00pm<br/><small style="color:var(--primary);">*24/7 access available for Premium members</small></p></div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="reveal" style="background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius);padding:40px;">
+        <h3 style="color:var(--text-main);margin-bottom:24px;">Send us a message</h3>
+        
+        <form id="contact-form" novalidate>
+          <div class="form-group">
+            <label for="cf-name">Full Name *</label>
+            <input type="text" id="cf-name" name="cf-name" required />
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-email">Email Address *</label>
+              <input type="email" id="cf-email" name="cf-email" required />
+              <div class="error-msg"></div>
+            </div>
+            <div class="form-group">
+              <label for="cf-phone">Phone Number</label>
+              <input type="tel" id="cf-phone" name="cf-phone" />
+              <div class="error-msg"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cf-subject">Subject *</label>
+            <select id="cf-subject" name="cf-subject" required>
+              <option value="">Select an option...</option>
+              <option value="membership">Membership Inquiry</option>
+              <option value="pt">Personal Training</option>
+              <option value="feedback">Feedback / General</option>
+            </select>
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-group">
+            <label for="cf-message">Message *</label>
+            <textarea id="cf-message" name="cf-message" rows="5" required></textarea>
+            <div class="error-msg"></div>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
+        </form>
+
+        <div id="form-success" style="display:none;text-align:center;padding:40px 0;">
+          <div style="font-size:3rem;margin-bottom:16px;"><i class="fa-solid fa-circle-check"></i></div>
+          <h3 style="color:var(--text-main);margin-bottom:10px;">Message Sent!</h3>
+          <p>Thank you for reaching out. Our team will get back to you within 24 hours.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MAP SECTION -->
+<section style="padding-bottom:90px;" class="reveal">
+  <div class="container">
+    <div style="border-radius:var(--radius);overflow:hidden;height:400px;background:#2a2a2a;display:flex;align-items:center;justify-content:center;">
+      <p style="color:var(--text-muted);">[ Interactive Google Map Embed goes here showing Sydney CBD location ]</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a href="index.html" class="logo"><div class="logo-icon"><i class="fa-solid fa-dumbbell"></i></div>Harmony<span>Fitness</span></a><p>Sydney's premier fitness &amp; wellness destination since 2012.</p>
+      <div class="social-links"><a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook">Fb</a><a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">In</a><a href="https://plus.google.com" target="_blank" rel="noopener" aria-label="Google Plus">G+</a><a href="https://www.pinterest.com" target="_blank" rel="noopener" aria-label="Pinterest">Pt</a><a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram">Ig</a><a href="https://www.twitter.com" target="_blank" rel="noopener" aria-label="Twitter">Tw</a></div></div>
+      <div><div class="footer-heading">Quick Links</div><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="trainers.html">Trainers</a></li><li><a href="schedule.html">Schedule</a></li><li><a href="references.html">References</a></li></ul></div>
+      <div><div class="footer-heading">Programs</div><ul class="footer-links"><li><a href="services.html">Gym &amp; Weights</a></li><li><a href="services.html">Yoga &amp; Pilates</a></li><li><a href="virtual.html">Virtual Sessions</a></li><li><a href="membership.html">Memberships</a></li><li><a href="blog.html">Wellness Blog</a></li></ul></div>
+      <div><div class="footer-heading">Contact</div><ul class="footer-links"><li><a href="#"><i class="fa-solid fa-location-dot"></i> 42 Wellness Ave, Sydney NSW 2000</a></li><li><a href="tel:+61292001234"><i class="fa-solid fa-phone"></i> (02) 9200 1234</a></li><li><a href="mailto:info@harmonyfitness.com.au"><i class="fa-solid fa-envelope"></i> info@harmonyfitness.com.au</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Harmony Fitness &amp; Wellness Studio. All rights reserved.</p>
+      <div class="w3c-badge"><a href="https://www.w3.org/standards/" target="_blank" rel="noopener"><img src="https://www.w3.org/Icons/valid-html401" alt="Valid HTML" /></a></div>
+    </div>
+  </div>
+</footer>
+<div class="cookie-banner" id="cookie-banner"><p style="margin-bottom:14px;font-size:0.9rem;color:var(--text-main);"><i class="fa-solid fa-cookie-bite"></i> We use cookies to enhance your experience.</p><div style="display:flex;gap:12px;justify-content:center;"><button class="btn btn-primary" id="cookie-accept" style="padding:10px 24px;font-size:0.82rem;">Accept All</button><button class="btn btn-outline" id="cookie-decline" style="padding:10px 24px;font-size:0.82rem;color:var(--text-main);border-color:var(--dark-border);">Decline</button></div></div>
+<button id="back-to-top" aria-label="Back to Top">↑</button>
+<script src="js/main.js"></script>
+</body>
+</html>

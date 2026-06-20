@@ -1,0 +1,368 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Try Before You Buy – TechHub Electronics</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- COOKIE BANNER -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-banner-inner">
+      <div class="cookie-text">
+        <i class="bi bi-shield-lock-fill text-accent me-2"></i>
+        <span>We use cookies to improve your experience. By continuing you agree to our <a
+            href="#">Cookie Policy</a>.</span>
+      </div>
+      <div class="cookie-actions">
+        <button class="btn btn-sm btn-outline-custom" onclick="cookieDecline()">Manage Preferences</button>
+        <button class="btn btn-sm btn-primary-custom" onclick="cookieAccept()">Accept All</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container-fluid px-4">
+      <span><i class="bi bi-truck me-1"></i> Free shipping on orders over $99</span>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="mainNav">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="home.html">
+        <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+        <span class="brand-name">Tech<span class="brand-accent">Hub</span></span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav mx-auto gap-1">
+          <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="click-collect.html">Click & Collect</a></li>
+          <li class="nav-item"><a class="nav-link active" href="try-before-buy.html">Try Before You Buy</a></li>
+          <li class="nav-item"><a class="nav-link" href="trade_in.html">Trade-In</a></li>
+        <li class="nav-item"><a class="nav-link" href="tech_blog.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="tech_advisor.html">Tech Advisor</a></li>
+          <li class="nav-item"><a class="nav-link" href="about_us.html">About Us</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+          <a href="profile.html" class="nav-icon-btn" id="navProfileBtn" title="Account"><i class="bi bi-person-circle text-accent"></i></a>></i></a>
+          <a href="checkout.html" class="nav-icon-btn position-relative">
+            <i class="bi bi-bag-fill"></i>
+            <span class="cart-badge">3</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="container py-5">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-custom">
+          <li class="breadcrumb-item"><a href="home.html">Home</a></li>
+          <li class="breadcrumb-item active">Try Before You Buy</li>
+        </ol>
+      </nav>
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <div class="hero-tag mb-3">🛒 No Obligation. No Pressure.</div>
+          <h1 class="page-hero-title">Try Before<br /><span class="text-gradient">You Buy</span></h1>
+          <p class="text-muted-light mt-3" style="max-width:520px">Book a free in-store demo with our product
+            specialists. Test the device, explore its features, and buy with confidence — or simply walk away. Your
+            choice.</p>
+          <div class="d-flex gap-3 mt-4">
+            <a href="#bookDemo" class="btn btn-primary-custom btn-lg">Book a Demo <i
+                class="bi bi-arrow-right ms-1"></i></a>
+            <a href="products.html" class="btn btn-outline-custom btn-lg">Browse Products</a>
+          </div>
+        </div>
+        <div class="col-lg-5 d-none d-lg-flex justify-content-center mt-4 mt-lg-0">
+          <div class="try-hero-visual">
+            <div class="try-icon-main big"><i class="bi bi-shop-window"></i></div>
+            <div class="try-badge try-b1"><i class="bi bi-calendar-check me-1"></i> Book Online</div>
+            <div class="try-badge try-b2"><i class="bi bi-gift me-1"></i> 10% Off After Demo</div>
+            <div class="try-badge try-b3"><i class="bi bi-person-check me-1"></i> Expert Staff</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="features-bar py-5">
+    <div class="container">
+      <div class="row g-3 text-center">
+        <div class="col-6 col-md-3">
+          <div class="feature-badge">
+            <i class="bi bi-calendar2-check"></i>
+            <div><strong>Easy Booking</strong><br /><small>Online in 2 minutes</small></div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="feature-badge">
+            <i class="bi bi-people-fill"></i>
+            <div><strong>Expert Demos</strong><br /><small>Dedicated specialists</small></div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="feature-badge">
+            <i class="bi bi-hand-thumbs-up-fill"></i>
+            <div><strong>No Obligation</strong><br /><small>Zero pressure to buy</small></div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="feature-badge">
+            <i class="bi bi-percent"></i>
+            <div><strong>10% Demo Discount</strong><br /><small>If you buy after demo</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING FORM -->
+  <section id="bookDemo" class="section-padded">
+    <div class="container">
+      <div class="section-header text-center mb-5">
+        <span class="section-tag">Book Your Session</span>
+        <h2 class="section-title">Reserve a <span class="text-gradient">Demo Slot</span></h2>
+        <p class="text-muted-light">Takes less than 2 minutes. No payment required.</p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="booking-form-card">
+            <!-- STEP INDICATORS -->
+            <div class="booking-steps mb-5">
+              <div class="booking-step active" id="step-ind-1">
+                <div class="step-circle">1</div>
+                <span>Product</span>
+              </div>
+              <div class="step-line"></div>
+              <div class="booking-step" id="step-ind-2">
+                <div class="step-circle">2</div>
+                <span>Store & Time</span>
+              </div>
+              <div class="step-line"></div>
+              <div class="booking-step" id="step-ind-3">
+                <div class="step-circle">3</div>
+                <span>Your Details</span>
+              </div>
+            </div>
+
+            <!-- STEP 1: PRODUCT -->
+            <div id="bookStep1">
+              <h5 class="booking-step-title">Select a Product to Try</h5>
+              <div class="row g-3 mt-2">
+                <div class="col-sm-6">
+                  <div class="demo-product-select" onclick="selectDemoProduct(this)">
+                    <div class="demo-prod-icon" style="background:transparent;"><img src="assets/images/samsung.jfif"
+                        alt="Samsung"
+                        style="max-height:100%; max-width:100%; object-fit:contain; "></div>
+                    <div><strong>Samsung Galaxy S25 Ultra</strong><small class="text-muted-light">Smartphones &
+                        Tablets</small></div>
+                    <div class="select-check"><i class="bi bi-check-circle-fill"></i></div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="demo-product-select" onclick="selectDemoProduct(this)">
+                    <div class="demo-prod-icon" style="background:transparent;"><img src="assets/images/laptop.png"
+                        alt="Laptop"
+                        style="max-height:100%; max-width:100%; object-fit:contain; "></div>
+                    <div><strong>MacBook Air M3 15"</strong><small class="text-muted-light">Laptops &
+                        Accessories</small></div>
+                    <div class="select-check"><i class="bi bi-check-circle-fill"></i></div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="demo-product-select" onclick="selectDemoProduct(this)">
+                    <div class="demo-prod-icon" style="background:transparent;"><img src="assets/images/gaming.png"
+                        alt="Gaming"
+                        style="max-height:100%; max-width:100%; object-fit:contain; "></div>
+                    <div><strong>PlayStation 5 Pro</strong><small class="text-muted-light">Gaming</small></div>
+                    <div class="select-check"><i class="bi bi-check-circle-fill"></i></div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="demo-product-select" onclick="selectDemoProduct(this)">
+                    <div class="demo-prod-icon" style="background:transparent;"><img src="assets/images/smarthome.png"
+                        alt="Smart Home"
+                        style="max-height:100%; max-width:100%; object-fit:contain; "></div>
+                    <div><strong>Google Nest Hub Max</strong><small class="text-muted-light">Smart Home & IoT</small>
+                    </div>
+                    <div class="select-check"><i class="bi bi-check-circle-fill"></i></div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4">
+                <label class="form-label booking-label">Or search for any product:</label>
+                <input type="text" class="form-control booking-input" placeholder="e.g. Sony WH-1000XM5 headphones…" />
+              </div>
+              <div class="d-flex justify-content-end mt-4">
+                <button class="btn btn-primary-custom" onclick="nextStep(2)">Continue <i
+                    class="bi bi-arrow-right ms-1"></i></button>
+              </div>
+            </div>
+
+            <!-- STEP 2: STORE & TIME -->
+            <div id="bookStep2" style="display:none">
+              <h5 class="booking-step-title">Choose Store & Date</h5>
+              <div class="row g-4 mt-1">
+                <div class="col-md-6">
+                  <label class="form-label booking-label">Select Store:</label>
+                  <select class="form-select booking-select">
+                    <option>TechHub Sydney CBD</option>
+                    <option>TechHub Pitt Street</option>
+                    <option>TechHub Chatswood</option>
+                    <option>TechHub Parramatta</option>
+                    <option>TechHub Melbourne CBD</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label booking-label">Preferred Date:</label>
+                  <input type="date" class="form-control booking-input" min="2026-03-09" />
+                </div>
+              </div>
+              <div class="mt-4">
+                <label class="form-label booking-label">Available Time Slots:</label>
+                <div class="time-slot-grid mt-2">
+                  <button class="time-slot" onclick="selectTime(this)">9:00am</button>
+                  <button class="time-slot" onclick="selectTime(this)">9:30am</button>
+                  <button class="time-slot active" onclick="selectTime(this)">10:00am</button>
+                  <button class="time-slot" onclick="selectTime(this)">10:30am</button>
+                  <button class="time-slot disabled" disabled>11:00am</button>
+                  <button class="time-slot disabled" disabled>11:30am</button>
+                  <button class="time-slot" onclick="selectTime(this)">12:00pm</button>
+                  <button class="time-slot" onclick="selectTime(this)">1:00pm</button>
+                  <button class="time-slot" onclick="selectTime(this)">2:00pm</button>
+                  <button class="time-slot" onclick="selectTime(this)">3:00pm</button>
+                  <button class="time-slot" onclick="selectTime(this)">4:00pm</button>
+                  <button class="time-slot" onclick="selectTime(this)">5:00pm</button>
+                </div>
+                <small class="text-muted-light mt-1 d-block"><i class="bi bi-circle-fill text-danger me-1"
+                    style="font-size:8px"></i> Fully booked slots shown in grey</small>
+              </div>
+              <div class="d-flex justify-content-between mt-4">
+                <button class="btn btn-outline-custom" onclick="nextStep(1)"><i class="bi bi-arrow-left me-1"></i>
+                  Back</button>
+                <button class="btn btn-primary-custom" onclick="nextStep(3)">Continue <i
+                    class="bi bi-arrow-right ms-1"></i></button>
+              </div>
+            </div>
+
+            <!-- STEP 3: DETAILS -->
+            <div id="bookStep3" style="display:none">
+              <h5 class="booking-step-title">Your Contact Details</h5>
+              <div class="row g-3 mt-1">
+                <div class="col-md-6">
+                  <label class="form-label booking-label">First Name:</label>
+                  <input type="text" class="form-control booking-input" placeholder="John" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label booking-label">Last Name:</label>
+                  <input type="text" class="form-control booking-input" placeholder="Smith" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label booking-label">Email Address:</label>
+                  <input type="email" class="form-control booking-input" placeholder="john@example.com" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label booking-label">Phone Number:</label>
+                  <input type="tel" class="form-control booking-input" placeholder="0400 000 000" />
+                </div>
+                <div class="col-12">
+                  <label class="form-label booking-label">Any specific questions for our specialist?</label>
+                  <textarea class="form-control booking-input" rows="3"
+                    placeholder="e.g. I want to compare the S25 Ultra with the iPhone 16 Pro Max…"></textarea>
+                </div>
+                <div class="col-12">
+                  <div class="form-check filter-check">
+                    <input class="form-check-input" type="checkbox" id="agreeDemo" checked />
+                    <label class="form-check-label" for="agreeDemo">I agree to TechHub's <a href="#">Privacy Policy</a>
+                      and <a href="#">Terms of Service</a>. I understand there is no obligation to purchase.</label>
+                  </div>
+                </div>
+              </div>
+              <div class="booking-summary mt-4 p-3 rounded-3">
+                <h6 class="mb-2 text-accent"><i class="bi bi-clipboard-check me-2"></i>Booking Summary</h6>
+                <div class="d-flex justify-content-between small"><span
+                    class="text-muted-light">Product:</span><span>Samsung Galaxy S25 Ultra</span></div>
+                <div class="d-flex justify-content-between small mt-1"><span
+                    class="text-muted-light">Store:</span><span>TechHub Sydney CBD</span></div>
+                <div class="d-flex justify-content-between small mt-1"><span class="text-muted-light">Date &
+                    Time:</span><span>Mon 9 Mar, 10:00am</span></div>
+                <div class="d-flex justify-content-between small mt-1"><span class="text-muted-light">Demo
+                    Discount:</span><span class="text-accent">10% off if you buy</span></div>
+              </div>
+              <div class="d-flex justify-content-between mt-4">
+                <button class="btn btn-outline-custom" onclick="nextStep(2)"><i class="bi bi-arrow-left me-1"></i>
+                  Back</button>
+                <button class="btn btn-primary-custom btn-lg" onclick="confirmBooking()">Confirm Booking <i
+                    class="bi bi-check-circle ms-1"></i></button>
+              </div>
+            </div>
+
+            <!-- CONFIRMATION -->
+            <div id="bookConfirm" style="display:none" class="text-center py-4">
+              <div class="confirm-icon mb-4"><i class="bi bi-check-circle-fill"></i></div>
+              <h4 class="text-gradient">Booking Confirmed!</h4>
+              <p class="text-muted-light">A confirmation has been sent to your email. We look forward to seeing you!</p>
+              <div class="booking-summary mt-4 p-4 rounded-3 text-start">
+                <div class="d-flex justify-content-between mb-2"><span class="text-muted-light">Booking
+                    Ref:</span><strong class="text-accent">#TH-2026-08741</strong></div>
+                <div class="d-flex justify-content-between mb-2"><span
+                    class="text-muted-light">Product:</span><span>Samsung Galaxy S25 Ultra</span></div>
+                <div class="d-flex justify-content-between mb-2"><span
+                    class="text-muted-light">Store:</span><span>TechHub Sydney CBD</span></div>
+                <div class="d-flex justify-content-between"><span class="text-muted-light">Date & Time:</span><span>Mon
+                    9 Mar 2026, 10:00am</span></div>
+              </div>
+              <a href="products.html" class="btn btn-primary-custom mt-4">Continue Browsing</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer pt-4 pb-3">
+    <div class="container">
+      <hr class="footer-divider mt-0" />
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <p class="text-muted-light mb-0 small">© 2026 TechHub Electronics Pty Ltd. ABN 12 345 678 901. All rights
+          reserved.</p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#" class="text-muted-light small">Privacy Policy</a>
+          <a href="#" class="text-muted-light small">Terms of Use</a>
+          <a href="#" class="text-muted-light small">Consumer Rights</a>
+          <a href="about_us.html" class="text-muted-light small">About Us</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout – TechHub Electronics</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body { background: #08101f; }
+
+    /* TOP SECURE BAR */
+    .topbar {
+      background: #060d1a;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      color: #64748b;
+      font-size: 12px;
+      padding: 8px 0;
+      text-align: center;
+      letter-spacing: .03em;
+    }
+    .topbar i { color: var(--th-accent); }
+
+    /* STEP INDICATOR */
+    .checkout-steps { display:flex; align-items:center; justify-content:center; gap:0; margin-bottom:48px; }
+    .checkout-step  { display:flex; flex-direction:column; align-items:center; gap:6px; position:relative; }
+    .cs-num {
+      width:40px; height:40px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Rajdhani',sans-serif; font-weight:700; font-size:16px;
+      background:#1a2235; color:#475569;
+      border:2px solid rgba(255,255,255,0.08);
+      transition:all .3s; z-index:2;
+    }
+    .cs-label { font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#475569; transition:color .3s; }
+    .checkout-step.active .cs-num  { background:var(--th-accent); color:#fff; border-color:var(--th-accent); box-shadow:0 0 0 4px rgba(249,115,22,.2); }
+    .checkout-step.active .cs-label{ color:var(--th-accent); }
+    .checkout-step.done .cs-num    { background:#16a34a; color:#fff; border-color:#16a34a; }
+    .checkout-step.done .cs-label  { color:#4ade80; }
+    .cs-line { width:80px; height:2px; background:rgba(255,255,255,0.08); margin-bottom:22px; }
+    .cs-line.done { background:#16a34a; }
+
+    /* CARD WRAPPER */
+    .checkout-card {
+      background:#0d1528;
+      border:1px solid rgba(255,255,255,0.06);
+      border-radius:16px; padding:28px;
+    }
+
+    /* SECTION TITLE */
+    .checkout-section-title {
+      font-family:'Rajdhani',sans-serif; font-size:22px; font-weight:700; color:#f1f5f9;
+      border-bottom:1px solid rgba(255,255,255,0.07);
+      padding-bottom:14px; margin-bottom:24px;
+    }
+
+    /* CART ITEMS */
+    .cart-item {
+      display:flex; align-items:center; gap:18px;
+      background:#111827; border:1px solid rgba(255,255,255,0.07);
+      border-radius:14px; padding:16px; margin-bottom:12px;
+      transition:border-color .2s, box-shadow .2s;
+    }
+    .cart-item:hover { border-color:rgba(249,115,22,.25); box-shadow:0 4px 24px rgba(0,0,0,.3); }
+
+    /* WHITE image box — the key fix */
+    .cart-item-img {
+      width:84px; height:84px; border-radius:12px;
+      background:#ffffff;
+      display:flex; align-items:center; justify-content:center;
+      flex-shrink:0; overflow:hidden; padding:8px;
+      box-shadow:0 2px 12px rgba(0,0,0,.3);
+    }
+    .cart-item-img img { width:100%; height:100%; object-fit:contain; mix-blend-mode:normal; }
+
+    .cart-item-info  { flex:1; min-width:0; }
+    .cart-item-cat   { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--th-accent); margin-bottom:4px; }
+    .cart-item-name  { font-size:14px; font-weight:600; color:#f1f5f9; margin-bottom:5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .cart-item-options { font-size:12px; color:#64748b; }
+    .option-pill {
+      display:inline-block; background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08); border-radius:20px;
+      padding:2px 10px; font-size:11px; margin-right:4px; color:#94a3b8;
+    }
+    .cart-item-controls { display:flex; align-items:center; gap:14px; flex-shrink:0; }
+    .cart-item-price {
+      font-family:'Rajdhani',sans-serif; font-size:22px; font-weight:700;
+      color:var(--th-accent); min-width:72px; text-align:right;
+    }
+    .btn-remove {
+      background:rgba(239,68,68,.08); border:1px solid rgba(239,68,68,.15);
+      color:#64748b; border-radius:8px; width:34px; height:34px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:15px; cursor:pointer; transition:all .2s;
+    }
+    .btn-remove:hover { background:rgba(239,68,68,.18); border-color:rgba(239,68,68,.4); color:#ef4444; }
+
+    /* QTY */
+    .qty-control.small {
+      display:flex; align-items:center;
+      background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.09);
+      border-radius:8px; overflow:hidden;
+    }
+    .qty-control.small .qty-btn {
+      width:30px; height:32px; background:none; border:none;
+      color:#94a3b8; font-size:16px; cursor:pointer; transition:all .2s;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .qty-control.small .qty-btn:hover { background:rgba(249,115,22,.12); color:var(--th-accent); }
+    .qty-control.small .qty-input {
+      width:40px; text-align:center; background:none; border:none;
+      color:#f1f5f9; font-size:14px; font-weight:600;
+      -moz-appearance:textfield;
+    }
+    .qty-input::-webkit-outer-spin-button, .qty-input::-webkit-inner-spin-button { -webkit-appearance:none; }
+
+    /* PROMO */
+    .promo-section {
+      background:#0a1220; border:1px solid rgba(255,255,255,.07);
+      border-radius:12px; padding:18px; margin-top:20px;
+    }
+    .promo-section .form-control {
+      background:rgba(255,255,255,.04) !important; border-color:rgba(255,255,255,.1) !important;
+      color:#f1f5f9 !important; border-radius:8px 0 0 8px;
+    }
+    .promo-section .form-control:focus { border-color:var(--th-accent) !important; box-shadow:none !important; }
+    .promo-section .form-control::placeholder { color:#374151; }
+
+    /* LABELS & INPUTS */
+    .booking-label {
+      font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+      color:#475569; display:block; margin-bottom:6px;
+    }
+    .booking-input {
+      background:rgba(255,255,255,.04) !important; border:1px solid rgba(255,255,255,.09) !important;
+      color:#f1f5f9 !important; border-radius:8px !important;
+      padding:10px 14px !important; font-size:14px !important;
+      transition:border .2s, box-shadow .2s !important;
+    }
+    .booking-input:focus {
+      border-color:var(--th-accent) !important;
+      box-shadow:0 0 0 3px rgba(249,115,22,.12) !important;
+      background:rgba(255,255,255,.06) !important;
+    }
+    .booking-input::placeholder { color:#374151 !important; }
+    .booking-step-title {
+      font-family:'Rajdhani',sans-serif; font-size:15px; font-weight:700;
+      color:#64748b; text-transform:uppercase; letter-spacing:.06em; margin-bottom:14px;
+    }
+
+    /* DELIVERY TYPE */
+    .delivery-type-cards { display:flex; flex-wrap:wrap; gap:14px; }
+    .delivery-type-card {
+      flex:1; min-width:200px; background:#111827;
+      border:1.5px solid rgba(255,255,255,.08); border-radius:12px; padding:18px;
+      display:flex; align-items:flex-start; gap:12px;
+      cursor:pointer; transition:all .25s;
+    }
+    .delivery-type-card:hover { border-color:rgba(249,115,22,.3); }
+    .delivery-type-card.active { border-color:var(--th-accent); background:rgba(249,115,22,.07); box-shadow:0 0 0 3px rgba(249,115,22,.1); }
+    .dt-radio { font-size:20px; color:#334155; flex-shrink:0; transition:color .2s; }
+    .delivery-type-card.active .dt-radio { color:var(--th-accent); }
+    .dt-icon { font-size:22px; flex-shrink:0; color:#475569; }
+    .delivery-type-card.active .dt-icon { color:var(--th-accent); }
+    .delivery-type-card strong { display:block; font-size:15px; color:#f1f5f9; }
+    .delivery-type-card p { font-size:12px; color:#64748b; margin:3px 0 0; }
+
+    /* SPEED CARD */
+    .delivery-speed-card {
+      background:#111827; border:1.5px solid rgba(255,255,255,.08);
+      border-radius:12px; padding:14px 16px;
+      display:flex; align-items:center; gap:12px;
+      cursor:pointer; transition:all .2s;
+    }
+    .delivery-speed-card:hover { border-color:rgba(249,115,22,.3); }
+    .delivery-speed-card.active { border-color:var(--th-accent); background:rgba(249,115,22,.07); }
+    .ds-check { font-size:18px; color:#334155; flex-shrink:0; transition:color .2s; }
+    .delivery-speed-card.active .ds-check { color:var(--th-accent); }
+    .delivery-speed-card strong { color:#f1f5f9; }
+
+    /* STORE ITEM */
+    .store-item {
+      display:flex; align-items:center; gap:14px;
+      background:#111827; border:1.5px solid rgba(255,255,255,.07);
+      border-radius:12px; padding:14px 16px; cursor:pointer; transition:all .2s; margin-bottom:10px;
+    }
+    .store-item.active { border-color:var(--th-accent); background:rgba(249,115,22,.06); }
+    .store-item-icon { font-size:24px; color:#475569; }
+    .store-item.active .store-item-icon { color:var(--th-accent); }
+    .store-item-info { flex:1; }
+    .store-item-info strong { color:#f1f5f9; font-size:14px; }
+    .store-item-info p { font-size:12px; color:#64748b; margin:2px 0 4px; }
+    .store-status.open { font-size:11px; font-weight:600; color:#4ade80; }
+    .store-search-icon { background:rgba(255,255,255,.05) !important; border-color:rgba(255,255,255,.09) !important; color:var(--th-accent) !important; }
+    .select-check { font-size:20px; }
+
+    /* PAYMENT */
+    .payment-methods { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px; }
+    .payment-method-tab {
+      background:#111827; border:1.5px solid rgba(255,255,255,.08);
+      border-radius:10px; padding:10px 20px;
+      font-size:14px; font-weight:600; color:#64748b; cursor:pointer; transition:all .2s;
+      display:flex; align-items:center; gap:8px;
+    }
+    .payment-method-tab:hover { border-color:rgba(249,115,22,.3); color:#94a3b8; }
+    .payment-method-tab.active { border-color:var(--th-accent); color:var(--th-accent); background:rgba(249,115,22,.08); }
+
+    .card-brand-row { display:flex; gap:8px; margin-bottom:16px; }
+    .card-brand-icon {
+      height:26px; border-radius:4px;
+      background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1);
+      padding:2px 10px; font-size:11px; color:#94a3b8;
+      display:flex; align-items:center; gap:4px;
+    }
+
+    /* SECURITY */
+    .security-badges { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+    .security-badge {
+      font-size:12px; color:#64748b;
+      background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07);
+      border-radius:6px; padding:5px 12px;
+      display:flex; align-items:center; gap:5px;
+    }
+    .security-badge i { color:#4ade80; }
+
+    /* ORDER SUMMARY */
+    .order-summary-card {
+      background:#111827; border:1px solid rgba(255,255,255,.07);
+      border-radius:16px; padding:24px; position:sticky; top:80px;
+    }
+    .summary-title {
+      font-family:'Rajdhani',sans-serif; font-size:20px; font-weight:700;
+      color:#f1f5f9; margin-bottom:20px; padding-bottom:14px;
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+
+    /* Mini product lines in sidebar */
+    .summary-product-line { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+    .summary-product-thumb {
+      width:44px; height:44px; background:#fff;
+      border-radius:8px; flex-shrink:0; overflow:hidden; padding:4px;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .summary-product-thumb img { width:100%; height:100%; object-fit:contain; }
+    .summary-product-name  { flex:1; font-size:13px; color:#cbd5e1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .summary-product-price { font-family:'Rajdhani',sans-serif; font-size:15px; font-weight:700; color:#f1f5f9; flex-shrink:0; }
+
+    .summary-divider { border-color:rgba(255,255,255,.07); margin:14px 0; }
+    .summary-line { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px; font-size:14px; color:#94a3b8; }
+    .summary-line strong { color:#f1f5f9; }
+    .total-line {
+      font-size:16px; font-weight:700; color:#f1f5f9;
+      border-top:1px solid rgba(255,255,255,.07); padding-top:14px; margin-top:6px;
+    }
+    .price-total { font-family:'Rajdhani',sans-serif; font-size:26px; font-weight:700; color:var(--th-accent); }
+
+    .loyalty-earn-bar {
+      background:rgba(249,115,22,.08); border:1px solid rgba(249,115,22,.2);
+      border-radius:10px; padding:10px 14px; font-size:13px; color:#94a3b8;
+      display:flex; align-items:center; gap:8px; margin-top:16px;
+    }
+    .loyalty-earn-bar strong { color:var(--th-accent); }
+    .secure-note { font-size:11px; color:#475569; display:flex; align-items:flex-start; gap:6px; margin-top:14px; line-height:1.5; }
+    .secure-note i { color:#4ade80; flex-shrink:0; margin-top:1px; }
+
+    .trust-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,.06); }
+    .trust-badge {
+      flex:1; min-width:80px; background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06); border-radius:8px;
+      padding:8px 6px; text-align:center; font-size:10px; color:#475569;
+    }
+    .trust-badge i { display:block; font-size:18px; color:#64748b; margin-bottom:4px; }
+
+    /* CONFIRM */
+    .confirm-icon { font-size:64px; color:#22c55e; animation:pop .4s cubic-bezier(.36,.07,.19,.97); }
+    @keyframes pop { 0%{transform:scale(.5);opacity:0} 70%{transform:scale(1.15)} 100%{transform:scale(1);opacity:1} }
+    .order-confirm-box { background:#111827; border:1px solid rgba(255,255,255,.07); border-radius:16px; padding:28px; text-align:left; }
+    .confirm-label { font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#475569; margin-bottom:4px; }
+    .confirm-value { font-size:15px; font-weight:600; color:#f1f5f9; }
+
+    /* FORM CHECK */
+    .filter-check .form-check-input { background-color:rgba(255,255,255,.06) !important; border-color:rgba(255,255,255,.15) !important; }
+    .filter-check .form-check-input:checked { background-color:var(--th-accent) !important; border-color:var(--th-accent) !important; }
+    .filter-check .form-check-label { color:#64748b; font-size:13px; }
+    .filter-check a { color:var(--th-accent); }
+
+    .nav-icon-btn { color:#64748b !important; font-size:14px !important; }
+    .nav-icon-btn:hover { color:var(--th-accent) !important; }
+
+    @media(max-width:768px){
+      .cart-item { flex-wrap:wrap; }
+      .cart-item-controls { margin-top:8px; width:100%; justify-content:space-between; }
+      .cs-line { width:40px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-banner-inner">
+    <div class="cookie-text">
+      <i class="bi bi-shield-lock-fill text-accent me-2"></i>
+      <span>We use cookies to improve your experience. <a href="#">Cookie Policy</a>.</span>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn btn-sm btn-outline-custom" onclick="cookieDecline()">Manage Preferences</button>
+      <button class="btn btn-sm btn-primary-custom" onclick="cookieAccept()">Accept All</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <i class="bi bi-shield-lock-fill"></i> Secure SSL Checkout &nbsp;·&nbsp;
+  <i class="bi bi-truck"></i> Free shipping on orders over $99 &nbsp;·&nbsp;
+  <i class="bi bi-arrow-counterclockwise"></i> 30-day hassle-free returns
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="mainNav">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="home.html">
+      <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+      <span class="brand-name">Tech<span class="brand-accent">Hub</span></span>
+    </a>
+    <div class="ms-auto d-flex align-items-center gap-3">
+      <span class="d-none d-md-flex align-items-center gap-2 text-muted-light small">
+        <i class="bi bi-lock-fill text-accent"></i> Secure Checkout
+      </span>
+      <a href="products.html" class="nav-icon-btn d-flex align-items-center gap-1">
+        <i class="bi bi-arrow-left"></i>
+        <span class="d-none d-sm-inline small">Continue Shopping</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="container py-5">
+
+  <!-- STEP INDICATOR -->
+  <div class="checkout-steps">
+    <div class="checkout-step active" id="cs1"><span class="cs-num">1</span><span class="cs-label">Cart</span></div>
+    <div class="cs-line" id="csl1"></div>
+    <div class="checkout-step" id="cs2"><span class="cs-num">2</span><span class="cs-label">Delivery</span></div>
+    <div class="cs-line" id="csl2"></div>
+    <div class="checkout-step" id="cs3"><span class="cs-num">3</span><span class="cs-label">Payment</span></div>
+    <div class="cs-line" id="csl3"></div>
+    <div class="checkout-step" id="cs4"><span class="cs-num">4</span><span class="cs-label">Confirm</span></div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-8">
+
+      <!-- ══ STEP 1 : CART ══ -->
+      <div id="checkoutStep1">
+        <div class="checkout-card">
+          <h4 class="checkout-section-title">
+            <i class="bi bi-bag-fill me-2 text-accent"></i>Your Cart
+            <span class="text-muted-light small fw-normal ms-2">(3 items)</span>
+          </h4>
+
+          <!-- Item 1 -->
+          <div class="cart-item">
+            <div class="cart-item-img">
+              <img src="assets/images/smartphone.png" alt="Samsung Galaxy S25 Ultra">
+            </div>
+            <div class="cart-item-info">
+              <div class="cart-item-cat">Smartphones</div>
+              <h6 class="cart-item-name">Samsung Galaxy S25 Ultra – 512GB Titanium Silver</h6>
+              <div class="cart-item-options">
+                <span class="option-pill">512GB</span><span class="option-pill">Titanium Silver</span>
+              </div>
+            </div>
+            <div class="cart-item-controls">
+              <div class="qty-control small">
+                <button class="qty-btn" onclick="updateQty(this,-1)">−</button>
+                <input type="number" class="qty-input" value="1" min="1"/>
+                <button class="qty-btn" onclick="updateQty(this,1)">+</button>
+              </div>
+              <div class="cart-item-price">$1,899</div>
+              <button class="btn-remove" onclick="removeCartItem(this)"><i class="bi bi-trash3"></i></button>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="cart-item">
+            <div class="cart-item-img">
+              <img src="assets/images/gaming.png" alt="PlayStation 5 Pro">
+            </div>
+            <div class="cart-item-info">
+              <div class="cart-item-cat">Gaming</div>
+              <h6 class="cart-item-name">PlayStation 5 Pro</h6>
+              <div class="cart-item-options">
+                <span class="option-pill">Console Only</span>
+              </div>
+            </div>
+            <div class="cart-item-controls">
+              <div class="qty-control small">
+                <button class="qty-btn" onclick="updateQty(this,-1)">−</button>
+                <input type="number" class="qty-input" value="1" min="1"/>
+                <button class="qty-btn" onclick="updateQty(this,1)">+</button>
+              </div>
+              <div class="cart-item-price">$849</div>
+              <button class="btn-remove" onclick="removeCartItem(this)"><i class="bi bi-trash3"></i></button>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="cart-item">
+            <div class="cart-item-img">
+              <img src="assets/images/smarthome.png" alt="Philips Hue Starter Kit">
+            </div>
+            <div class="cart-item-info">
+              <div class="cart-item-cat">Smart Home</div>
+              <h6 class="cart-item-name">Philips Hue Starter Kit</h6>
+              <div class="cart-item-options">
+                <span class="option-pill">3-Bulb Set</span><span class="option-pill">+ Bridge</span>
+              </div>
+            </div>
+            <div class="cart-item-controls">
+              <div class="qty-control small">
+                <button class="qty-btn" onclick="updateQty(this,-1)">−</button>
+                <input type="number" class="qty-input" value="2" min="1"/>
+                <button class="qty-btn" onclick="updateQty(this,1)">+</button>
+              </div>
+              <div class="cart-item-price">$398</div>
+              <button class="btn-remove" onclick="removeCartItem(this)"><i class="bi bi-trash3"></i></button>
+            </div>
+          </div>
+
+          <!-- PROMO -->
+          <div class="promo-section">
+            <p class="booking-label mb-2"><i class="bi bi-tag-fill me-1 text-accent"></i>Promo / Gift Card</p>
+            <div class="input-group">
+              <input type="text" class="form-control booking-input" placeholder="Enter promo code…" id="promoInput"/>
+              <button class="btn btn-outline-custom px-4" onclick="applyPromo()" style="border-radius:0 8px 8px 0 !important;">Apply</button>
+            </div>
+            <div id="promoMsg" class="mt-2 small"></div>
+            <p class="small mt-2 mb-0" style="color:#374151;">Try <code style="color:var(--th-accent);background:rgba(249,115,22,.1);padding:1px 6px;border-radius:4px;">TECHHUB10</code> for 10% off</p>
+          </div>
+
+          <div class="d-flex justify-content-end mt-4">
+            <button class="btn btn-primary-custom btn-lg px-5" onclick="nextCheckout(2)">
+              Proceed to Delivery <i class="bi bi-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ STEP 2 : DELIVERY ══ -->
+      <div id="checkoutStep2" style="display:none">
+        <div class="checkout-card">
+          <h4 class="checkout-section-title">
+            <i class="bi bi-truck me-2 text-accent"></i>Delivery Options
+          </h4>
+
+          <div class="delivery-type-cards mb-4">
+            <div class="delivery-type-card active" onclick="selectDelivery(this,'home')">
+              <div class="dt-radio"><i class="bi bi-check-circle-fill"></i></div>
+              <i class="bi bi-house-fill dt-icon"></i>
+              <div><strong>Home Delivery</strong><p>Delivered to your door</p></div>
+            </div>
+            <div class="delivery-type-card" onclick="selectDelivery(this,'cc')">
+              <div class="dt-radio"><i class="bi bi-circle"></i></div>
+              <i class="bi bi-shop-window dt-icon"></i>
+              <div><strong>Click &amp; Collect</strong><p>Pick up in-store, ready in ~2 hrs</p></div>
+            </div>
+          </div>
+
+          <div id="homeDeliveryForm">
+            <p class="booking-step-title">Delivery Address</p>
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label class="booking-label">First Name</label>
+                <input type="text" class="form-control booking-input" placeholder="John"/>
+              </div>
+              <div class="col-sm-6">
+                <label class="booking-label">Last Name</label>
+                <input type="text" class="form-control booking-input" placeholder="Smith"/>
+              </div>
+              <div class="col-12">
+                <label class="booking-label">Street Address</label>
+                <input type="text" class="form-control booking-input" placeholder="123 Example Street"/>
+              </div>
+              <div class="col-sm-5">
+                <label class="booking-label">City / Suburb</label>
+                <input type="text" class="form-control booking-input" placeholder="Sydney"/>
+              </div>
+              <div class="col-sm-4">
+                <label class="booking-label">State</label>
+                <select class="form-control booking-input">
+                  <option value="">Select…</option>
+                  <option>NSW</option><option>VIC</option><option>QLD</option>
+                  <option>WA</option><option>SA</option><option>TAS</option>
+                  <option>ACT</option><option>NT</option>
+                </select>
+              </div>
+              <div class="col-sm-3">
+                <label class="booking-label">Postcode</label>
+                <input type="text" class="form-control booking-input" placeholder="2000" maxlength="4"/>
+              </div>
+            </div>
+
+            <p class="booking-step-title mt-4">Delivery Speed</p>
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <div class="delivery-speed-card active" onclick="selectSpeed(this)">
+                  <div class="ds-check"><i class="bi bi-check-circle-fill"></i></div>
+                  <div><strong>Standard</strong><p class="mb-0 small" style="color:#64748b;">3–5 business days</p></div>
+                  <strong class="ms-auto" style="color:#4ade80;">FREE</strong>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="delivery-speed-card" onclick="selectSpeed(this)">
+                  <div class="ds-check"><i class="bi bi-circle"></i></div>
+                  <div><strong>Express</strong><p class="mb-0 small" style="color:#64748b;">Next business day</p></div>
+                  <strong class="ms-auto" style="color:#f1f5f9;">$14.95</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="ccPickupForm" style="display:none">
+            <p class="booking-step-title">Select Collection Store</p>
+            <div class="input-group mt-2 mb-3">
+              <span class="input-group-text store-search-icon"><i class="bi bi-geo-alt-fill"></i></span>
+              <input type="text" class="form-control booking-input" placeholder="Enter postcode…" style="border-radius:0 !important;"/>
+              <button class="btn btn-outline-custom" style="border-radius:0 8px 8px 0 !important;">Search</button>
+            </div>
+            <div class="store-item active">
+              <div class="store-item-icon"><i class="bi bi-shop-window"></i></div>
+              <div class="store-item-info">
+                <strong>TechHub Sydney CBD</strong>
+                <p>Level 2, 450 George Street, Sydney NSW 2000</p>
+                <span class="store-status open"><i class="bi bi-circle-fill me-1" style="font-size:8px;"></i>Open · Ready in ~2 hours</span>
+              </div>
+              <div class="select-check"><i class="bi bi-check-circle-fill text-accent"></i></div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between mt-4">
+            <button class="btn btn-outline-custom" onclick="nextCheckout(1)"><i class="bi bi-arrow-left me-1"></i> Back</button>
+            <button class="btn btn-primary-custom btn-lg px-5" onclick="nextCheckout(3)">Continue to Payment <i class="bi bi-arrow-right ms-2"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ STEP 3 : PAYMENT ══ -->
+      <div id="checkoutStep3" style="display:none">
+        <div class="checkout-card">
+          <h4 class="checkout-section-title">
+            <i class="bi bi-credit-card-2-front me-2 text-accent"></i>Payment
+          </h4>
+
+          <div class="card-brand-row mb-3">
+            <span class="card-brand-icon"><i class="bi bi-credit-card-2-front"></i> Visa</span>
+            <span class="card-brand-icon"><i class="bi bi-credit-card-fill"></i> Mastercard</span>
+            <span class="card-brand-icon"><i class="bi bi-paypal"></i> PayPal</span>
+            <span class="card-brand-icon">Afterpay</span>
+            <span class="card-brand-icon">Zip</span>
+          </div>
+
+          <div class="payment-methods">
+            <div class="payment-method-tab active" onclick="selectPayment(this,'card')"><i class="bi bi-credit-card-2-front"></i> Card</div>
+            <div class="payment-method-tab" onclick="selectPayment(this,'paypal')"><i class="bi bi-paypal"></i> PayPal</div>
+            <div class="payment-method-tab" onclick="selectPayment(this,'afterpay')"><i class="bi bi-calendar3"></i> Afterpay</div>
+          </div>
+
+          <div id="cardForm">
+            <div class="row g-3">
+              <div class="col-12">
+                <label class="booking-label">Card Number</label>
+                <div class="position-relative">
+                  <input type="text" class="form-control booking-input" placeholder="1234  5678  9012  3456" maxlength="19"/>
+                  <i class="bi bi-credit-card-2-front position-absolute" style="right:14px;top:50%;transform:translateY(-50%);color:#374151;pointer-events:none;"></i>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="booking-label">Cardholder Name</label>
+                <input type="text" class="form-control booking-input" placeholder="John Smith"/>
+              </div>
+              <div class="col-md-3">
+                <label class="booking-label">Expiry</label>
+                <input type="text" class="form-control booking-input" placeholder="MM / YY"/>
+              </div>
+              <div class="col-md-3">
+                <label class="booking-label">CVV</label>
+                <input type="text" class="form-control booking-input" placeholder="•••" maxlength="4"/>
+              </div>
+            </div>
+            <div class="security-badges">
+              <span class="security-badge"><i class="bi bi-shield-check"></i> SSL Secured</span>
+              <span class="security-badge"><i class="bi bi-lock-fill"></i> PCI-DSS Compliant</span>
+              <span class="security-badge"><i class="bi bi-eye-slash"></i> Card data never stored</span>
+            </div>
+          </div>
+
+          <div class="form-check filter-check mt-4">
+            <input class="form-check-input" type="checkbox" id="agreeTerms" checked/>
+            <label class="form-check-label" for="agreeTerms">
+              I agree to TechHub's <a href="#">Terms of Service</a>,
+              <a href="#">Privacy Policy</a>, and
+              <a href="#">Refund Policy</a>.
+            </label>
+          </div>
+
+          <div class="d-flex justify-content-between mt-4">
+            <button class="btn btn-outline-custom" onclick="nextCheckout(2)"><i class="bi bi-arrow-left me-1"></i> Back</button>
+            <button class="btn btn-primary-custom btn-lg px-5" onclick="nextCheckout(4)">
+              <i class="bi bi-lock-fill me-2"></i>Place Order · $3,460
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ STEP 4 : CONFIRMATION ══ -->
+      <div id="checkoutStep4" style="display:none">
+        <div class="checkout-card text-center py-4">
+          <div class="confirm-icon mb-3"><i class="bi bi-check-circle-fill"></i></div>
+          <h3 class="mb-1" style="font-family:'Rajdhani',sans-serif;font-size:2rem;color:#f1f5f9;">
+            Order <span style="color:var(--th-accent);">Confirmed!</span>
+          </h3>
+          <p class="text-muted-light mb-4">Thank you for shopping with TechHub Electronics. Your order is being processed.</p>
+
+          <div class="order-confirm-box">
+            <div class="row g-4">
+              <div class="col-sm-6">
+                <div class="confirm-label">Order Number</div>
+                <div class="confirm-value" style="color:var(--th-accent);">#TH-2026-048291</div>
+              </div>
+              <div class="col-sm-6">
+                <div class="confirm-label">Estimated Delivery</div>
+                <div class="confirm-value">Fri 13 – Mon 16 Mar 2026</div>
+              </div>
+              <div class="col-sm-6">
+                <div class="confirm-label">Total Paid</div>
+                <div class="confirm-value" style="font-family:'Rajdhani',sans-serif;font-size:20px;">$3,460.00</div>
+              </div>
+              <div class="col-sm-6">
+                <div class="confirm-label">Loyalty Points Earned</div>
+                <div class="confirm-value" style="color:#fbbf24;">+3,146 pts <i class="bi bi-star-fill" style="font-size:14px;"></i></div>
+              </div>
+            </div>
+            <hr style="border-color:rgba(255,255,255,0.07);margin:20px 0;">
+            <div class="text-center">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TH-2026-048291"
+                   alt="Order QR Code"
+                   style="width:120px;height:120px;background:#fff;padding:8px;border-radius:12px;">
+              <p class="small mt-2 mb-0" style="color:#475569;">Scan at Click &amp; Collect counter</p>
+            </div>
+          </div>
+
+          <div class="d-flex gap-3 justify-content-center mt-4">
+            <a href="home.html" class="btn btn-primary-custom px-4">Continue Shopping</a>
+            <a href="#" class="btn btn-outline-custom px-4">Track Order <i class="bi bi-arrow-right ms-1"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /col-lg-8 -->
+
+    <!-- ── ORDER SUMMARY SIDEBAR ── -->
+    <div class="col-lg-4">
+      <div class="order-summary-card">
+        <h5 class="summary-title"><i class="bi bi-receipt me-2 text-accent"></i>Order Summary</h5>
+
+        <div class="summary-product-line">
+          <div class="summary-product-thumb"><img src="assets/images/smartphone.png" alt="Samsung S25"></div>
+          <div class="summary-product-name">Samsung Galaxy S25 Ultra</div>
+          <div class="summary-product-price">$1,899</div>
+        </div>
+        <div class="summary-product-line">
+          <div class="summary-product-thumb"><img src="assets/images/gaming.png" alt="PS5 Pro"></div>
+          <div class="summary-product-name">PlayStation 5 Pro</div>
+          <div class="summary-product-price">$849</div>
+        </div>
+        <div class="summary-product-line">
+          <div class="summary-product-thumb"><img src="assets/images/smarthome.png" alt="Philips Hue"></div>
+          <div class="summary-product-name">Philips Hue Kit ×2</div>
+          <div class="summary-product-price">$398</div>
+        </div>
+
+        <hr class="summary-divider"/>
+
+        <div class="summary-line"><span>Subtotal (excl. GST)</span><strong>$3,146.00</strong></div>
+        <div class="summary-line"><span>GST (10%)</span><strong>$314.60</strong></div>
+        <div class="summary-line"><span>Delivery</span><strong style="color:#4ade80;">FREE</strong></div>
+        <div class="summary-line"><span>Promo</span><strong style="color:var(--th-accent);" id="promoDiscount">—</strong></div>
+
+        <div class="summary-line total-line">
+          <span>Total</span>
+          <span class="price-total">$3,460.60</span>
+        </div>
+
+        <div class="loyalty-earn-bar">
+          <i class="bi bi-star-fill" style="color:#fbbf24;font-size:16px;"></i>
+          Earn <strong>3,146 points</strong> on this order
+        </div>
+
+        <div class="secure-note">
+          <i class="bi bi-shield-check"></i>
+          <span>256-bit SSL encrypted. TechHub never stores your card details.</span>
+        </div>
+
+        <div class="trust-row">
+          <div class="trust-badge"><i class="bi bi-arrow-counterclockwise"></i>30-Day Returns</div>
+          <div class="trust-badge"><i class="bi bi-patch-check"></i>Genuine Products</div>
+          <div class="trust-badge"><i class="bi bi-headset"></i>24/7 Support</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer pt-4 pb-3 mt-4">
+  <div class="container">
+    <hr class="footer-divider mt-0"/>
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <p class="text-muted-light mb-0 small">© 2026 TechHub Electronics Pty Ltd. ABN 12 345 678 901.</p>
+      <div class="d-flex gap-3">
+        <a href="#" class="text-muted-light small">Privacy Policy</a>
+        <a href="#" class="text-muted-light small">Terms of Use</a>
+        <a href="#" class="text-muted-light small">Returns Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

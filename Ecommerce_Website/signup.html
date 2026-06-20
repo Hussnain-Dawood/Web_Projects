@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vogue Vista - Sign Up</title>
+
+  <!-- Global styles (reset, header, footer, utilities) -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Page-specific styles (Signup page only) -->
+  <style>
+    /* =========================================================
+       AUTH PAGE LAYOUT (REUSED STYLE)
+    ========================================================= */
+    .auth-wrapper {
+      max-width: 1100px;
+      margin: 40px auto 60px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .auth-wrapper {
+        grid-template-columns: 1fr;
+        margin-top: 20px;
+      }
+    }
+
+    /* LEFT SIDE: BRAND / STORY */
+    .auth-brand {
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .auth-tag {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #d4af37;
+      margin-bottom: 10px;
+    }
+
+    .auth-brand h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+    }
+
+    .auth-brand p {
+      font-size: 0.98rem;
+      color: #555;
+      margin-bottom: 20px;
+      max-width: 420px;
+    }
+
+    .auth-highlight {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .auth-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid #e0e0e0;
+      font-size: 0.8rem;
+      font-family: 'Lato', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #555;
+    }
+
+    .auth-image {
+      margin-top: 22px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      max-width: 480px;
+    }
+
+    .auth-image img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      height: 260px;
+    }
+
+    @media (max-width: 900px) {
+      .auth-image {
+        display: none;
+      }
+    }
+
+    /* RIGHT SIDE: SIGNUP CARD */
+    .auth-card {
+      background-color: #ffffff;
+      border-radius: 16px;
+      padding: 28px 24px 26px 24px;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    @media (max-width: 480px) {
+      .auth-card {
+        padding: 22px 18px;
+      }
+    }
+
+    .auth-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 6px;
+    }
+
+    .auth-card p.subtext {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 18px;
+    }
+
+    .auth-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 12px;
+      margin-bottom: 6px;
+    }
+
+    @media (max-width: 600px) {
+      .auth-form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .auth-form-group {
+      margin-bottom: 14px;
+    }
+
+    .auth-form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #333;
+    }
+
+    .auth-form-group input[type="text"],
+    .auth-form-group input[type="email"],
+    .auth-form-group input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #dcdcdc;
+      font-size: 0.95rem;
+      font-family: 'Open Sans', sans-serif;
+      outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .auth-form-group input[type="text"]:focus-visible,
+    .auth-form-group input[type="email"]:focus-visible,
+    .auth-form-group input[type="password"]:focus-visible {
+      border-color: #d4af37;
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.25);
+    }
+
+    /* Password row with toggle */
+    .password-row {
+      position: relative;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.8rem;
+      font-family: 'Lato', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      color: #999;
+    }
+
+    /* Checkboxes / small rows */
+    .auth-row-column {
+      margin-top: 4px;
+      margin-bottom: 14px;
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    .checkbox-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .checkbox-line input[type="checkbox"] {
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+      margin-top: 3px;
+    }
+
+    .checkbox-line label {
+      cursor: pointer;
+    }
+
+    .checkbox-line a {
+      color: #000;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .checkbox-line a:hover,
+    .checkbox-line a:focus-visible {
+      color: #d4af37;
+      border-color: #d4af37;
+    }
+
+    /* Primary button */
+    .auth-btn-primary {
+      width: 100%;
+      padding: 11px 18px;
+      border-radius: 999px;
+      border: none;
+      background-color: #000000;
+      color: #ffffff;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+      margin-bottom: 14px;
+    }
+
+    .auth-btn-primary:hover,
+    .auth-btn-primary:focus-visible {
+      background-color: #1a1a1a;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .auth-divider {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #999;
+      margin: 10px 0 14px 0;
+      position: relative;
+    }
+
+    .auth-divider::before,
+    .auth-divider::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 35%;
+      height: 1px;
+      background-color: #e0e0e0;
+    }
+
+    .auth-divider::before {
+      left: 0;
+    }
+
+    .auth-divider::after {
+      right: 0;
+    }
+
+    .social-login-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .social-btn {
+      flex: 1 1 140px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid #dcdcdc;
+      background-color: #ffffff;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+    }
+
+    .social-btn:hover,
+    .social-btn:focus-visible {
+      border-color: #d4af37;
+      background-color: #fdf7e8;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .social-icon {
+      font-size: 1rem;
+    }
+
+    .auth-footer-text {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #555;
+      text-align: center;
+    }
+
+    .auth-footer-text a {
+      font-weight: 600;
+      color: #000;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .auth-footer-text a:hover,
+    .auth-footer-text a:focus-visible {
+      color: #d4af37;
+      border-color: #d4af37;
+    }
+
+    @media (max-width: 400px) {
+      .social-login-row {
+        flex-direction: column;
+      }
+    }
+
+    /* ====== Validation states (same as login/contact) ====== */
+    .input-error {
+      border-color: #d32f2f !important;
+    }
+
+    .input-success {
+      border-color: #2e7d32 !important;
+    }
+
+    .error-message {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.8rem;
+      color: #d32f2f;
+    }
+  </style>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans&family=Playfair+Display&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body class="page-auth page-signup">
+
+  <!-- Header placeholder (loaded via layout.js from header.html) -->
+  <div id="site-header"></div>
+
+  <main>
+    <section class="auth-wrapper" aria-label="Create an account at Vogue Vista">
+      <!-- LEFT: Brand / Intro -->
+      <div class="auth-brand">
+        <div class="auth-tag">Join the style circle</div>
+        <h1>Create your Vogue Vista account</h1>
+        <p>
+          Save your favorites, check out faster, and be the first to know about new drops and exclusive
+          Sydney-inspired collections.
+        </p>
+
+        <div class="auth-highlight">
+          <span class="auth-pill">Faster Checkout</span>
+          <span class="auth-pill">Early Access</span>
+          <span class="auth-pill">Personalized Picks</span>
+        </div>
+
+        <div class="auth-image" aria-hidden="true">
+          <img
+            src="https://images.unsplash.com/photo-1528701800489-20be3c30c1d5?auto=format&fit=crop&w=900&q=80"
+            alt="Fashion studio"
+          />
+        </div>
+      </div>
+
+      <!-- RIGHT: Signup Card -->
+      <div class="auth-card">
+        <h2>Sign Up</h2>
+        <p class="subtext">It only takes a minute to get started.</p>
+
+        <!-- JS validation ke liye id + novalidate -->
+        <form id="signup-form" action="#" method="post" aria-label="Sign up form" novalidate>
+          <!-- Name row -->
+          <div class="auth-form-grid">
+            <div class="auth-form-group">
+              <label for="signup-name">First name</label>
+              <input
+                type="text"
+                id="signup-name"
+                name="firstName"
+                placeholder="Alex"
+                autocomplete="given-name"
+              />
+              <span class="error-message" id="signup-name-error"></span>
+            </div>
+            <div class="auth-form-group">
+              <label for="lastName">Last name</label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                placeholder="Taylor"
+                autocomplete="family-name"
+              />
+              <!-- (Optional) last name ke liye extra validation chaho to JS me add kar sakte ho -->
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="auth-form-group">
+            <label for="signup-email">Email address</label>
+            <input
+              type="email"
+              id="signup-email"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+            />
+            <span class="error-message" id="signup-email-error"></span>
+          </div>
+
+          <!-- Password -->
+          <div class="auth-form-group">
+            <label for="signup-password">Password</label>
+            <div class="password-row">
+              <input
+                type="password"
+                id="signup-password"
+                name="password"
+                placeholder="Create a password"
+                autocomplete="new-password"
+              />
+              <span class="password-toggle">SHOW</span>
+            </div>
+            <span class="error-message" id="signup-password-error"></span>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="auth-form-group">
+            <label for="signup-confirm">Confirm password</label>
+            <input
+              type="password"
+              id="signup-confirm"
+              name="confirmPassword"
+              placeholder="Re-enter your password"
+              autocomplete="new-password"
+            />
+            <span class="error-message" id="signup-confirm-error"></span>
+          </div>
+
+          <!-- Checkboxes -->
+          <div class="auth-row-column">
+            <div class="checkbox-line">
+              <input type="checkbox" id="signup-terms" name="terms" />
+              <label for="signup-terms">
+                I agree to the
+                <a href="terms.html">Terms &amp; Conditions</a>
+                and the
+                <a href="privacy.html">Privacy Policy</a>.
+              </label>
+              <span class="error-message" id="signup-terms-error"></span>
+            </div>
+
+            <div class="checkbox-line">
+              <input type="checkbox" id="marketing" name="marketing" />
+              <label for="marketing">
+                Keep me updated with style news, exclusive offers, and early access.
+              </label>
+            </div>
+          </div>
+
+          <!-- Primary CTA -->
+          <button type="submit" class="auth-btn-primary">
+            Create Account
+          </button>
+
+          <div class="auth-divider">OR SIGN UP WITH</div>
+
+          <!-- Social Signup (UI only) -->
+          <div class="social-login-row">
+            <button type="button" class="social-btn" aria-label="Sign up with Google">
+              <span class="social-icon">G</span>
+              <span>Google</span>
+            </button>
+            <button type="button" class="social-btn" aria-label="Sign up with Facebook">
+              <span class="social-icon">f</span>
+              <span>Facebook</span>
+            </button>
+          </div>
+
+          <p class="auth-footer-text">
+            Already have an account?
+            <a href="login.html">Login</a>
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer placeholder (loaded via layout.js from footer.html) -->
+  <div id="site-footer"></div>
+
+  <!-- Common layout loader + validation -->
+  <script src="layout.js"></script>
+  <script src="validation.js"></script>
+</body>
+</html>
