@@ -1,0 +1,43 @@
+extends base.pug
+block scripts
+  script(src="../static/script.js") // Make sure this is a valid script link or inline style block
+  //- Add any additional scripts here (if needed)
+block style
+   link(rel="stylesheet", href="../static/style.css")
+   link(rel="stylesheet", href="../static/contact-style.css")
+   link(rel="icon", type="image/x-icon", sizes="128x128", href="../static/icon2.jpg")
+block content
+  div#contact-us
+     div#sidebar
+        h1 Contact us 
+        p.contact-des Connect with us to experience seamless communication. We value open dialogue and are to angage with you. Whether you have question, ideas, or feedback. We are here to listen and respond.
+        div.contact-img
+          img(src="../static/Contact-us.jpg", alt="Error 404")
+        div.Personal-information
+          div.Email-address
+             h2 Email
+             p altaf.access.tech@gmail.com
+             p rising.developers,tech@gmail.com
+          div.OurAddress 
+             h2 Our Address
+             p Razaq Garden Madhale Road Sahiwal
+          div.Get-in-touch
+             h2 Get in touch
+             p +92 320 69 14 322
+             p +92 309 66 44 014
+          div.Office-time
+             h2 Office Hours
+             p 2:00 PM - 10:00 PM
+     div#contact-form
+        div#contact-form-content
+          form(action="/Contact" class="lower-form" method="POST")
+            input(type="text" class= "input-1" name = "fname" id ="fname" placeholder= "First Name"  required) 
+            input(type="text" class= "input-2" name = "lname" id ="lname" placeholder="Last Name"  required)
+            input(type="text" class= "input-3" name = "email" id ="email" placeholder="Email Address" required)
+            input(type="text" class= "input-4" name = "phone" id ="phone" placeholder="Phone No"  required)
+            input(type="text" class= "input-5" name = "address" id ="address" placeholder="Address"  required)
+            textarea(class="input-6" name="message" id ="message" rows="10" cols ="60" placeholder="Text Here..."  required)
+            input(type="checkbox" class="input-7" id="agree" required)
+            label(for="agress")  I agree that my submitted data is being collected and stored.
+            button(type="Submit") Submit
+                  

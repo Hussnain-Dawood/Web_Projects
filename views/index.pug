@@ -1,0 +1,351 @@
+doctype html
+html
+  head
+    title Shezo Educational Complex
+    block style
+      link(rel="stylesheet", href="../static/style.css")
+      link(rel="icon", type="image/x-icon", sizes="128x128", href="../static/icon2.jpg")
+    block script
+      script(src="../static/script.js")
+      script(src="../static/Courses.js")
+     
+  body
+    nav#navbar
+      div#navlogo
+        a(href="/") 
+          img(src="../static/navlogo1r.png", alt="Error 404")
+      ul
+        li 
+          a(href="/") Home
+        li 
+          a(href="/About-us") About Us
+        li 
+          a(href="/Contact") Contact Us
+        li 
+          a(href="/Services") Services
+    div.row
+      div.dropdown
+        | Knowledge Vibes
+        button 
+          img(src="../static/menu.png" alt="Error 404")
+          span Courses
+        div.dropdown-content
+          a(href="/Courses" value ="programming") 
+            i 📚 Programming Languages
+            div.submenu
+              a(href="#") Python 
+              a(href="#") C++
+              a(href="#") Java
+              a(href="#") Kotlin
+              a(href="#") VB.Net
+              a(href="#") Php 8
+              a(href="#") Java Script
+          a(href="/Courses" ) 
+            i 💻 Web Development
+            div.submenu
+              a(href="#") Web Design Essential
+              a(href="#") Backend using PHP
+              a(href="#") Shopify Development
+              a(href="#") ECommerce App Development
+              a(href="#") Bakend using Larvel
+              a(href="#") Web Application Development using Codelgniter
+              a(href="#") Wordpress Development
+          a(href="/Courses" ) 
+            i 🎨 Graphic Design
+            div.submenu
+              a(href="#") Ui Ux 
+              a(href="#") Software Branding
+              a(href="#") Adobe Ilustrator
+              a(href="#") Digital Calligraphy
+              a(href="#") Adobe Photoshop
+          a(href="/Courses" ) 
+            i 📈 Digital Marketing
+            div.submenu
+              a(href="#") Digital Marketing Complete
+              a(href="#") SEO
+              a(href="#") Social Media Marketing
+              a(href="#") Influencer Marketing
+              a(href="#") Affiliate Marketing 
+          a(href="/Courses" ) 
+            i ☁️ Cloud Computing
+            div.submenu
+              a(href="#") Cloud Computing Essentials 
+          a(href="/Courses" ) 
+            i 📱 Mobile Application Development
+            div.submenu
+              a(href="#") Mobile Apps
+              a(href="#") iOS Apps
+              a(href="#") Fluter App Development
+              a(href="#") React Native App Development 
+          a(href="/Courses" ) 
+            i 🤖 Artificial Intelligence
+            div.submenu
+              a(href="#") Artificial Intelligence
+              a(href="#") Machine Learning
+              a(href="#") Deep Learning
+              a(href="#") Data Science & Big Data
+              a(href="#") Rebotics
+          a(href="/Courses" ) 
+            i 🔒 Cybersecurity
+            div.submenu
+              a(href="#") Digital Forensics
+              a(href="#") Cybersecurity Essentials
+          a(href="/Courses" ) 
+            i 🗄️ Database Administration
+            div.submenu
+              a(href="#") Mongo DB
+              a(href="#") Oracle
+              a(href="#") SQL Server
+              a(href="#") NoSQL
+              a(href="#") MySQL Database
+          a(href="/Courses" ) 
+            i 🛒 eCommerc
+            div.submenu
+              a(href="#") Draz
+              a(href="#") Shopify
+              a(href="#") Amazon 
+              a(href="#") eBay
+              a(href="#") Sasta Mall
+    div#home
+      div.content
+        h1 Knowledge Vibes, Programms
+      div.para
+        p Education is the most powerful weapon which you can use to change the world.  
+      div.search-box
+       form(action="" class ="upper-form")
+        input(type="text" placeholder = "What you want to search")
+        button
+          i 🔎 Search 
+      
+      div#home_cards
+        div.card1
+          img(src="../static/1.jpg", alt="Error 404")
+        div.card2
+          img(src="../static/22.jpeg", alt="Error 404")
+        div.card3
+          img(src="../static/4.jpg", alt="Error 404")
+        div.card4
+          img(src="../static/2.jpeg", alt="Error 404")
+
+    div#Certificate_Section
+      div.certificate_cards
+        
+        div.content
+          h1 
+            span Get 
+            | certified,
+          h1 Get hired 
+            span .
+      div.certificate_cards
+        div.certificate_img1
+          img(src="../static/bag.png", alt="Error 404")
+        div.certificate_content
+          h3 100% Free for Orphans 
+          p Get Free Access to All Courses. 
+      div.certificate_cards
+        div.certificate_img2
+          img(src="../static/Laptop.png", alt="Error 404")
+        div.certificate_content
+          h3 Shuhadas of the Armed Forces
+          p Get Free Access to All Courses.
+      div.certificate_cards
+        div.certificate_img3
+          img(src="../static/Cap.png", alt="Error 404")
+        div.certificate_content
+          h3 BISP Beneficiaries 
+          p Get Free Access to All Courses
+          div 
+    div#carousel-container
+      button.arrow#prev ←
+      div.carousel
+        div.course-card
+          div.card-image
+            img(src="../static/Card-image 1.jpg", alt ="Error 404")
+          h4 Microsoft Office Management
+          p Master essential office management and administration skills using Microsoft Office tools. This course covers key functionalities in Word, Excel, and Outlook, enabling efficient document handling, data organization, and communication for smooth office operations.
+        div.course-card
+          div.card-image
+            img(src="../static/Card-image 2.jpg", alt ="Error 404")
+          h4 FYP Consultation and Supervision
+          p Gain guidance and support for your Final Year Project (FYP) through expert consultation and supervision. This course provides resources, strategies, and mentorship to help you successfully complete and present your project.
+        div.course-card
+          div.card-image
+            img(src="../static/Card-image 3.jpg", alt ="Error 404")
+          h4 Mobile Application Development
+          p Learn to design, build, and deploy mobile applications from scratch. This course covers Android, UI/UX design, and essential coding skills, equipping you to create functional, user-friendly mobile apps.
+        div.course-card
+          div.card-image
+            img(src="../static/Card-image 4.jpg", alt ="Error 404")
+          h4 Digital Marketing Essential Course
+          p Master the essentials of digital marketing with this comprehensive course. Learn strategies for SEO, social media, email marketing, and more to drive traffic, boost engagement, and grow your online presence.
+          
+        div.course-card
+          div.card-image
+            img(src="../static/Card-image 5.jpg", alt ="Error 404")
+          h4 Shopify store Essentials Course
+          p Learn to create, manage, and grow a Shopify store with this beginner-friendly course. From store setup and product listings to design and marketing, gain the essential skills to build a successful e-commerce business on Shopify.
+        div.course-card
+          div.card-image
+            img(src="../static/Card-image 6.jpg", alt ="Error 404")
+          h4 Amazon - FBA Entrepreneurship
+          p Learn the essentials of Amazon FBA (Fulfillment by Amazon) and start your e-commerce business. This course covers everything from product selection and sourcing to listing optimization, inventory management, and growing your Amazon sales.
+      button.arrow#next → 
+      
+    div#Top-Categories
+      div.Categories-Heading
+        h1 Top categories
+        p These are the most popular courses among listen courses learners worldwide
+      div.Categories-Content
+        div.Categories-Card
+          div.Categories-image
+            img(src="../static/Web Design.png", alt="Eroor 404")
+          div.Categories-Card-Content
+            h3 Web Design Essentials 
+            p 4 Courses
+
+        div.Categories-Card
+          div.Categories-image
+            img(src="../static/Larvel.png", alt="Eroor 404")
+          div.Categories-Card-Content
+            h3 Bakend Using Laravel 
+            p 2 Courses
+        
+        div.Categories-Card
+          div.Categories-image
+            img(src="../static/Cyber Security.png", alt="Eroor 404")
+          div.Categories-Card-Content
+            h3 Cyber Security Essentials 
+            p 2 Courses
+        
+        div.Categories-Card
+          div.Categories-image
+            img(src="../static/Php.png", alt="Eroor 404")
+          div.Categories-Card-Content
+            h3 Php 8 
+            p 1 Courses
+        
+        div.Categories-Card
+          div.Categories-image
+            img(src="../static/cpp.png", alt="Eroor 404")
+          div.Categories-Card-Content
+            h3 C++ 
+            p 1 Courses
+
+        div.Categories-Card
+          div.Categories-image
+            img(src="../static/Data Science.png", alt="Eroor 404")
+          div.Categories-Card-Content
+            h3 Data Science & Big Data 
+            p 1 Courses
+
+        div.Categories-Card
+          div.Categories-image
+            img(src="../static/Digital Marketing.png", alt="Eroor 404")
+          div.Categories-Card-Content
+            h3 Digital Marketing Complete
+            p 1 Courses
+        
+        div.Categories-Card
+          div.Categories-image
+            img(src="../static/Cloud Computing.png", alt="Eroor 404")
+          div.Categories-Card-Content
+            h3 Cloud Computing
+            p 1 Courses
+
+        div.Categories-Card
+          div.Categories-image
+            img(src="../static/Mobile App Development.png", alt="Eroor 404")
+          div.Categories-Card-Content
+            h3 Mobile App Development
+            p 1 Courses
+
+        div.Categories-Card
+          div.Categories-image
+            img(src="../static/Shopify.png", alt="Eroor 404")
+          div.Categories-Card-Content
+            h3 Shopify
+            p 1 Courses
+
+        div.Categories-Card
+          div.Categories-image
+            img(src="../static/Amazon.png", alt="Eroor 404")
+          div.Categories-Card-Content
+            h3 Amazon
+            p 1 Courses
+        div.Categories-Card
+          div.Categories-image
+            img(src="../static/Artificial Intelligence.png", alt="Eroor 404")
+          div.Categories-Card-Content
+            h3 Artificial Intelligence
+            p 1 Courses
+    div#Joining-Container
+       div#student
+          div.student-headings
+            h2 Learn from our quality instructors!
+            p Teach thousands of students and earn money!
+            button
+              a(href="/Login") Take  First Step
+          div.student-img
+             img(src="../static/student-1.png", alt="Error 404")
+       div#student-2
+          div.student-headings
+            h2 Become a new instructor!
+            p Teach thousands of students and earn money!
+            button
+              a(href="/Contact") Guide and Grow
+          div.student-img
+             img(src="../static/student-2.png", alt="Error 404")
+
+      
+
+  block content
+  block footer 
+    footer
+      //- | Copy Right @ 2024 wwwshezoeducationalcomplex.com | All rights reserved
+      div#footer_section1
+        div.footer_card1
+          h1.main_title Knowledge Vides
+          p Welcome to our Knowledge Vides Program Learning Management System, where innovation meets education and aspirations to find a home.
+        div.footer_card1
+          h3 Top Categories
+          ul 
+            li 
+              a(href="/") Web Design Essentials
+            li 
+              a(href="/") Backend using Laravel
+            li 
+              a(href="/") Java
+            li 
+              a(href="/") Fiverr & Upwork
+            li 
+              a(href="/") Digital Marketing
+            li 
+              a(href="/") Microsoft Office
+            li 
+              a(href="/") Amazon 
+        div.footer_card1
+          h3 Useful Links
+          ul
+            li 
+              a(href="/") Become an instructor
+              li 
+                a(href="/") Blog
+              li 
+                a(href="/") All courses
+              li 
+                a(href="/") Sign up
+        div.footer_card1
+          h3 Help
+          ul
+            li 
+              a(href="/Contact") Contact us
+              li 
+                a(href="/") About us
+              li 
+                a(href="/") Privacy policy
+              li 
+                a(href="/") Terms and condition
+              li 
+                a(href="/") Faq
+              li 
+                a(href="/") Refund policy

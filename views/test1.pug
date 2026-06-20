@@ -1,0 +1,52 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Dynamic Data Display using Pug
+    style.
+      body
+        font-family: Arial, sans-serif
+      #dropdown
+        margin: 20px
+      #output
+        margin-top: 20px
+        padding: 10px
+        border: 1px solid #ccc
+        background-color: #f9f9f9
+
+  body
+    h2 Select an Option to Show Data
+
+    // Dropdown menu with options
+    select#dropdown
+      option(value="1") Option 1
+      option(value="2") Option 2
+      option(value="3") Option 3
+
+    // Dynamic content area to show data based on the selection
+    div#output
+
+    script.
+      // JavaScript to handle dynamic data display based on the selection
+      document.getElementById('dropdown').addEventListener('change', function() {
+        var optionValue = this.value;
+        var outputDiv = document.getElementById('output');
+        
+        // Clear previous content
+        outputDiv.innerHTML = '';
+
+        // Create and display dynamic data based on selected option
+        var dynamicData = '';
+
+        if(optionValue == '1') {
+          dynamicData = '<h3>Data for Option 1</h3><p>This is the content for Option 1.</p>';
+        } else if(optionValue == '2') {
+          dynamicData = '<h3>Data for Option 2</h3><p>This is the content for Option 2.</p>';
+        } else if(optionValue == '3') {
+          dynamicData = '<h3>Data for Option 3</h3><p>This is the content for Option 3.</p>';
+        }
+
+        // Append dynamic data to the output section
+        outputDiv.innerHTML = dynamicData;
+      });

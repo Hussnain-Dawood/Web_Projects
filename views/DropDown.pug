@@ -1,0 +1,41 @@
+doctype html
+html
+  head
+    title Course Dropdown
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css")
+    style.
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        min-width: 200px;
+      }
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      .dropdown-content .category {
+        padding-left: 20px;
+        color: gray;
+      }
+  body
+    script(src="script.js")
+    h1 Course Categories
+    .dropdown
+      button Courses
+      .dropdown-content#dropdown-content
+        // Content is dynamically loaded with JavaScript

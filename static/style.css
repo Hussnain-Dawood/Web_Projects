@@ -1,0 +1,561 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+}
+html, body {
+    overflow-x: hidden;
+}
+
+#navlogo
+{
+    height: 100px;
+}
+#navlogo img
+{
+    height: 100%;
+    width: auto;
+    
+}
+#navbar
+{
+    display: flex;
+    align-items: center;
+    padding: 0px 13px;
+    font-family: "Oswald", sans-serif;
+    font-size: 19px;
+    font-weight: bold;
+    background: #f3eeee;
+    height: 72px;
+}
+ul{
+    display: flex;
+    margin: auto;
+}
+li
+{
+    list-style: none;
+    padding: 13px 13px;
+}
+li a{
+    text-decoration: none;
+    color: #0162af;
+}
+li a:hover
+{
+    color: #0aaaf6;
+}
+
+
+/* Drop Down Css Code */
+
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container for navbar */
+.row {
+    display: flex;
+    align-items: center;
+    padding: 2px 38px;
+    font-size: 19px;
+    font-weight: bold;
+    color: rgb(74, 74, 178);
+    font-family: "Oswald", sans-serif;
+
+}
+
+/* Courses Tab style */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: rgb(74, 74, 178);
+    font-weight: bold;
+    background-color: #754FFE3A;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 27px;
+}
+button img{
+    margin-right:  12px;
+}
+
+/* Dropdown content style */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    font-family: 'Times New Roman', Times, serif;
+    top: 100%; /* Show below the button */
+    left: 0;
+    background-color: #ffffff;
+    min-width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding-left: 15px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.dropdown-content a:hover {
+    color: #a084ff;
+}
+
+/* Show the dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+    
+}
+
+/* Icon and text spacing */
+.dropdown-content a i {
+    margin-right: 10px;
+}
+
+/* Submenu Styling Code */
+
+.submenu {
+    display: none;
+    position: absolute;
+    left: 100%; /* Show the submenu to the right */
+    top: 0;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 2;
+    width: 14rem
+}
+/* Show dropdown content on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Keep submenu visible */
+.dropdown-content a:hover + .submenu,
+.submenu:hover {
+    display: block;
+}
+
+/* Optional transition for smoother appearance */
+.dropdown-content, .submenu {
+    transition: all 0.2s ease-in-out;
+}
+/*Home Section Styling Code*/
+
+#home
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    
+    height: 45rem;
+    background: url("home.png") no-repeat center / cover;
+}
+#home .content{
+   margin-top: 3rem;
+   color: #fe954f;
+   font-family: "Archivo Black", sans-serif;
+   font-size: 23px;
+}
+.upper-form {
+    width: 47rem;
+    height: 60px;
+    border: 2px solid #c8b8b8;
+    border-radius: 40px;
+    padding: 0px 22px;
+   
+}
+form input
+{
+    border: none;
+    outline: none;
+    width: 84%;
+}
+.search-box button
+{
+    padding: 15px 35px;
+    background: #fe954f;
+    border-radius: 23px;
+    margin: 4px -12px;
+    color: white;
+    font-weight: bold;
+    outline: none;
+    border: none;
+}
+#home .para
+{
+    margin: 52px 0px;
+    font-size: 18px;
+}
+
+#home_cards
+{
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    height: 27rem;
+    margin-top: 6rem;
+}
+
+.card1,.card2,.card3,.card4
+{
+    width: 30%;
+    height: 82%;
+    margin: 12px 11px;
+}
+
+.card1 img, .card2 img, .card3 img, .card4 img
+{
+    width: 100%;
+    height: 100%;
+    
+}
+.card1 img:hover, .card2 img:hover, .card3 img:hover, .card4 img:hover
+{
+    cursor: pointer;
+    width: 15rem;
+}
+.card1 img, .card2 img
+{
+    border-radius: 0px 41px;
+}
+.card3 img, .card4 img{
+    border-radius: 41px 0px;
+    
+}
+.card2 img, .card3 img
+{
+    margin-top: 45px;
+}
+/*Certificate Section*/
+#Certificate_Section
+{
+    background: url(../static/certificate_bg.png);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.certificate_cards
+{
+    width: 20%;
+    height: 14rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    margin: 23px;
+}
+.certificate_cards .content h1 span
+{
+    color:  #fe954f;
+}
+.certificate_cards .certificate_img1, .certificate_cards .certificate_img2, .certificate_cards .certificate_img3
+{
+    width: 62px;
+    height: 61px;
+    background:  #f57499;
+    border-radius: 13px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 14px;
+}
+.certificate_cards .certificate_img1
+{
+    background:  #f57499;
+}
+.certificate_cards .certificate_img2
+{
+    background:  #9e83fe;
+}
+.certificate_cards .certificate_img3
+{
+    background:  #6aceff;
+}
+.certificate_cards img
+{
+    width: 33px;
+    height: 33px;
+}
+
+/* Joinning Css */
+#Joining-Container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8rem 0px;
+    grid-gap: 0.6rem;
+    
+}
+#Joining-Container #student,  #Joining-Container #student-2
+{
+    display: flex;
+    width: 48%;
+    height: 50%;
+    padding: 43px;
+    border-radius: 23px;
+    
+}
+#Joining-Container #student
+{
+    background: url("Group-1.png") no-repeat center/cover;
+}
+#Joining-Container #student-2
+{
+    background: url("Group-2.png") no-repeat center/cover;
+}
+#student img, #student-2 img{
+    height: 17rem;
+    width: 10rem;
+    margin-top: -7rem;
+}
+.student-img
+{
+    margin-right: -45px;
+}
+#student p, #student-2 p{
+    line-height: 43px;
+}
+.student-headings button
+{
+    background: white;
+    padding: 13px;
+    border: none;
+    border-radius: 13px;
+    margin-top: 28px;
+    
+}
+.student-headings button a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    
+}
+.student-headings button:hover{
+    color: white;
+    background-color: #ebedef;
+    cursor: pointer;
+    
+}
+.student-headings button:hover button a{
+    font-size: 45px;
+}
+
+/* Footer Section */
+
+footer
+{
+    
+  
+    font-weight: bold;
+    width: 100%;
+    height: 32rem;
+    color: white;
+    background: #000;
+    margin-top: 5rem;
+}
+#footer_section1
+{
+    display: grid;
+    grid-template-columns: 40% 20% 20% 20%;
+    grid-template-rows: 30rem;
+}
+#footer_section1 .footer_card1
+{
+    padding: 26px;
+    margin: 22px;
+}
+.footer_card1 p{
+    text-align: justify;
+    color: RGBA(255, 255, 255, 0.64);
+    margin-top: 53px;
+}
+.footer_card1 .main_title
+{
+    font-size: 54px;
+}
+footer .footer_card1 ul{
+    
+    display: flex;
+    flex-direction: column;
+    margin-top: 23px;
+}
+footer .footer_card1 li{
+    list-style: none;
+    padding: 11px 0px;
+    width: 16rem;
+}
+.footer_card1 ul li a
+{
+    color: RGBA(255, 255, 255, 0.64);
+    margin: 0px; 
+    font-size: 14px;
+    font-weight: normal;
+
+}
+.footer_card1 ul li a:hover
+{
+    color: #a084ff;
+}
+
+
+
+
+
+/* ALag hai  */
+
+#carousel-container {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    width: 80%;
+    position: relative;
+    margin: auto;
+    margin-top: 6rem;
+  }
+  
+  .carousel {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.3s ease-in-out;
+    width: 80%;
+   
+  }
+  
+  .course-card {
+    min-width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    text-align:start;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .course-card img
+  {
+    height: 50%;
+    width: 100%;
+  }
+  .arrow {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .arrow:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Adjust arrows' position */
+  #prev {
+    position: absolute;
+    left: 10px;
+  }
+  
+  #next {
+    position: absolute;
+    left: 48em;
+  }
+
+  /* Top Categories */
+
+
+#Top-Categories
+{
+   background: #f8f7ff;
+}
+.Categories-Heading
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 53px;
+}
+.Categories-Content
+{
+    display:grid;
+    grid-template-columns: 15% 15% 15% 15% 15% 15%;
+    grid-gap: 23px;
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+.Categories-Card-Content
+{
+    width: 60%;
+    margin-top: 23px;
+}
+.Categories-Card-Content p
+{
+    margin: 14px 0px;
+}
+.Categories-Card
+{
+    height: 15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.Categories-Card:hover .Categories-image
+{
+    background: #e48b50;
+    
+}
+.Categories-Card:hover .Categories-Card-Content h3{
+    color: #fe954f;;
+}
+.Categories-image
+{
+    
+    border-radius: 7px;
+    width: 45%;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #bab9b9;
+}
+.Categories-image img
+{
+    height: 23px;
+}
+  
+  
+  
+  
+  
+  
+  
+  /* Meri Css */
+  
+  
+  
+
